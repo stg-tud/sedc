@@ -1,0 +1,309 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1383682579000">
+<div id='body-content'>
+<h2>Open-Closed Principle</h2>
+<section class="slide" data-title="Open-Closed Principle"><div class="section-body"><h1>Open-Closed Principle</h1>
+<div class="statement">Software entities (classes, modules, functions, components, etc.) should be open for extension, but closed for modifications.</div>
+<p><strong>Extension</strong>: Extending the behavior of a module.</p>
+<p><strong>Modification</strong>: Changing the code of a module.</p>
+</div></section>
+<h3>Extension and Modification</h3>
+<section class="slide" data-title="Extension and Modification"><div class="section-body"><div class="statement">Why is it important to be closed for modifications?</div>
+</div></section>
+<p><em>Open for extension</em> means that when requirements of the application change, we can extend the module with new behaviors that reflect those changes. We change what the module does.</p>
+<p><em>Closed for modification</em> means that changes in behavior do not result in changes in the module&apos;s source or binary code.</p>
+<p>Several reasons for closing modules against changes:</p>
+<ul>
+<li>The module was delivered to customers and a change will not be accepted. If you need to change something later, hopefully you opened your module for extension!</li>
+<li>The module is a third-party Library/Framework and only available as binary code. If you need to change something, hopefully the third-party opened the module for extension!</li>
+<li><strong>Most importantly</strong>: not changing existing code means modular compilation, testing and debugging. </li>
+</ul>
+<h3>Abstraction is the Key</h3>
+<section class="slide" data-title="Abstraction is the Key"><div class="section-body"><h1>Abstraction is the Key</h1>
+<div class="statement">To enable extending an entity without modifying it, abstract over subparts of its behavior.</div>
+<blockquote><p>Many programming languages allow to create abstractions that are fixed and yet represent an unbounded group of possible behaviors!</p>
+</blockquote>
+</div></section>
+<p>Different kinds of abstraction mechanisms exist:</p>
+<ul>
+<li><p>Object-oriented languages:</p>
+<ul>
+<li>abstractions are encoded in abstract base classes resp. interfaces.</li>
+<li>unbounded group of possible behaviors is represented by all the possible derivative classes resp. implementations.</li>
+</ul>
+</li>
+<li><p>Functional languages:</p>
+<ul>
+<li>abstractions are encoded in function types.</li>
+<li>unbounded group of possible behaviors is represented by all the possible first-class functions of the declared type.</li>
+</ul>
+</li>
+</ul>
+<p>In the following, we shortly discuss the two main ways of abstracting over variability in object-oriented programs.</p>
+<section class="slide" data-title="Abstracting Over Variations"><div class="section-body"><h1>Abstracting Over Variations</h1>
+<p><img src="Images/OCP-Container.png" alt="OCP Container" /></p>
+</div></section>
+<ul>
+<li><code>Container</code> declares the layout functionality but does not implement it. The rest of <code>Container</code> is implemented against the abstraction.</li>
+<li>Concrete subclasses fill in the details over which <code>Container</code>’s implementation abstract.</li>
+</ul>
+<section class="slide" data-title="Abstracting Over Variations"><div class="section-body"><h1>Abstracting Over Variations</h1>
+<p><img src="Images/OCP-Container-LayoutManager.png" alt="OCP Container LayoutManager" /></p>
+</div></section>
+<ul>
+<li><code>Container</code> delegates the layout functionality to an abstraction. The rest of its functionality is implemented against this abstraction.</li>
+<li>To change the behavior of an instance of <code>Container</code> we configure it with the <code>LayoutManager</code> of our choice.</li>
+<li>We can add completely new behavior by implementing our own <code>LayoutManager</code>.</li>
+</ul>
+<h3>Understanding the Open-Closed Principle</h3>
+<section class="slide" data-title="Drawable Shapes - Initial Design"><div class="section-body"><h1>A Possible Design for Drawable Shapes</h1>
+<p><img src="Images/OCP-ShapeInitialDesign.png" alt="OCP Shape" /></p>
+<footer><div class="footer-body"><p>Drawing is implemented in separate methods (e.g., of class <code>Application</code>).</p>
+</div></footer>
+</div></section>
+<ul>
+<li>Each <code>Shape</code> identifies itself via the enumeration <code>ShapeType</code>.</li>
+<li>Realizations of <code>Shape</code> declare specialized methods for the shape type they represent.</li>
+</ul>
+<section class="slide"><div class="section-body"><p><strong>Consider an application that draws shapes - circles and rectangles – on a standard GUI.</strong></p>
+<p><img src="Images/OCP-SketchVectorDrawingApp.png" alt="OCP SketchVectorDrawingApp" /></p>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>Implementation of the drawing functionality:</strong></p>
+<pre><code class="java">class Application {
+  public void drawAllShapes(List&lt;Shape&gt; shapes) {
+    for(Shape shape : shapes) {
+      switch(shape.getType()) {
+      case Circle:
+        drawCircle((Circle)shape);
+        break;
+      case Rectangle:
+        drawRectangle((Rectangle)shape);
+        break;
+  } } }
+
+  private void drawCircle(Circle circle) { ... }
+
+  private void drawRectangle(Rectangle rectangle) { ... }
+}
+</code></pre>
+<p>Does this design conform to the open-closed design principle?</p>
+</div></section>
+<p><strong>Evaluating the proposed design:</strong></p>
+<ul>
+<li><p>Adding new shapes is hard, we need to:</p>
+<ul>
+<li>Implement a new realization of <code>Shape</code>.</li>
+<li>Add a new member to <code>ShapeType</code>.<br />
+This possibly leads to a recompile of all other realizations of <code>Shape</code>.</li>
+<li><code>drawAllShapes</code> (and every method that uses shapes of different types) must be changed.<br />
+We have to hunt for every place that contains conditional logic that distinguishes between types of shapes and we have to add code to it.</li>
+</ul>
+</li>
+<li><code>drawAllShapes</code> is hard to reuse!<br />
+When we reuse it, we have to bring along <code>Rectangle</code> and <code>Circle</code>.</li>
+</ul>
+<section class="slide" data-title="Rigid, Fragile, Immobile Designs"><div class="section-body"><h1>Rigid, Fragile and Immobile Designs</h1>
+<ul>
+<li><p><strong>Rigid designs</strong> are hard to change – every change causes many changes to other parts of the system.</p>
+</li>
+<li><p><strong>Fragile designs</strong> tend to break in many places when a single change is made. </p>
+</li>
+<li><p><strong>Immobile designs</strong> contain parts that could be useful in other systems, but the effort and risk involved with separating those parts from the original system are too big.</p>
+</li>
+</ul>
+<p>When we evaluate our design, does it show signs of rigidity, fragility or immobility?</p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Evaluating the Design</h1>
+<ul>
+<li><p>Our design is rigid, fragile and immobile.</p>
+</li>
+<li><p>The proposed design <strong>violates the open-closed design principle</strong> with respect to extensions with new kinds of shapes.</p>
+</li>
+<li><p>We need to close our module against this kind of change by building appropriate abstractions.</p>
+</li>
+</ul>
+</div></section>
+<p>Assessing our design w.r.t. its rigidity, fragility and immobility:</p>
+<ul>
+<li>Our example design <strong>is rigid</strong>: Adding a new shape causes many existing classes to be changed.</li>
+<li>Our example design <strong>is fragile</strong>: Many switch/case (if/else) statements that are both hard to find and hard to decipher.</li>
+<li>Our example design <strong>is immobile</strong>: <code>drawAllShapes</code> is hard to reuse.</li>
+</ul>
+<section class="slide" data-title="Drawable Shapes - Refined Design"><div class="section-body"><h1>Refined Design for Drawable Shapes</h1>
+<p><img src="Images/OCP-ShapeOCPConformDesign.png" alt="OCP ShapeOCPConformDesign" /></p>
+</div></section>
+<ul>
+<li><p>Makes adding new shapes possible without modification.<br />
+We just need to implement a new realization of <code>Shape</code>.</p>
+</li>
+<li><p><code>drawAllShapes</code> only depends on <code>Shape</code>.<br />
+We can reuse it unchanged.</p>
+</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Evaluating the Extensibility</h1>
+<div class="statement">This solution complies to the open-closed design principle.</div>
+<footer><div class="footer-body"><p>Is this unconditional statement correct?</p>
+</div></footer>
+</div></section>
+<p>This unconditional statement is – of course – not correct. It is not possible to be open for all kinds of extension and also be closed for modification.</p>
+<section class="slide"><div class="section-body"><h1>Other Kinds of Changes</h1>
+<p><img src="Images/OCP-ShapeOCPConformDesign.png" alt="OCP ShapeOCPConformDesign" /></p>
+<p>These abstractions are more of an hindrance to several other kinds of changes.</p>
+</div></section>
+<ul>
+<li><p>Consider extending the design with further shape functions:</p>
+<ul>
+<li>shape transformations, shape dragging, …</li>
+<li>calculating the intersection or union of shapes, etc.</li>
+</ul>
+</li>
+<li>Consider adding support for different operating systems.<br />
+The implementation of the drawing functionality varies for different operating systems.</li>
+</ul>
+<section class="slide"><div class="section-body"><div class="statement">Abstractions May <strong>Support</strong> or <strong>Hinder</strong> Change!</div>
+</div></section>
+<ul>
+<li>Change is easy if change units correspond to abstraction units.<br />
+In our example, adding a new type of <code>Shape</code> is easy as it is directly supported by inheritance and subtyping.</li>
+<li>Change is tedious if change units do not correspond to abstraction units.</li>
+</ul>
+<aside><div class="aside-body"><p>Consider again the Scala-based implementation of our SmartHome scenario. In the given design it is easily possible to add support for a new type of <code>Location</code>, but adding new functionality – while still being possible – is harder as seen in the previous example.</p>
+<p>For example, adding support for a new type of <code>Room</code> is straightforward:</p>
+<pre><code class="scala">trait Estate extends Building {
+   trait Garage extends TLocation
+}
+
+trait EstateWithLightsAndShutters extends Estate with LightsAndShutters {
+   trait Garage extends super.Garage with super[LightsAndShutters].TLocation
+}
+
+object EstatesWithLightsAndShutters extends EstateWithLightsAndShutters {
+
+   type Location = TLocation
+   type Room = TRoom
+   type Floor = TFloor
+   type House = THouse
+
+   def createRoom(): Room = new Room { 
+         var lights: List[Light] = Nil
+         var shutters: List[Shutter] = Nil }
+   def createFloor(rooms: List[Room]): Floor = new Floor { val locations = rooms }
+   def createHouse(floors: List[Floor]): House = new House { val locations = floors }
+
+   class Garage(
+      val lights: List[Light] = Nil, 
+      val shutters: List[Shutter] = Nil) extends super.Garage
+
+   val garage = new Garage(Nil, Nil)
+   garage.turnLightsOff
+   garage.turnLightsOn
+}
+</code></pre>
+</div></aside>
+<h3>Abstractions Reflect a Viewpoint</h3>
+<section class="slide" data-title="Abstractions Reflect a Viewpoint"><div class="section-body"><h1>Abstractions Reflect a Viewpoint</h1>
+<div class="statement">No matter how “closed” a module is, there will always be some kind of change against which it is not closed.</div>
+<footer><div class="footer-body"><p>There is no model that is natural to all contexts.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="On the &quot;Natural&quot; Model Structure"><div class="section-body"><h1>On the &quot;Natural&quot; Model Structure</h1>
+<p>Imagine: Development of a &quot;Zoo Software&quot;.</p>
+<p>Three stakeholders:</p>
+<ul>
+<li>Veterinary surgeon: <strong>What matters is how animals reproduce!</strong></li>
+<li>Trainer: <strong>What matters is the intelligence!</strong></li>
+<li>Keeper: <strong>What matters is what they eat!</strong></li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>One Possible Class Hierarchy When Modeling Animals</strong></p>
+<p><img src="Images/OCP-Animals.png" alt="OCP Animals" /></p>
+<footer><div class="footer-body"><p>Do you see a problem?</p>
+</div></footer>
+</div></section>
+<p>When we consider the classes <code>Oviparous</code> and <code>Mammal</code> it is obvious that the class hierarchy reflects the veterinary surgeon&apos;s understanding.</p>
+<section class="slide"><div class="section-body"><p><strong>The Animal World From a Trainer&apos;s Viewpoint</strong></p>
+<blockquote><p>“The show shall start with the pink pelicans and the African geese <strong>flying</strong> across the stage. They are to land at one end of the arena and then <strong>walk</strong> towards a small door on the side. At the same time, a killer whale should <strong>swim</strong> in circles and <strong>jump</strong> just as the pelicans fly by. After the jump, the sea lion should <strong>swim</strong> past the whale, <strong>jump</strong> out of the pool, and <strong>walk</strong> towards the center stage where the announcer is waiting for him.”</p>
+</blockquote>
+<p><img src="Images/OCP-Animals-Show.png" alt="OCP Animals Show" /></p>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>Models Reflecting Different Viewpoints Overlap</strong></p>
+<p><img src="Images/OCP-Animals-Viewpoints.png" alt="OCP Animals Viewpoints" /></p>
+</div></section>
+<ul>
+<li>Elements of a category in one model correspond to several categories in the other model (and vice versa).</li>
+<li>Adopting the veterinary viewpoint hinders changes concerning trainer’s viewpoint (and vice versa). </li>
+</ul>
+<section class="slide" data-title="Limitations of Current Programming Languages When Modeling Co-Existing Viewpoints"><div class="section-body"><div class="statement">Current programming languages and tools do not well support modeling the world based on co-existing viewpoints.</div>
+<footer><div class="footer-body"><p>No matter how “closed” a module is, there will always be some kind of change against which it is not closed.</p>
+</div></footer>
+</div></section>
+<p>Using a programming language which offers more advanced modeling mechanisms, it may be possible to create a design that more closely models the presented world. </p>
+<h3>Strategic and Agile Closure</h3>
+<section class="slide" data-title="OCP - Strategic Closure"><div class="section-body"><h1>Strategic Closure</h1>
+<ul>
+<li><p>Choose the kinds of changes against which to close your module.</p>
+<ul>
+<li>Guess at the most likely kinds of changes.</li>
+<li>Construct abstractions to protect against those changes.</li>
+</ul>
+</li>
+<li><p>Prescience derived from experience:</p>
+<ul>
+<li>Experienced designers hope to know the user and an industry well enough to judge the probability of different kinds of changes.</li>
+<li>Invoke open-closed principle against the most probable changes.</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<section class="slide" data-title="OCP - Be Agile"><div class="section-body"><h1>Be Agile</h1>
+<blockquote><p>Recall that guesses about the likely kinds of changes to an application over time will often be wrong. </p>
+</blockquote>
+<p>Conforming to the open-closed principle is expensive:</p>
+<ul>
+<li>Development time and effort to create the appropriate abstractions </li>
+<li><p>Created abstractions might increase the complexity of the design.</p>
+<ul>
+<li>Needless, Accidental Complexity. </li>
+<li>Incorrect abstractions supported/maintained even if not used.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Be agile: Wait for changes to happen and close against them.</strong></p>
+</div></section>
+<section class="slide" data-title="OCP - Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<blockquote><p>Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modifications.<br /></p>
+<p>Bertrand Meyer, 1988</p>
+</blockquote>
+<ul>
+<li>Abstraction is the key to supporting the open-closed design principle.</li>
+<li>No matter how “closed” a module is, there will always be some kind of change against which it is not closed.</li>
+</ul>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

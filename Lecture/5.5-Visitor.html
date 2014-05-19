@@ -1,0 +1,450 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1391689671000">
+<div id='body-content'>
+<h2>Visitor Design Pattern</h2>
+<h3>Intent</h3>
+<section class="slide" data-title="Intent"><div class="section-body"><h1>Intent</h1>
+<div class="statement">The Visitor Pattern enables to add new behavior to existing classes in a fixed class hierarchy without changing this hierarchy.</div>
+</div></section>
+<section class="slide" data-title="Intent of the Visitor in Context"><div class="section-body"><h1>Intent of the Visitor in Context</h1>
+<h2>Recall the problems of inheritance with modeling variations at the level of multiple objects (object composites).</h2>
+<p><img src="Images/DP-Visitor-ModelingVariations.png" alt="DP Visitor ModelingVariations" /></p>
+</div></section>
+<p>Problems:</p>
+<ul>
+<li>Weak support for combining variations at the level of the composite with those at the level of individual elements.</li>
+<li>No support for expressing covariant variations.</li>
+<li>Instantiation problems.</li>
+</ul>
+<h3>Solution</h3>
+<section class="slide" data-title="Solution Idea"><div class="section-body"><h1>Solution Idea</h1>
+<div class="statement">Represent the additional operations to be performed on the elements of an object structure (additional features) as objects (of type Visitor).</div>
+</div></section>
+<section class="slide" data-title="Structure"><div class="section-body"><h1>Structure</h1>
+<p><img src="Images/DP-Visitor-Structure.png" alt="DP Visitor Structure" /></p>
+<p>Example Usage:</p>
+<pre><code class="Java">Element e = new ConcreteElementA(...);
+Visitor v = new ConcreteVisitor1(...);
+e.accept(v);
+</code></pre>
+</div></section>
+<p>The <code>Visitor</code> interface declares a <code>visit</code> method per element type in the object structure.<br /></p>
+<p>A <code>Visitor</code> interface describes how to “treat” the element types.</p>
+<p>Concrete visitor classes implement the interface specifically, i.e., treat elements differently.</p>
+<p>A concrete visitor class corresponds to a particular feature to be added to the object structure.</p>
+<p>Elements in the object structure provide the method accept(<code>Visitor</code>).</p>
+<p>On being asked to <code>accept</code> a visitor passed to it as a parameter, an element asks the visitor to visit it.</p>
+<section class="slide" data-title="Structure (Long Version)"><div class="section-body"><h1>Structure (Long Version)</h1>
+<p><img src="Images/DP-Visitor-Structure-Complete.png" alt="DP Visitor Structure Complete" /></p>
+</div></section>
+<h3>Case-Study: Arithmetic Expressions</h3>
+<section class="slide" data-title="Case-Study: Arithmetic Expressions"><div class="section-body"><h1>Case-Study: Arithmetic Expressions</h1>
+<p><img src="Images/DP-Visitory-Expr-BasicOO.png" alt="DP Visitory Expr(Naive)" /></p>
+<footer><div class="footer-body"><p>Which are the potential design issues?</p>
+</div></footer>
+</div></section>
+<p>Requirements:</p>
+<ul>
+<li><p>A library for (arithmetic) expressions must provide different functionality for:</p>
+<ul>
+<li>Formatting an expression to a string.</li>
+<li>Computing the value of an expression.</li>
+<li>Optimizing an expression.</li>
+</ul>
+</li>
+<li><p>The library must be extensible with new functionality:</p>
+<ul>
+<li>Generate code for different machines,</li>
+<li>Various refactorings, e.g., rename variables,</li>
+</ul>
+</li>
+<li><p>The library must be extensible with new kinds of expressions.</p>
+</li>
+</ul>
+<p>Design Issues:</p>
+<ul>
+<li>Impossible to reuse part of library functionality (product lines).</li>
+<li>Changing one feature can destabilize other features (SRP).</li>
+<li>New features cannot be incrementally added (OCP).</li>
+</ul>
+<section class="slide" data-title="Case Study: Arithmetic Expressions - Visitor-Based Design"><div class="section-body"><h1>Visitor-Based Design</h1>
+<p><img src="Images/DP-Visitory-Expr-Visitor.png" alt="DP Visitory Expr Visitor" /></p>
+<aside data-title="Double Dispatch"><div class="aside-body"><div class="statement">Dispatching an operation based on the dynamic type of two objects is called double dispatch.</div>
+<p>Double dispatch is not supported in mainstream OO languages, e.g., Java.</p>
+</div></aside>
+<aside data-title="Double Dispatch - Alternative View"><div class="aside-body"><p><strong>Double-Dispatch - Another Point of View</strong></p>
+<p>Method call in an object-oriented program: <code>receiver.message(param1,param2,...) </code><br />
+The function that is called depends on the run-time type of the receiver. 
+Double dispatch is a natural extension of this idea, the function that is called is determined from the run-time type of receiver <em>and</em> the run-time type of the first parameter. It is easy to model this behavior (double-dispatch) with a two-dimensional table of pointers to functions:</p>
+<ul>
+<li>The runtime type of the receiving object is used to determine a row in the table, and </li>
+<li>the runtime type of the first parameter is used to determine a column in the table.
+<img src="Images/DP-Visitor-DoubleDispatch-Table.png" alt="DP Visitor DoubleDispatch Table" /></li>
+</ul>
+</div></aside>
+</div></section>
+<p>The dispatch of the operations defined in the Element hierarchy depends on two parameters:</p>
+<ol>
+<li>Dynamic type of the receiver Element determines the class that has the needed method look-up table.</li>
+<li>Name of the operation being called determines the entry in that table.</li>
+</ol>
+<p>For operations that are outsourced to visitors, we need to simulate the same dispatch semantics.<br />
+We need to select an implementation of an operation based on both</p>
+<ol>
+<li>the dynamic type of the element on which to apply the operation,</li>
+<li>the dynamic type of the visitor object representing the operation.</li>
+</ol>
+<h3>Reflections on the Visitor Structure</h3>
+<section class="slide" data-title="Reflections on the Visitor Structure"><div class="section-body"><h1>Reflections on the Visitor Structure</h1>
+<p><strong>Can we move the implementation of accept higher up the Element hierarchy?</strong></p>
+<p><img src="Images/DP-Visitor-Structure-Question.png" alt="DP Visitor Structure Question" /></p>
+</div></section>
+<p>Answer: No. The method that is called by <code>v.visit(this)</code> is determined at compile-time. </p>
+<h3>Case-Study: Calculating Shape Intersection</h3>
+<section class="slide" data-title="Case-Study: Calculating Shape Intersection"><div class="section-body"><h1>Case-Study: Calculating Shape Intersection</h1>
+<p><img src="Images/DP-Visitor-ShapeIntersection-Start-ClassHierarchy.png" alt="DP Visitor ShapeIntersection Start ClassHierarchy" /></p>
+<p><strong>Task</strong>:
+Implement an intersect operation that calculates whether two given shapes intersect.</p>
+</div></section>
+<p>  <span style="visibility:hidden"> TODO Enable: &quot;anim-step:1&quot; </span> </p>
+<section class="slide"><div class="section-body"><h1>Case-Study: Calculating Shape Intersection</h1>
+<p><img src="Images/DP-Visitor-ShapeIntersection-Start-ClassHierarchy.png" alt="DP Visitor ShapeIntersection Start ClassHierarchy" /></p>
+<p><strong>Task</strong>:
+Implement an intersect operation that calculates whether two given shapes intersect.</p>
+<section data-anim-step="1"><div class="section-body"><p><strong>Sketch of the solution</strong>:</p>
+<pre><code class="Java">Shape t = new Triangle(…);
+Shape r = new Rectangle(…);
+if (t.intersect(r)) {…}
+</code></pre>
+</div></section>
+</div></section>
+<p>For the proposed solution, the implementation of intersect depends on the dynamic type of both the receiver (<code>t</code>) and parameter (<code>r</code>) shapes. Hence, we need to simulate double dispatch in Java.</p>
+<section class="slide"><div class="section-body"><h1>Case-Study: Calculating Shape Intersection</h1>
+<h2>Simulating Double Dispatch</h2>
+<p><img src="Images/DP-Visitor-ShapeIntersection-Start-withIntersectMethods.png" alt="DP Visitor ShapeIntersection Start WithIntersectMethods" /></p>
+<footer><div class="footer-body"><p>Do you see how this design simulates double dispatch?</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Case-Study: Calculating Shape Intersection</h1>
+<h2>Simulating Double Dispatch</h2>
+<pre><code class="Java">Shape t = new Triangle(…);
+Shape r = new Rectangle(…);
+if (t.intersect(r)) {…}
+</code></pre>
+<p><img src="Images/DP-Visitor-ShapeIntersection-Start-withIntersectMethodsWithDoubleDispatchVisualization.png" alt="DP Visitor ShapeIntersection Start WithIntersectMethodsWithDoubleDispatchVisualization" /></p>
+<footer><div class="footer-body"><p>How do you judge this design?</p>
+</div></footer>
+</div></section>
+<p>External call <code>t.intersect(r)</code> is dispatched based on dynamic type of <code>t</code>.</p>
+<p>Internal call <code>s.intersect(this)</code> is dispatched based on dynamic type of <code>r</code>.</p>
+<p><strong>Assessment</strong>:</p>
+<ul>
+<li><p>The given design forces every shape class to implement its intersection with every other shape. Adding new shapes means implementing new methods in every other shape.</p>
+</li>
+<li><p>The double dispatch approach compromises the semantic-hierarchy concept. </p>
+</li>
+<li><p>This results in an inheritance tree where each derivative is aware of all other derivates.</p>
+</li>
+</ul>
+<section class="slide" data-title="Case-Study: Shape Intersection Using Visitor"><div class="section-body"><h1>Case-Study: Shape Intersection Using Visitor</h1>
+<p><img src="Images/DP-Visitor-ShapeIntersection-Visitor.png" alt="DP Visitor ShapeIntersection Visitor" /></p>
+</div></section>
+<p>The Visitor Pattern can be used to eliminate the cross-reference in each shape derivative to each other shape derivative. The key idea is to move the intersect functionality to visitors and to implement one intersection visitor (e.g., <code>CircleIntersection</code> or <code>RectangleIntersector</code>) per Shape type.</p>
+<section class="slide"><div class="section-body"><h1>Case-Study: Shape Intersection Using Visitor</h1>
+<pre><code class="Java">Shape c = new Circle(…);
+Shape r = new Rectangle(…);
+if (c.intersect(r)) {…}
+</code></pre>
+<p><img src="Images/DP-Visitor-ShapeIntersection-VisitorInteraction.png" alt="DP Visitor ShapeIntersection VisitorInteraction" /></p>
+</div></section>
+<h3>Assessment of the Visitor Design Pattern</h3>
+<section class="slide" data-title="Advantages of the Visitor Design Pattern"><div class="section-body"><h1>Advantages of the Visitor Design Pattern</h1>
+<ul>
+<li><p><strong>New operations are easy to add</strong> without changing element classes (add a new concrete visitor).<br />
+Different concrete elements do not have to implement their part of a particular algorithm.</p>
+</li>
+<li><p>Related behavior focused in a single concrete visitor.</p>
+</li>
+<li><p><strong>Visiting across hierarchies</strong>: Visited classes are not forced to share a common base class.</p>
+</li>
+<li><p><strong>Accumulating state</strong>: Visitors can accumulate state as they visit each element, thus, encapsulating the algorithm and all its data.</p>
+</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Issues of the Visitor-Based Design - Adding Elements"><div class="section-body"><h1>Issues of the Visitor-Based Design</h1>
+<h2>Adding Elements</h2>
+<p>Scenario:
+<img src="Images/DP-Visitor-Problem-AddingElements-Start.png" alt="DP Visitor Problem AddingElements Start" /></p>
+<footer><div class="footer-body"><p>What happens if we want to add a new element?</p>
+</div></footer>
+</div></section>
+<p>Description:</p>
+<ul>
+<li>Visitor visits all elements of a document.</li>
+<li>ToPDF converts documents to PDF.</li>
+<li>Various other concrete visitors may be implemented:<br />
+spell checking, grammar checking, text analysis, speaking text service, ...</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Issues of the Visitor-Based Design</h1>
+<h2>E.g., adding <code>Chart</code> (adding Elements)</h2>
+<p><img src="Images/DP-Visitor-Problem-AddingElements-Chart.png" alt="DP Visitor Problem AddingElements Chart" /></p>
+</div></section>
+<p>Problem: Since Visitor has no method for <code>Chart</code>, it’s objects won’t be processed by any visitor. Our design is not closed against this kind of change.</p>
+<section class="slide"><div class="section-body"><h1>Issues of the Visitor-Based Design</h1>
+<h2>E.g., adding <code>Chart</code> <strong>and updating Visitor</strong></h2>
+<p><img src="Images/DP-Visitor-Problem-AddingElements-ChangingVisitors.png" alt="DP Visitor Problem AddingElements ChangingVisitors" /></p>
+<footer><div class="footer-body"><p>What are the issues?</p>
+</div></footer>
+</div></section>
+<p><strong>Issues</strong>:</p>
+<ul>
+<li>We have to change all visitors for every new element.</li>
+<li>Many visitors will have empty methods to comply to the interface.</li>
+<li>Sometimes data structures are extended, but it‘s optional to process extensions.<br />
+E.g., it doesn’t make sense to spell-check charts, i.e., SpellChecker.visit(Chart) will be empty.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Issues of the Visitor-Based Design</h1>
+<h2>E.g., adding <code>Chart</code> <strong>and keeping Visitor unchanged</strong></h2>
+<p><img src="Images/DP-Visitor-Problem-AddingElements-VisitorUnchanged.png" alt="DP Visitor Problem AddingElements VisitorUnchanged" /></p>
+<footer><div class="footer-body"><p>What are the issues?</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Issues of the Visitor-Based Design</h1>
+<h2>E.g., adding <code>Chart</code> <strong>and keeping Visitor unchanged</strong></h2>
+<p><img src="Images/DP-Visitor-Problem-AddingElements-VisitorUnchanged-Conclusion.png" alt="DP Visitor Problem AddingElements VisitorUnchanged Conclusion" /></p>
+<footer><div class="footer-body"><p>What are the issues?</p>
+</div></footer>
+</div></section>
+<p>Try to avoid such visitors as these implementations are extremely fragile; they are maintenance nightmares when more elements are added.</p>
+<section class="slide" data-title="Issues of the Visitor-Based Design - Partial Visiting"><div class="section-body"><h1>Issues of the Visitor-Based Design</h1>
+<h1>Partial Visiting Is Not Supported</h1>
+<p>Visitor is like a matrix (cross product of all Visitor and Element classes):</p>
+<p><img src="Images/DP-Visitor-Problem-PartialVisiting.png" alt="DP Visitor Problem PartialVisiting" /></p>
+</div></section>
+<p>Partial visiting is not supported!</p>
+<p>To provide a common abstract <code>Visitor</code> interface to <code>Element</code>, <strong>every derivative</strong> of <code>Element</code> need to be addressed by every derivative of <code>Visitor</code>; even if this might not make sense or is not needed.  We have seen this for <code>SpellChecker.visit(Chart)</code></p>
+<h4>Takeaway</h4>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<ul>
+<li><p>Visitor brings functional-style decomposition to OO designs. </p>
+</li>
+<li><p>Use Visitor for stable element hierarchies.<br />
+Visitor works well in data hierarchies where new elements are never or at least not very often added.</p>
+</li>
+<li><p>Do not use it, if new elements are a likely change.</p>
+</li>
+<li><p>Visitor only makes sense if we have to add new operations often! In this case Visitor closes our design against these changes.</p>
+</li>
+</ul>
+</div></section>
+<h3>Solving the Expression Problem in Scala</h3>
+<p>Recommended reading: <strong>Matthias Zenger and Martin Odersky</strong>, <em>Independently Extensible Solutions to the Expression Problem</em>, FOOL 2005</p>
+<p>The code shown in the following can be downloaded <a href="Code/ExpressionsFramework-Visitor.zip">here</a>.</p>
+<h4>Using &quot;Standard&quot; Object-Oriented Features</h4>
+<section class="slide" data-title="Solving the Expression Problem in Scala - Plain OO"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>The base trait.</strong></p>
+<pre><code class="Scala">trait Expressions {
+
+    type expression &lt;: Expression
+    trait Expression {
+        def eval: Double
+    }
+
+    trait Constant extends Expression {
+        val v: Double
+        def eval = v
+    }
+}
+
+</code></pre>
+<footer><div class="footer-body"><p>Resembles the solution that we have studied as part of the implementation of the SmartHome Scenario.</p>
+</div></footer>
+</div></section>
+<p>To make it possible to extend the <code>Expression</code> trait (i.e., to enable an independently developed extension to contribute functionality to <code>Expression</code>s ) we have to abstract over the concrete type of Expression.</p>
+<section class="slide"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>Adding a new data-type.</strong></p>
+<pre><code class="Scala">trait AddExpressions extends Expressions {
+    trait Add extends Expression {
+        val l: Expression
+        val r: Expression
+        def eval = l.eval + r.eval
+    }
+}
+
+</code></pre>
+<footer><div class="footer-body"><p>Resembles the solution that we have studied as part of the implementation of the SmartHome Scenario.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>Adding new functionality.</strong></p>
+<pre><code class="Scala">trait PrefixNotationForExpressions extends AddExpressions {
+
+  type expression &lt;: Expression
+  trait Expression extends super.Expression {
+    def prefixNotation: String
+  }
+
+  trait Constant extends super.Constant with Expression {
+    def prefixNotation = v.toString
+  }
+
+  trait Add extends super.Add with Expression {
+    def prefixNotation = &quot;+&quot;+l.prefixNotation + r.prefixNotation
+  }
+}
+
+</code></pre>
+<footer><div class="footer-body"><p>Resembles the solution that we have studied as part of the implementation of the SmartHome Scenario.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>Bringing everything together.</strong></p>
+<pre><code class="Scala">object ExpressionsFramework
+    extends PrefixNotationForExpressions
+    with PostfixNotationForExpressions {
+		
+  type expression = Expression
+  trait Expression
+    extends super[PrefixNotationForExpressions].Expression
+    with super[PostfixNotationForExpressions].Expression
+
+  case class Constant(v: Double)
+    extends super[PrefixNotationForExpressions].Constant
+    with super[PostfixNotationForExpressions].Constant
+    with Expression
+
+  case class Add(val l: expression, val r: expression)
+    extends super[PrefixNotationForExpressions].Add
+    with super[PostfixNotationForExpressions].Add
+    with Expression
+}
+</code></pre>
+<footer><div class="footer-body"><p>Resembles the solution that we have studied as part of the implementation of the SmartHome Scenario.</p>
+</div></footer>
+</div></section>
+<p><strong>Assessment</strong>:</p>
+<ul>
+<li>The solution is open w.r.t. to directly adding new functionality to expressions and w.r.t. adding new data-types that inherit from <code>Expression</code>.</li>
+<li>It is easy to add support for new data-types (e.g., <code>Add</code>).</li>
+<li>It is possible to add new functionality (in a type-safe way), but this requires a deep-mixin composition.</li>
+<li>The solution is subject to the fragile base-class problem.</li>
+</ul>
+<h4>Using the Visitor-Design Pattern</h4>
+<section class="slide" data-title="Solving the Expression Problem in Scala - Visitor Pattern"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>The base trait.</strong></p>
+<pre><code class="Scala">trait Expressions {
+    
+  trait Expression { def accept[T](visitor: visitor[T]): T }
+
+  class Constant(val v: Double) extends Expression {
+    def accept[T](visitor: visitor[T]): T = visitor.visitConstant(v)
+  }
+
+  type visitor[T] &lt;: Visitor[T]
+  trait Visitor[T] {
+    def visitConstant(v: Double): T
+  }
+
+  trait EvalVisitor extends Visitor[Double] {
+    def visitConstant(v: Double): Double = v
+  }
+}
+</code></pre>
+</div></section>
+<p>This solution does not support adding methods/functionality to an expression at runtime or by a third-party extension, i.e., an independently developed extension of the Expressions trait cannot contribute to the <code>Expression</code> trait.</p>
+<section class="slide"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>Adding a new data-type.</strong></p>
+<pre><code class="Scala">trait AddExpressions extends Expressions {
+
+  class Add(
+    val l: Expression,
+    val r: Expression) extends Expression {
+				
+    def accept[T](visitor: visitor[T]): T = visitor.visitAdd(l, r)
+  }
+
+  type visitor[T] &lt;: Visitor[T]
+  trait Visitor[T] extends super.Visitor[T] {
+    def visitAdd(l: Expression, r: Expression): T
+  }
+
+  trait EvalVisitor extends super.EvalVisitor with Visitor[Double] { 
+  this: visitor[Double] ⇒
+  def visitAdd(l: Expression, r: Expression): Double =
+    l.accept(this) + r.accept(this)
+  }
+}
+</code></pre>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p>Bringing everything together:</p>
+<pre><code class="Scala">trait ExtendedExpressions extends AddExpressions with MultExpressions {
+
+  type visitor[T] = Visitor[T] 
+  trait Visitor[T]
+    extends super[AddExpressions].Visitor[T]
+    with super[MultExpressions].Visitor[T]
+
+  object EvalVisitor
+    extends super[AddExpressions].EvalVisitor
+    with super[MultExpressions].EvalVisitor
+    with Visitor[Double] { 
+	  this: visitor[Double] ⇒ }
+}
+</code></pre>
+</div></section>
+<p>By making the type visitor concrete (<code>type visitor[T] = Visitor[T]</code>) the data-type hierarchy is now fixed; extension is only possible w.r.t. new functionality.</p>
+<section class="slide"><div class="section-body"><h1>Solving the Expression Problem in Scala</h1>
+<p><strong>Adding new functionality.</strong></p>
+<pre><code class="Scala">trait PrefixNotationForExpressions extends ExtendedExpressions {
+
+  object PrefixNotationVisitor extends super.Visitor[String] { 
+    this: visitor[String] ⇒
+
+    def visitConstant(v: Double): String = v.toString+&quot; &quot;
+
+    def visitAdd(l: Expression, r: Expression): String = 
+      &quot;+ &quot;+l.accept(this) + r.accept(this)
+
+    def visitMult(l: Expression, r: Expression): String = 
+      &quot;* &quot;+l.accept(this) + r.accept(this)
+
+  }
+}
+</code></pre>
+</div></section>
+<p><strong>Assessment:</strong></p>
+<ul>
+<li>The solution is open w.r.t. to adding new functionality to expressions by means of a visitor and w.r.t. adding new data-types that inherit from <code>Expression</code>.</li>
+<li>It is easy to add new functionality (e.g., <code>PrefixNotationForExpressions</code>).</li>
+<li>It is possible to add new data-types (in a type-safe way), but this requires a deep-mixin composition.</li>
+<li>The solution is subject to the fragile base-class problem.</li>
+</ul>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

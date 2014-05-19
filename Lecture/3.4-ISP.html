@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1380527398000">
+<div id='body-content'>
+<h2>Interface Segregation Principle (ISP)</h2>
+<section class="slide" data-title="Interface Segregation Principle"><div class="section-body"><h1>Interface Segregation Principle</h1>
+<div class="statement">Clients should not be forced to depend on methods that they do not use.</div>
+</div></section>
+<h3>Introduction by Example</h3>
+<section class="slide" data-title="Introduction by Example"><div class="section-body"><h1>Introduction by Example</h1>
+<p>Consider the development of software for an automatic teller machine (ATM):</p>
+<ul>
+<li>Support for the following types of transactions is required: withdraw, deposit, and transfer</li>
+<li>Support for different languages and support for different kinds of UIs is also required</li>
+<li>Each transaction class needs to call methods on the GUI<br />
+E.g., to ask for the amount to deposit, withdraw, transfer.</li>
+</ul>
+<p><img src="Images/ISP-ATM-OneInterface.png" alt="ISP ATM OneInterface" /></p>
+<footer><div class="footer-body"><p>What do you think?</p>
+</div></footer>
+</div></section>
+<p><strong>Assessment:</strong></p>
+<p>ISP tells us to avoid this. Each transaction class uses a part of the interface, but depends on all others. Any change affects all transactions.</p>
+<section class="slide" data-title="A Polluted Interface"><div class="section-body"><h1>A Polluted Interface</h1>
+<p><img src="Images/ISP-ATM-PollutedInterfaceATMUI.png" alt="ISP ATM PollutedInterfaceATMUI" /></p>
+<p><code>ATM UI</code> is a polluted interface:</p>
+<ul>
+<li>It declares methods that do not belong together.</li>
+<li>It forces classes to depend on unused methods and therefore depend on changes that should not affect them.</li>
+<li>ISP states that such interfaces should be split.</li>
+</ul>
+</div></section>
+<h3>The Rationale Behind ISP</h3>
+<section class="slide" data-title="The Rationale Behind ISP"><div class="section-body"><h1>The Rationale Behind ISP</h1>
+<div class="statement">When clients depend on methods they do not use, they become subject to changes forced upon these methods by other clients.</div>
+<p>This causes coupling between all clients.</p>
+</div></section>
+<section class="slide" data-title="How does an ISP compliant solution look like?"><div class="section-body"><h1>How does an ISP compliant solution look like?</h1>
+<p><img src="Images/ISP-ATM-OneInterface.png" alt="ISP ATM OneInterface" /></p>
+</div></section>
+<section class="slide" data-title="An ISP Compliant Solution"><div class="section-body"><h1>An ISP Compliant Solution</h1>
+<p><img src="Images/ISP-ATM-MultipleInterface.png" alt="ISP ATM MultipleInterface" /></p>
+</div></section>
+<h3>Proliferation of Interfaces</h3>
+<section class="slide" data-title="Proliferation of Interfaces"><div class="section-body"><h1>Proliferation of Interfaces</h1>
+<div class="statement">Try to group possible clients of a class and have an interface for each group.</div>
+<hr />
+<p><strong>But:</strong>
+Segregating interfaces should not be overdone! </p>
+</div></section>
+<p>If you overdue the application of the interface segregation principle, you will end up with 2n-1 interfaces for a class with n methods.</p>
+<p>Recall that, in general, a class implementing many interfaces may be a sign of a violation of the single-responsibility principle.</p>
+<h3>Takeaway</h3>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<div class="statement">Clients should not be forced to depend on methods that they do not use.</div>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

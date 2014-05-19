@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>template_method - sc.design_pattern.template_method</title>
+          <meta name="description" content="template method - sc.design pattern.template method" />
+          <meta name="keywords" content="template method sc.design pattern.template method" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'sc.design_pattern.template_method.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="sc">sc</a>.<a href="../package.html" class="extype" name="sc.design_pattern">design_pattern</a></p>
+        <h1>template_method</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">template_method</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="sc.design_pattern.template_method.BaseAppender" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BaseAppenderextendsAnyRef"></a>
+      <a id="BaseAppender:BaseAppender"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="BaseAppender.html"><span class="name">BaseAppender</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.BasicLayoutEngine" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BasicLayoutEngineextendsLayoutEngine"></a>
+      <a id="BasicLayoutEngine:BasicLayoutEngine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BasicLayoutEngine.html"><span class="name">BasicLayoutEngine</span></a><span class="result"> extends <a href="LayoutEngine.html" class="extype" name="sc.design_pattern.template_method.LayoutEngine">LayoutEngine</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.CaffeinatedBeverageTemplate" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CaffeinatedBeverageTemplateextendsAnyRef"></a>
+      <a id="CaffeinatedBeverageTemplate:CaffeinatedBeverageTemplate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CaffeinatedBeverageTemplate.html"><span class="name">CaffeinatedBeverageTemplate</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.Coffee" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CoffeeextendsCaffeinatedBeverageTemplate"></a>
+      <a id="Coffee:Coffee"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Coffee.html"><span class="name">Coffee</span></a><span class="result"> extends <a href="CaffeinatedBeverageTemplate.html" class="extype" name="sc.design_pattern.template_method.CaffeinatedBeverageTemplate">CaffeinatedBeverageTemplate</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.Component" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ComponentextendsAnyRef"></a>
+      <a id="Component:Component"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Component.html"><span class="name">Component</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.Container" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ContainerextendsAnyRef"></a>
+      <a id="Container:Container"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Container.html"><span class="name">Container</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.FirstOrderFunctionCoffeeBreak" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FirstOrderFunctionCoffeeBreakextendsAnyRef"></a>
+      <a id="FirstOrderFunctionCoffeeBreak:FirstOrderFunctionCoffeeBreak"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FirstOrderFunctionCoffeeBreak.html"><span class="name">FirstOrderFunctionCoffeeBreak</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.LayoutEngine" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LayoutEngineextendsAnyRef"></a>
+      <a id="LayoutEngine:LayoutEngine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LayoutEngine.html"><span class="name">LayoutEngine</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.LoggingEvent" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LoggingEventextendsAnyRef"></a>
+      <a id="LoggingEvent:LoggingEvent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LoggingEvent.html"><span class="name">LoggingEvent</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.Tea" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TeaextendsCaffeinatedBeverageTemplate"></a>
+      <a id="Tea:Tea"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Tea.html"><span class="name">Tea</span></a><span class="result"> extends <a href="CaffeinatedBeverageTemplate.html" class="extype" name="sc.design_pattern.template_method.CaffeinatedBeverageTemplate">CaffeinatedBeverageTemplate</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="sc.design_pattern.template_method.Coffeebreak" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Coffeebreak"></a>
+      <a id="Coffeebreak:Coffeebreak"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Coffeebreak$.html"><span class="name">Coffeebreak</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.FirstOrderFunctionCoffeeBreak" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FirstOrderFunctionCoffeeBreak"></a>
+      <a id="FirstOrderFunctionCoffeeBreak:FirstOrderFunctionCoffeeBreak"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="FirstOrderFunctionCoffeeBreak$.html"><span class="name">FirstOrderFunctionCoffeeBreak</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.LayoutEngineDemo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LayoutEngineDemo"></a>
+      <a id="LayoutEngineDemo:LayoutEngineDemo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LayoutEngineDemo$.html"><span class="name">LayoutEngineDemo</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.Repeat" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Repeat"></a>
+      <a id="Repeat:Repeat"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Repeat$.html"><span class="name">Repeat</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.template_method.RepeatDemo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RepeatDemo"></a>
+      <a id="RepeatDemo:RepeatDemo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="RepeatDemo$.html"><span class="name">RepeatDemo</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../lib/template.js"></script>
+    </body>
+      </html>

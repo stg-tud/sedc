@@ -1,0 +1,153 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1384875678000">
+<div id='body-content'>
+<h2>Dependency Inversion Principle (DIP)</h2>
+<section class="slide" data-title="Dependency-Inversion Principle"><div class="section-body"><h1>Dependency-Inversion Principle</h1>
+<div class="statement">High-level modules should not depend on low-level modules. Both should depend on abstractions.</div>
+<hr />
+<div class="statement">Abstractions should not depend on details. Details should depend on abstractions.</div>
+</div></section>
+<h3>Example</h3>
+<section class="slide" data-title="Introduction by Example"><div class="section-body"><h1>Introduction by Example</h1>
+<p>A small design excerpt from the smart-home scenario:</p>
+<p><img src="Images/DIP-ButtomLamp.png" alt="DIP ButtomLamp" /></p>
+<p>Behavior of <code>Button</code>:</p>
+<ul>
+<li>The button is capable of “sensing” whether it has been activated/deactivated by the user.</li>
+<li>Once a change is detected, it turns the Lamp on, respectively off.</li>
+</ul>
+<footer><div class="footer-body"><p>Do you see any problem with this design?</p>
+</div></footer>
+</div></section>
+<p><strong>Assessment:</strong></p>
+<ul>
+<li>We cannot reuse <code>Button</code> since it depends directly on <code>Lamp</code>.
+(But there are plenty of other uses for <code>Button</code>.)</li>
+<li><code>Button</code> should not depend on the details represented by <code>Lamp</code>.</li>
+</ul>
+<p>These are symptoms of the real problem (Violation of the Dependency-Inversion Principle).<br />
+The <strong>high-level policy</strong> (detection of on/off gestures) underlying this (mini) design depends on the low-level details.</p>
+<p><em>The underlying abstraction is the detection of on/off gestures and their delegation to a server object that can handle them.</em></p>
+<p>If the interface of <code>Lamp</code> is changed, <code>Button</code> has to be at least tested or even adjusted, even though the policy that <code>Button</code> represents is not changed!</p>
+<p>To make the high-level policy independent of details we should be able to define it independent of the details of <code>Lamp</code> or any other specific device.</p>
+<section class="slide" data-title="A Dependency-Inversion Principle Compliant Solution"><div class="section-body"><h1>A Dependency-Inversion Principle Compliant Solution</h1>
+<p><img src="Images/DIP-ButtomSwitchableLamp.png" alt="DIP ButtomSwitchableLamp" /></p>
+</div></section>
+<p>Now <code>Button</code> only depends on abstractions; it can be reused with various classes that implement <code>Switchable</code>.</p>
+<p>Changes in <code>Lamp</code> will not affect <code>Button</code>.</p>
+<p>The dependencies have been inverted: <code>Lamp</code> now has to conform to the interface defined by <code>Button</code>.</p>
+<p><strong>Actually: both depend on an abstraction!</strong></p>
+<h3>The Rationale behind the Dependency-Inversion Principle</h3>
+<section class="slide" data-title="The Rationale"><div class="section-body"><h1>The Rationale</h1>
+<p>High-level, low-level modules. Good software designs are structured into modules.</p>
+<ul>
+<li><p><strong>High-level modules</strong> contain the important policy decisions and business models of an application – The identity of the application.</p>
+</li>
+<li><p><strong>Low-level modules</strong> contain detailed implementations of individual mechanisms needed to realize the policy.</p>
+</li>
+</ul>
+<div class="statement"><strong>High-level policy:</strong> The abstraction that underlies the application; the truth that does not vary when details are changed; the system inside the system; the metaphor.</div>
+</div></section>
+<p><em>High-level policies and business processes is what we want to reuse.</em> If high-level modules depend on the low-level modules changes to the lower level details will force high-level modules to be tested again/to be changed. Additionally, it becomes harder if not practically impossible to use them in other contexts. It is the high-level modules that should influence the low-level details.</p>
+<h3>Advanced Example</h3>
+<section class="slide" data-title="Example - Regulating the Temperature"><div class="section-body"><h1>Example - Regulating the Temperature</h1>
+<p><img src="Images/DIP-RegulatorBase.png" alt="DIP RegulatorBase" /></p>
+<footer><div class="footer-body"><p>Is it compliant with the Dependency-Inversion Principle?</p>
+<p>If not, what would you do?</p>
+</div></footer>
+</div></section>
+<p>We have three modules where <code>Regulate</code> uses the other two:</p>
+<ul>
+<li><code>Regulate</code> pulls data about the current temperature from the <code>Thermometer</code> component and </li>
+<li><code>Regulate</code> signals the <code>Furnace</code> component to increase or decrease heat.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Example - Regulating the Temperature</h1>
+<p><img src="Images/DIP-RegulatorDIPCompliant.png" alt="DIP RegulatorDIPCompliant" /></p>
+</div></section>
+<h3>Layers and Dependencies</h3>
+<section class="slide" data-title="Layers and Dependencies"><div class="section-body"><h1>Layers and Dependencies</h1>
+<blockquote><p>„…all well-structured object-oriented architectures have clearly defined layers, with each layer providing some coherent set of services through a well-defined and controlled interface…“<br />
+Grady Booch</p>
+</blockquote>
+<p><strong>A possible Interpretation:</strong></p>
+<p>  <img src="Images/DIP-LayersBase.png" style="float:left;"></p>
+<p>The higher the module is positioned in a layered architecture, the more general the function it implements.</p>
+<p>The lower the module, the more detailed the function it implements.</p>
+<footer><div class="footer-body"><p>What do you think of this interpretation?</p>
+</div></footer>
+</div></section>
+<p>This interpretation clearly <strong>violates DIP</strong>. Higher-level modules depend on lower-level modules. </p>
+<p>This is actually a typical structure of a layered architecture realized with structured programming (e.g., using &quot;C&quot;).</p>
+<section class="slide"><div class="section-body"><h1>Layers and Dependencies</h1>
+<h2>Inverted Layer Dependencies</h2>
+<p><img src="Images/DIP-LayersDIPCompliant.png" alt="DIP LayersDIPCompliant" /></p>
+</div></section>
+<ul>
+<li>An upper-layer declares (owns) interfaces for services it needs.</li>
+<li>Lower-layer implements these interfaces.</li>
+<li>Upper-layer uses lower-layer by the interface.<br />
+The upper layer does not depend on the lower-layer.</li>
+<li>Lower-layer depends on the interface declared by the upper-layer.</li>
+</ul>
+<p>Usually, we think of utility libraries as owning their own interfaces. (A relict from structured programming era.) Due to ownership inversion, <code>Policy</code> is unaffected by changes in <code>Mechanism</code> or <code>Utility</code>.</p>
+<h3>Naive Heuristic for Ensuring DIP</h3>
+<section class="slide" data-title="Naive Heuristic for Ensuring DIP"><div class="section-body"><h1>Naive Heuristic for Ensuring DIP</h1>
+<div class="statement">DO NOT DEPEND ON A CONCRETE CLASS.</div>
+<p>All relationships in a program should terminate on an abstract class or an interface.</p>
+<ul>
+<li>No class should hold a reference to a concrete class.</li>
+<li>No class should derive from a concrete class.</li>
+<li>No method should override an implemented method of any of its base classes.</li>
+</ul>
+</div></section>
+<p>This heuristic is usually violated at least once in every program:</p>
+<ul>
+<li>Some class will have to create concrete classes.</li>
+<li>Subclass relationships do often terminate at a concrete class. </li>
+</ul>
+<p>The heuristic seems naive for concrete stable classes, e.g., <code>String</code> in Java. But, concrete application classes are generally volatile and you should not depend on them. Their volatility can be isolated by keeping them behind abstract interfaces owned by clients.</p>
+<h3>Takeaway</h3>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<p><strong>High-level modules should not depend on low-level modules. Both should depend on abstractions.</strong></p>
+<hr />
+<ul>
+<li>Traditional structural programming creates a dependency structure in which policies depend on details.
+(Policies become vulnerable to changes in the details.)</li>
+<li><p>Object-orientation enables to invert the dependency:</p>
+<ul>
+<li>Policy and details depend on abstractions.</li>
+<li>Service interfaces are owned by their clients.</li>
+<li>Inversion of dependency is the hallmark of good object-oriented design.  <br />
+(Implies an inversion of interface ownership.)</li>
+</ul>
+</li>
+</ul>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

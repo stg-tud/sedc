@@ -1,0 +1,227 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1380527398000">
+<div id='body-content'>
+<h2>Command Design Pattern</h2>
+<h3>Motivating Example: A Document Editor</h3>
+<p>Given some user operations such as &quot;creating a document&quot;, &quot;opening a file&quot;, &quot;saving a document&quot;, &quot;printing a document&quot;, &quot;cutting selected text&quot; and &quot;pasting it back in&quot;, we then want to be able to access them from more than one place in the UI (a menu and a toolbar).</p>
+<section class="slide" data-title="Motivating Example: A Document Editor"><div class="section-body"><h1>Motivating Example: A Document Editor</h1>
+<p><img src="Images/DP-Command-ApplicationClassDiagram.png" alt="DP Command ApplicationClassDiagram" /></p>
+<footer><div class="footer-body"><p>What do you think?</p>
+</div></footer>
+</div></section>
+<p>The implementation of each <code>MenuItem</code> subclass is the same as the implementation of one of <code>ToolIcon</code> subclasses.
+Multiple copies of the same functionality → maintenance problem.</p>
+<p>Need a mechanism for <code>MenuItem</code> and <code>ToolIcon</code> to share implementations.<br />
+Need to separate the user-interface control from it’s implementation so that implementations can be shared.</p>
+<p>Want to also support a general undo capability so that the user can reverse previous operations.</p>
+<section class="slide" data-title="Decouple Invoker from Receiver"><div class="section-body"><h1>Solution: Decouple Invoker from Receiver</h1>
+<p><img src="Images/DP-Command-ApplicationClassDiagramWithCommand.png" alt="DP Command ApplicationClassDiagramWithCommand" /></p>
+</div></section>
+<section class="slide" data-title="Decouple Invoker from Receiver"><div class="section-body"><h1>Solution: Decouple Invoker from Receiver</h1>
+<p><img src="Images/DP-Command-ImplementingPasteAndOpen.png" alt="DP Command ImplementingPasteAndOpen" /></p>
+</div></section>
+<h3>In a Nutshell</h3>
+<section class="slide" data-title="Command Design Pattern - Intent"><div class="section-body"><h1>Intent</h1>
+<p><strong>Encapsulate a request to an object, thereby allowing to:</strong></p>
+<ul>
+<li>Issue requests without knowing the receiver or the operation being requested.</li>
+<li>Parameterize clients with different requests.</li>
+<li>Queue or log requests and support undoable requests.</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Command Design Pattern - Structure"><div class="section-body"><h1>Structure</h1>
+<p><img src="Images/DP-Command-Structure.png" alt="DP Command Structure" /></p>
+</div></section>
+<ul>
+<li><code>Command</code> declares the interface for executing an operation.</li>
+<li><code>ConcreteCommand</code> defines a receiver-action binding by implementing <code>execute()</code>.</li>
+<li><code>Client</code> creates a <code>ConcreteCommand</code> object, sets its <code>Receiver</code>, and configures the command of the <code>Invoker</code>.</li>
+<li><code>Invoker</code> asks its command to carry out the request.</li>
+<li><code>Receiver</code> knows how to perform the operations associated with carrying out a request.</li>
+</ul>
+<section class="slide" data-title="Command Design Pattern - Collaboration"><div class="section-body"><h1>Collaboration</h1>
+<p><img src="Images/DP-Command-Collaboration.png" alt="DP Command Collaboration" /></p>
+</div></section>
+<h3>Advantages of Command</h3>
+<section class="slide" data-title="Command Design Pattern - Implementation Sharing"><div class="section-body"><h1>Implementation Sharing</h1>
+<p><img src="Images/DP-Command-SupportingMenuAndToolbarOperations-ImplementationSharing.png" alt="DP Command SupportingMenuAndToolbarOperations ImplementationSharing" /></p>
+</div></section>
+<ul>
+<li>A command centralizes an operation to a single location so that multiple copies of the code are not necessary.</li>
+<li>Different user-interface controls can share the same implementation<br />
+(e.g., a button, tool icon, and menu item can all perform the same operation).</li>
+<li>Decouples the user interface from the operation being performed.</li>
+</ul>
+<section class="slide" data-title="Command Design Pattern - Supporting Undoable Operations"><div class="section-body"><h1>Supporting Undoable Operations</h1>
+<p><img src="Images/DP-Command-AddingUndototheFontCommand.png" alt="DP Command AddingUndototheFontCommand" /></p>
+</div></section>
+<ul>
+<li><code>Command</code>s store enough information to undo the performed operation.</li>
+<li>Each command subclass implements its <code>unexecute()</code> function;<br />
+when <code>unexecute()</code> is called the command reverses its action.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Supporting Multiple Levels Of Undo</h1>
+<div style="float:left;width:150px"> 
+	Single Level of Undo
+</div>
+<p><img src="Images/DP-Command-MultipleLevelsOfUndo-SLU.png" alt="DP Command MultipleLevelsOfUndo SLU" /></p>
+<hr />
+<div style="float:left;width:150px"> 
+	Multiple Levels of Undo
+</div>
+<p><img src="Images/DP-Command-MultipleLevelsOfUndo-MLU.png" alt="DP Command MultipleLevelsOfUndo MLU" /></p>
+</div></section>
+<ul>
+<li>Undoing more than just the last command allows the user to back up farther and farther each time undo is selected from the menu.</li>
+<li>Adding a redo feature: it would also be nice for a user to be able to redo an undone operation.<br />
+Redo should have multiple levels corresponding to the number of undo&apos;s issued by the user.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Implementing a Command History</h1>
+<p><img src="Images/DP-Command-CommandHistory.png" alt="DP Command CommandHistory" /></p>
+</div></section>
+<p>The command history can be seen as a list of past commands.</p>
+<p>As new commands execute they are added to the front of the history.</p>
+<p>To <strong>undo</strong> a command, <code>unexecute()</code> is called on the command at the front of the list.</p>
+<p>The present pointer is moved past that command.</p>
+<p>To <strong>undo</strong> the command before that, <code>unexecute()</code> is called on the next command in the history.</p>
+<p>The present pointer is moved to point before that command.</p>
+<p>To <strong>redo</strong> the command that was just undone, <code>execute()</code> is called on that command.</p>
+<p>The present pointer is moved up past that command.</p>
+<section class="slide" data-title="Command Design Pattern - Macro Commands"><div class="section-body"><h1>Macro Commands</h1>
+<p><img src="Images/DP-Command-MacroCommands.png" alt="DP Command MacroCommands" /></p>
+</div></section>
+<h3>Takeaway</h3>
+<section class="slide" data-title="Command Design Pattern - Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<ul>
+<li><p>Command allows to decouple the invoker of an operation from the receiver of that operation.</p>
+</li>
+<li><p>A <code>Command</code> object encapsulates the knowledge about a concrete operation and a concrete receiver of that operation.</p>
+</li>
+</ul>
+<p>As a result:</p>
+<ul>
+<li>the same invoker can be reused with different operation-receiver pairs.</li>
+<li>the same operation-receiver pair can be plugged into different invokers.</li>
+<li>commands can be queued, undone/redone, and composed into macro-commands. </li>
+</ul>
+</div></section>
+<h3>Example Implementation</h3>
+<p>In practice (in GUI applications), you often have multiple instances of the command design pattern which are related to different kinds of actions.</p>
+<ol>
+<li>The command pattern is used to associate some action with a menu item or a tool bar icon and which (as a second step) then may require some further user input/interacts with the environment. These commands are usually not stored in any command history as it makes no sense to redo/undo them (e.g., &quot;open file&quot;, &quot;save file&quot;, &quot;copy text to clipboard&quot;). </li>
+<li>You have commands that update the state of an application (i.e., manipulates the application&apos;s data) and which you may want to store in the command history because you want to be able to undo/redo the corresponding action. These commands then have to offer an <code>execute</code> and <code>unexecute</code> methods.</li>
+</ol>
+<p>Some commands, e.g., &quot;paste clipboard content&quot; are typically triggered by some user interaction, but do not require any further user interaction and, hence, could be regarded as a command of the second type. But, this is deceiving. Imagine that - at some later point in time - the user undos the last editing steps including the pasting of the clipboard content. When the user then redos that step, he expects that the same content is added again as was just removed/originally added – even if the clipboard content has changed in the meantime. Hence, even in this case we want to distinguish between the command that interacts with the environment and the command that directly (after gathering all information) with the document.</p>
+<section class="slide" data-title="Command Design Pattern - Example Implementation"><div class="section-body"><h1>Example Implementation</h1>
+<p><strong>Supporting multiple-step undo/redo</strong></p>
+<p>The application:</p>
+<pre><code class="Scala">object Application { var document: String = &quot;&quot; }
+</code></pre>
+<p>The <code>Command</code> trait:</p>
+<pre><code class="Scala">trait Command { 
+  def execute(): Unit
+  def unexecute(): Unit
+}
+</code></pre>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Example Implementation</h1>
+<p><strong>Supporting multiple-step undo/redo</strong></p>
+<p>A <code>ConcreteCommand</code> to manipulate the document:</p>
+<pre><code class="Scala">class AddTextCommand(val text: String) extends Command {
+  import Application.document
+  
+  def execute() { document += text }
+
+  def unexecute() {
+    document = document.substring(0, document.length - text.length)
+  }
+
+  override def toString = &quot;Add text: &quot;+text
+}
+</code></pre>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Example Implementation</h1>
+<p><strong>Supporting multiple-step undo/redo</strong></p>
+<p>The command history:</p>
+<pre><code class="Scala">object CommandManager {
+  private var pastCommands: List[Command] = Nil
+  private var futureCommands: List[Command] = Nil
+
+  def execute(command: Command) {
+    command.execute()
+    pastCommands = command :: pastCommands
+    futureCommands = Nil // kill all previous future commands
+  }
+  def undo() {
+    if (pastCommands.nonEmpty) {
+      val pastCommand = pastCommands.head; pastCommand.unexecute()
+      futureCommands = pastCommand :: futureCommands
+      pastCommands = pastCommands.tail
+  } }
+  def redo() {
+    if (futureCommands.nonEmpty) {
+      val futureCommand = futureCommands.head; futureCommand.execute()
+      pastCommands = futureCommand :: pastCommands
+      futureCommands = futureCommands.tail
+} } }
+</code></pre>
+</div></section>
+<p>In this case, the responsibility for calling a <code>ConcreteCommand</code>&apos;s <code>execute</code> method is delegated to the <code>CommandManager</code>.</p>
+<section class="slide"><div class="section-body"><h1>Example Implementation</h1>
+<p><strong>Supporting multiple-step undo/redo</strong></p>
+<p>Creating a command object and adding it to the history:</p>
+<pre><code class="Scala">object askForInput extends (() ⇒ Unit) {
+
+    def apply() {
+        import javax.swing.JOptionPane.showInputDialog
+        val text = showInputDialog(&quot;Please, enter some text.&quot;)
+        if (text ne null) {
+            CommandManager.execute(new AddTextCommand(text))
+        }
+    }
+}
+</code></pre>
+</div></section>
+<p>The <code>askForInput</code> object has the responsibility to ask the user for some input and to add the respective input to the document. This object is also a <code>ConcreteCommand</code> where the <code>execute</code> method is called <code>apply</code>. </p>
+<section class="slide"><div class="section-body"><h1>Example Implementation</h1>
+<p><strong>Supporting multiple-step undo/redo</strong></p>
+<p>Example usage:</p>
+<pre><code class="Scala">object CommandDemo extends App {
+    for (i ← 0 until 3) {
+        askForInput()
+    }
+
+    CommandManager.undo
+    CommandManager.undo
+    CommandManager.redo
+}
+</code></pre>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

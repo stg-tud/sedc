@@ -1,0 +1,1046 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1387349958000">
+<div id='body-content'>
+<h1>Scala Introduction</h1>
+<section class="slide" data-title="Scala - a blend of different concepts"><div class="section-body"><h1>Scala - a blend of different concepts</h1>
+<ul>
+<li>Fusion of functional and object-oriented programming</li>
+<li><p>Advanced language features </p>
+<ul>
+<li>Mixin composition with traits</li>
+<li>Closures</li>
+<li>Pattern matching with case classes</li>
+<li>Expressive language</li>
+<li>Macros </li>
+</ul>
+</li>
+<li><p>Advanced static type system</p>
+<ul>
+<li>Unified type system </li>
+<li>Type inference (leads to more concise code)</li>
+<li>Path-dependent types</li>
+<li>Better documentation </li>
+</ul>
+</li>
+</ul>
+<aside data-title="Other features"><div class="aside-body"><ul>
+<li>Since 2.10 a subset of dynamic typing is available (via <a href="https://weblogs.java.net/blog/cayhorstmann/archive/2012/12/13/dynamic-types-scala-210">&apos;Dynamic&apos;</a>)</li>
+</ul>
+</div></aside>
+<aside data-title="How is the expressive syntax achieved?"><div class="aside-body"><ul>
+<li>User-defined implicit conversions</li>
+<li>Changed sides of type annotation</li>
+<li>Semicolon inference</li>
+</ul>
+</div></aside>
+</div></section>
+<p>Scala lets you program in a pleasantly concise style and at the same time &quot;you have the assurance that you will not outgrow the language&quot; [s. PIS p 42-43]. Because Scala was designed to be easily extended and adapted to the needs of the people programming it, it gives you convenience and flexibility at the same time. It allows you to implement your own abstractions that address new domains, yet still feel like native language support, i.e. you can write your own types, control constructs or even a whole domain specific language and their use would &apos;feel&apos; just like using built-in types or language features. </p>
+<p>Scala blends object-orientated and functional programming. In Scala really everything is an object, from primitives to function values, and every operation is a method call. For example, when you say <code>1+1</code> you are invoking the method <code>+</code> defined in the class <code>Int</code> on <code>1</code> - just as if you had written <code>1.+(1)</code>. </p>
+<p>Scala is also a functional language, i.e. it supports the following two main ideas:</p>
+<ul>
+<li>Functions are first-class values</li>
+<li>Operations should map input values to output values, rather than change data in place</li>
+</ul>
+<p>The first means that you can pass functions as arguments to other functions, return them as results and bind them to variables. It is also possible to define a function in another function or to use functions anonymously. These features are convenient means for abstracting over operations and creating new control structures. They provide great expressiveness, which leads to legible and succinct programs. </p>
+<p>The second idea can also be stated in the way, that methods should not have any side effects. Functional programming usually encourages the use of immutable data structures and referentially transparent methods (for any given input the method call could be replaced by its result without affecting the programs semantics), but Scala gives you a choice here: When you want to, you can write in an imperative style with mutable data and side effects - i.e. writing statements rather than expressions - or you can choose to take the functional route and avoid imperative constructs.</p>
+<p>[s. Programming in Scala 49ff]</p>
+<p>Suereth (Scala in Depth) gives a quick overview over attributes commonly associated with the two different paradigms in Scala in Depth :</p>
+<table>
+    <tr>
+        <th>Object-orientated programming</th>
+		<th>Functional programming</th>
+    </tr>
+	<tr>
+        <td>Composition of objects </td>
+		<td>Compositions of functions</td>
+    </tr>
+	<tr>
+        <td>Encapsulated stateful interaction</td>
+		<td>Deferred side effects [Immutable objects!]</td>
+    </tr>
+	<tr>
+        <td>Iterative algorithms</td>
+		<td>Recursive algorithms</td>
+    </tr>
+	<tr>
+        <td>Imperative flow</td>
+		<td>Lazy evaluation</td>
+    </tr>
+	<tr>
+        <td>N/A</td>
+		<td>Pattern matching</td>
+    </tr>
+</table>
+<p>He illustrates this with two code examples that achieve the same results (a full cat) with different means:</p>
+<pre><code class="scala">class Bird
+class Cat{
+	def catch(b:Bird): Unit = ...
+	def eat():Unit = ...
+}
+val cat = new Cat
+val bird = new Bird
+cat.catch(bird)
+cat.eat
+</code></pre>
+<pre><code class="scala">trait Cat
+trait Bird
+trait Catch
+trait FullTummy
+
+def catch(hunter: Cat, prey: Bird): Cat with Catch
+def eat(consumer: Cat with Catch): Cat with FullTummy
+
+val story = (catch _) andThen (eat _) // functional composition
+story(new Cat, new Bird)
+</code></pre>
+<section class="slide" data-title="Literature"><div class="section-body"><h1>Literature</h1>
+<ul>
+<li>Odersky, M., Spoon, L. &amp; Venners, B. 2011. <em>Programming in Scala (2nd ed.)</em>.</li>
+<li>Suereth, Joshua D. 2021. <em>Scala in Depth</em>.</li>
+<li>Larman, C. 2004. <em>Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development</em>.</li>
+<li>Gamma, E., Helm, R. &amp; Johnson, Ralph E. 1994. <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>.</li>
+<li>Meszaros, G. <em>xUnit Test Patterns: Refactoring Test Code</em>.</li>
+<li>Martin, Robert C. 2008. <em>Clean Code: A Handbook of Agile Software Craftsmanship</em>.</li>
+<li>Martin, Robert C. 2011. <em>Agile Software Development - Principles, Patterns and Practices</em>.</li>
+</ul>
+</div></section>
+<h2>Additional Learning Resources</h2>
+<p>A good starting point would be <a href="http://www.scala-lang.org/documentation/">the Scala documentation.</a></p>
+<p>Twitter made a series of concise and succinct in-house lectures public: <a href="http://twitter.github.io/scala_school/">Scala School</a></p>
+<p>There are numerous blogs, for example:</p>
+<p>   <a href="http://joelabrahamsson.com/programming/scala">http://joelabrahamsson.com/programming/scala</a></p>
+<p>   <a href="http://www.codecommit.com/blog/scala/scala-for-java-refugees-part-1">http://www.codecommit.com/blog/scala/scala-for-java-refugees-part-1</a></p>
+<p>   <a href="http://danielwestheide.com/scala/neophytes.html">http://danielwestheide.com/scala/neophytes.html</a> (for the advanced learner)</p>
+<p>A free eBook, if you like:</p>
+<p><a href="http://www.artima.com/pins1ed/">Odersky, M., Spoon, L. &amp; Venners, B. 2008. Programming in Scala.</a></p>
+<p>Or a free video tutorial that focusses on functional programming by Martin Odersky:</p>
+<p><a href="https://www.coursera.org/course/progfun">Functional Programming Principles in Scala</a></p>
+<aside data-title="Use the Read Eval Print Loop"><div class="aside-body"><h1>Use the Read Eval Print Loop</h1>
+<p>We strongly encourage you to get your hands on as early as possible and experiment with the language while learning the core concepts: <em>It is more fun and helps you to stay motivated!</em></p>
+<p>Assuming that you have Scala properly installed and set your path - <a href="http://www.scala-lang.org/old/node/201">look here for help</a> - you can experiment with the language by using the Read Eval Print Loop (REPL). The REPL is an interactive shell, that compiles Scala code and returns results/type immediately. To work around the REPLs eager parsing, you can use the command <code>:past</code> or use a Scala IDE-plugin called <code>Worksheet</code>, i.e. a multi-line REPL that evaluates every time you save it. A workaround for dynamically reloading class files within a running JVM can be found on p.21 in Suereth, J. 2012. <code>Scala in depth</code>.</p>
+<p>Now start the REPL by running &apos;scala&apos; on the command line and print &quot;Hello World&quot; on the screen.</p>
+<pre><code class="scala">scala&gt; Console.println(&quot;Hello World!&quot;)
+</code></pre>
+<p>Can you think of other ways to print &quot;Hello World!&quot;?</p>
+</div></aside>
+<aside><div class="aside-body"><pre><code class="scala">scala&gt; println(&quot;Hello World!&quot;)
+scala&gt; Console println &quot;Hello World!&quot;
+scala&gt; System.out.println(&quot;Hello World!&quot;)
+</code></pre>
+</div></aside>
+<h1>Getting a glimpse of the syntax</h1>
+<section class="slide" data-title="Getting a glimpse of the syntax"><div class="section-body"><h1>Getting a glimpse of the syntax</h1>
+<pre><code class="scala"> def quicksort[T &lt;% Ordered[T]](list: List[T]): List[T] = {
+    list match {
+      case Nil =&gt; Nil;
+      case x :: xs =&gt;
+        val (before, after) = xs.partition({ i =&gt; i.&lt;(x) });
+        quicksort(before).++(quicksort(after).::(x));
+    };
+  }
+</code></pre>
+<p>[SID, p.9]</p>
+</div></section>
+<ul>
+<li><code>T &lt;% Ordered[T]</code><br />
+This function accepts a list of some type T, that is able to be implicitly converted into a variable of type Ordered[T]</li>
+<li><code>match</code><br />
+For now, think of this as a very powerful switch-statement</li>
+<li><code>x :: xs</code> <br />
+If we do not encounter an empty list, we extract the head and tail of the list and name them x and xs</li>
+<li><code>xs.partition({ i =&gt; i.&lt;(x) });</code> <br />
+We then call a function on the tail, that partitions the list according to a (anonymous) function <code>i =&gt; i.&lt;(x)</code> that compares each element in tail to the pivot-element x <br /></li>
+<li><code>quicksort(before).++(quicksort(after).::(x));</code> <br />
+We call quicksort recursively and combine the sorted partition and the head into a new list</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Getting a glimpse of the syntax</h1>
+<pre><code class="scala"> def quicksort[T &lt;% Ordered[T]](list: List[T]): List[T] = {
+    list match {
+      case Nil =&gt; Nil;
+      case x :: xs =&gt;
+        val (before, after) = xs.partition({ i =&gt; i.&lt;(x) });
+        quicksort(before).++(quicksort(after).::(x));
+    };
+  }
+</code></pre>
+<p>&quot;You may be thinking, &apos;Wow, Scala looks ugly.&apos; In this case you would be right.&quot; [SID, p.10]</p>
+<p>So let&apos;s do better...</p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Getting a glimpse of the syntax</h1>
+<pre><code class="scala">def quicksort[T &lt;% Ordered[T]](list: List[T]): List[T] = list match {
+    case Nil =&gt; Nil;
+    case x :: xs =&gt;
+      val (before, after) = xs partition (_ &lt; x);
+      quicksort(before) ++ (x :: quicksort(after));
+  }
+</code></pre>
+<p>Note that </p>
+<ul>
+<li><code>x.foo();</code> is the same as <code>x foo</code></li>
+<li><code>x.foo(y);</code> is the same as <code>x foo y</code></li>
+<li><code>x.::(y);</code> is the same as <code>y :: x</code></li>
+</ul>
+<aside data-title="Why is cons right associative?"><div class="aside-body"><p>Every method that ends on a <code>:</code> reverses the order of the method call. <code>cons</code> (i.e. &apos;::&apos;) for example, is therefore right associative. That means, in our example cons is invoked on <code>quicksort(after)</code>, passing x as a parameter. Note that x is prepended in constant time! </p>
+</div></aside>
+</div></section>
+<h1>Variables</h1>
+<section class="slide" data-title="Variables"><div class="section-body"><h1>Variables</h1>
+<pre><code class="scala">// some values
+val pi = 3.142          // implicit-type: Double
+val e: Float = 2.718f   // explicit-type: Float
+val g = 9.81f           // implicit-type: Float
+
+// some variables
+var r: Float = 5            // Type: Float
+var cycleArea = pi * r * r  // Type: Double
+
+var mass = 60               // Type: Int
+var force = mass * g        // Type: Float
+
+
+// Greatest common divisor of x and y
+var x = 3
+var y = 6
+while (y != 0) {
+  val tmp = x % y
+  x = y
+  y = tmp
+}
+val gcd = x
+</code></pre>
+</div></section>
+<h2>Value types</h2>
+<p>Scala&apos;s type-system has a separated sub-system with value-types (every type extending <code>AnyVal</code>).
+Scala supports the same types than Java (except of capitalisation):</p>
+<ul>
+<li>floating point number: Float, Double</li>
+<li>integer: Byte, Short, Int, Long</li>
+<li>character: Char</li>
+<li>logical data type: Boolean</li>
+</ul>
+<p>Different to Java these types are defined as classes and operations (like <code>+</code>, <code>==</code>, <code>&amp;&amp;</code>, ...) are defined as functions on this classes.</p>
+<h2>Variables</h2>
+<p>A variable can be declared with the keyword <code>var</code>:</p>
+<ul>
+<li><p><code>var &lt;variable_name&gt; = &lt;initial_value&gt;</code></p>
+</li>
+</ul>
+<p>Local variables must have a initial value.</p>
+<p>As you can see, in Scala you don&apos;t need an explicit type-declaration if the compiler can infer the right type. But if you need a specific type or the compiler might be unable to infer the type, you can always manually declare a type:</p>
+<ul>
+<li><p><code>var &lt;variable_name&gt;[:&lt;type&gt;] = &lt;initial_value&gt;</code></p>
+</li>
+</ul>
+<p>The <code>r</code>-declaration is a good example where a type-declaration can be needed: the compiler would have inferred the type <code>Int</code> but if you strictly (for whatever reason) need or would like to have a <code>Float</code>-value you can declare <code>r</code> to be so.</p>
+<p>If you declare a variable of some explicit type and want to initialize with a default-value, you can use the default-value <code>_</code>. This default-value can be used for every type and gets converted into:</p>
+<ul>
+<li><code>0</code> for number-types</li>
+<li><code>false</code> for boolean variables</li>
+<li><code>null</code> for reference-types</li>
+</ul>
+<h2>Values</h2>
+<p>A value can be declared with the keyword <code>val</code>:</p>
+<ul>
+<li><p><code>val &lt;value_name&gt;[:&lt;type&gt;] = &lt;initial_value&gt;</code></p>
+</li>
+</ul>
+<p>A value is a variable, that can only be assigned once.</p>
+<p>As in the example of variables, value don&apos;t need an explicit type but can have one.</p>
+<h2>Constants</h2>
+<p>A constant in Scala can be declared with:</p>
+<ul>
+<li><p><code>final val &lt;constant_name&gt;[:&lt;type&gt;] = &lt;initial_value&gt;</code></p>
+</li>
+</ul>
+<p>The difference between values and constants is, that a constant always returns the same result, whereas a value (for example a class attribute) can in some cases be overridden by a subclass.</p>
+<h2>Class attributes</h2>
+<p>A declaration of a class attribute is similar to a declaration of a local variable, value or constant:</p>
+<ul>
+<li><code>var &lt;attribute_name&gt;[:&lt;type&gt;] = &lt;initial_value&gt;</code></li>
+<li><code>val &lt;value_name&gt;[:&lt;type&gt;] = &lt;initial_value&gt;</code></li>
+<li><code>final val &lt;class_constant&gt;[:&lt;type&gt;] = &lt;initial_value&gt;</code></li>
+</ul>
+<p>Class attributes can be declared as variables, value or constants and can have explicit types.</p>
+<h1>Loops</h1>
+<h2>While-loops</h2>
+<p>Java knows a <code>while</code>- and a <code>do-while</code>-loop. Both structures are available in Scala, too. The syntax in Java and Scala is the same:</p>
+<pre><code class="scala">while(condition) {
+  statement
+}
+
+do {
+  statement
+} while(condition)
+</code></pre>
+<h2>For-loops in Java (small revision)</h2>
+<p>Java knows two kinds of <code>for</code>-loops:</p>
+<ol>
+<li>a variant to use some variable that gets modified after each iteration</li>
+<li>a variant to iterate over something extending <code>Iterable</code></li>
+</ol>
+<h3>For with some variable</h3>
+<p>The first structure isn&apos;t much more than some additional syntactic sugar to a <code>while</code>-loop.</p>
+<pre><code class="java">for (declaration; condition; modifier) {
+  statement
+}
+</code></pre>
+<p>is the same as</p>
+<pre><code class="java">declaration
+while (condition) {
+  statement
+  modifier
+}
+</code></pre>
+<h3>For with iterable</h3>
+<p>The second variant omits some &apos;counter&apos; and uses an <code>Iterator</code> and hence the following constructs are equivalent (except of the fact, that the variable <code>it</code> isn&apos;t accessible):</p>
+<pre><code class="java">for (Type tmp_name : iterable) {
+  statement
+}
+</code></pre>
+<pre><code class="java">Iterator it = iterable.iterator();
+while (it.hasNext()) {
+  Type tmp_name = it.next();
+  statement
+}
+</code></pre>
+<h2>For-loops in Scala</h2>
+<p>To explain <code>for</code>-loops in Scala, it is easier to start with the second variant. Scala uses (as usual) some other syntax but the semantic is the same:</p>
+<pre><code class="scala">for (tmp_name &lt;- iterable) {
+  statement
+}
+</code></pre>
+<p>The temporary variable can be declared together with some explicit type (compatible with the one of the <code>Iterable</code>&apos;s elements) but needn&apos;t to.</p>
+<aside><div class="aside-body"><p>The first variant isn&apos;t available in Scala and hence if you need some loop <strong>exaclty</strong> behaving like a <code>for</code>-loop with variable (for example if the statement should be able to manipulate the variable, too) you have to use the while-counterpart. But as shown below, in most cases some pretty alternatives are possible.</p>
+</div></aside>
+<p>Scala offers some possibility to use the Scala <code>for</code>-loop much like the Java <code>for</code>-loop with variable:<br />
+In Scala you can declare a <code>Range</code> of numbers with can be seen as a list-like collection containing the elements between the given limits:</p>
+<pre><code class="scala">scala&gt; (0 to 5)
+res0: scala.collection.immutable.Range.Inclusive = Range(0, 1, 2, 3, 4, 5)
+
+scala&gt; (0 until 5)
+res1: scala.collection.immutable.Range = Range(0, 1, 2, 3, 4)
+</code></pre>
+<p>This <code>Range</code> is iterable and hence you can use the <code>for</code>-loop like:</p>
+<pre><code class="scala">for (i &lt;- 0 to 5) {
+  statement
+}
+</code></pre>
+<p>which is pretty much like the Java&apos;s</p>
+<pre><code class="java">for (int i = 0; i &lt;= 5; i ++) {
+  statement
+}
+</code></pre>
+<p>As you can see, the increment isn&apos;t specified in the Scala version, because Scala uses a default increment with +1. But you can add some increment-policy to the <code>Range</code>:</p>
+<pre><code class="scala">for (i &lt;- 0 to 5 by 2) {
+  statement
+}
+</code></pre>
+<p>which would lead to executions with <code>i</code> having the values 0, 2 and 4.</p>
+<p>Using a policy, decrements are possible, too:</p>
+<pre><code class="scala">for (i &lt;- 5 to 0 by -1) {
+  statement
+}
+</code></pre>
+<p>Ranges aren&apos;t limited to integer numbers but can be used with floating point numbers (and floating point increments), too.</p>
+<h3>Filter</h3>
+<p>Within a <code>for</code>-loop some filters can be applied:</p>
+<pre><code class="scala">for (i &lt;- 0 to 100 if i % 2 == 0; if i % 3 == 0) {
+  statement
+}
+</code></pre>
+<p>This examples shows a loop that will be executed each time <code>i</code> is less or equal to 100 and is a multiple of 6 (checked by two different filters). To omit the semicolon, the parantheses can be replaced by curly braces and then the single statements can also be separated by linebreaks:</p>
+<pre><code class="scala">for {i &lt;- 0 to 100
+    if i % 2 == 0
+    if i % 3 == 0} {
+  statement
+}
+</code></pre>
+<h3>Nested loop</h3>
+<p>Instead of using two nested <code>for</code>-loops, this can be done by one <code>for</code>-loop declaring two variables:</p>
+<pre><code class="scala">val lists = List(List(0, 1, 2, 3), List(-5, -3, 7), List(5), List(42, 23))
+for {list &lt;- lists
+    if list.length &gt; 1
+    el &lt;- list
+    if el &gt; 0} {
+  println(el)
+}
+</code></pre>
+<p>In this example the List of Lists gets iterated and every list containing more than one element (which means that <code>List(5)</code> is skipped) gets iterated and finally every positive element gets handled and therefore printed.</p>
+<pre><code class="scala">for {x &lt;- 0 to 100
+    y &lt;- x to 100} {
+  statement
+}
+</code></pre>
+<h3>Functional alternative</h3>
+<p>Using Scala&apos;s functional aspects <code>for</code>-loops also can be written without any loop:</p>
+<pre><code class="scala">(0 to 5).foreach(println)
+</code></pre>
+<p>If you want to apply some function to every value of the &apos;counter&apos;-variable, you can also declare the <code>Range</code> and than pass the function and let the <code>Range</code> apply the function to each element.</p>
+<p>Or you can use the values to instantiate some class within some new <code>Collection</code>:</p>
+<pre><code class="scala">scala&gt; class Value(i: Int) {def get = i; override def toString() = &quot;Value(&quot; + i + &quot;)&quot;}
+defined class Value
+
+scala&gt; (1 to 3).map(new Value(_)).toList
+res2: List[Value] = List(Value(1), Value(2), Value(3))
+</code></pre>
+<p>The <code>map</code>-function returns some (list-like) <code>Collection</code>; the <code>toList</code>-function then returns a <code>List</code>.</p>
+<h1>Functions</h1>
+<section class="slide" data-title="Functions"><div class="section-body"><h1>Functions</h1>
+<pre><code class="scala">def add(x: Int, y: Int): Int = x + y
+def nextRandomInt(): Int = { ... }
+def getValue: Int = { ... }
+def setValue(value: Int): Unit = { ... }  // return-type Unit explicit
+def applyFunction(f: (Int, Int) =&gt; Int)(x: Int, y: Int): Int = {
+  f(x, y)
+}
+
+def exampleCalls = {                      // return-type Unit implicit
+  val result = applyFunction((x: Int, y: Int) =&gt; x + y)(4, 5)
+  val random = nextRandomInt()   // with optional braces
+  val someValue = getValue
+}
+
+def difference(a:Int, b:Int): Int = {
+  val rawDiff = a - b
+  if (rawDiff &lt; 0)   // the return-value is the result of this if expression
+    -rawDiff
+  else
+    rawDiff
+}
+
+def gcd(x: Int, y: Int): Int = {
+  if (y == 0) x else gcd(y, x % y)
+}
+</code></pre>
+</div></section>
+<h2>Function Definition and Usage</h2>
+<p>To define a function you need the keyword <code>def</code>:</p>
+<ul>
+<li><p><code>def &lt;function_name&gt;(&lt;parameter_list&gt;)[:&lt;return_type&gt;] = {&lt;function_body&gt;}</code><br />
+where <code>&lt;parameter_list&gt; := [&lt;formal_parameter&gt;: &lt;type&gt;]*</code></p>
+</li>
+</ul>
+<p>As a consequence of the fact that nearly everything in Scala is an expression, you don&apos;t need the keyword <code>return</code> to specify the return-value. The function-body is the return-value. If your function is built up of multiple statements, the last one specifies the return-value (difference-example).</p>
+<p>If your function should not have any return-value you can set the return-type to <code>Unit</code> (the Scala equivalence to Java&apos;s <code>void</code>):</p>
+<ul>
+<li><p><code>def setX(x: Int): Unit = {...}</code></p>
+</li>
+</ul>
+<p>If the compiler can determine the function-body&apos;s result-type you can omit the return-type.</p>
+<ul>
+<li><p><code>def setY(y: Int) = {...}</code> is equivalent the the one above if the last statement in the function-body is of type Unit</p>
+</li>
+</ul>
+<p>If your function doesn&apos;t have any parameters you can omit the braces, but the function&apos;s behavior depends on the kind of declaration:</p>
+<ul>
+<li>a function-call of a parameterized function works like in Java:<br />
+<code>add(4, 5)</code></li>
+<li><p>a function-call of a not-parameterized function with braces also works like in Java:<br />
+<code>nextRandomInt()</code><br />
+<strong>but</strong>: the expression <code>nextRandomInt</code> can mean both the function (e.g. as parameter) or the function-call. The compiler analyzes the target-type and depending on this type either evaluates the function or simply returns the function-definition.</p>
+<ul>
+<li><p>if the target-type is the result-type, the function gets evaluated</p>
+<pre><code class="scala">scala&gt; val x: Int = nextRandomInt
+x: Int = 5 // some random int
+</code></pre>
+</li>
+<li><p>if the target-type is a function (with same signature), the function gets assigned</p>
+<pre><code class="scala">scala&gt; val x: ()=&gt; Int = nextRandomInt
+x: () =&gt; Int = &lt;function0&gt;
+</code></pre>
+</li>
+<li><p>if the target-type isn&apos;t explicitly given, the function gets evaluated</p>
+<pre><code class="scala">scala&gt; val x = nextRandomInt
+x: Int = 2 // some random int
+</code></pre>
+</li>
+<li><p>if the target-type isn&apos;t suitable, the code doesn&apos;t compile</p>
+<pre><code class="scala">scala&gt; val x: String = nextRandomInt
+&lt;console&gt;:8: error: type mismatch;
+ found   : Int
+ required: String
+       val x: String = nextRandomInt
+                       ^
+</code></pre>
+</li>
+</ul>
+</li>
+<li>a function-call of a not-parameterized function without braces works like an attribute:<br />
+<code>getValue</code> returns the result (<code>getValue()</code> does not compile)</li>
+</ul>
+<p>Scala supports higher-order functions. That means that one function (<code>applyFunction</code>) can accept another function (e.g. <code>add</code> or the given lambda-expression) as parameter. A function can be passed to another function by naming the function and omitting the braces. This works well for functions with braces at definition. For functions without braces you have to define some kind of anonymus function using the underscore (for example <code>getValue _</code>).</p>
+<h2>Function Types</h2>
+<p>A function can be represented by it&apos;s type. This type describes the argument types and return type:</p>
+<pre><code class="scala">Function-Type  ::= FunctionArgs &apos;=&gt;&apos; ReturnType
+FunctionArgs   ::= &apos;(&apos; [ ParamType {&apos;,&apos; ParamType } ] &apos;)&apos;
+</code></pre>
+<p>Examples:</p>
+<ul>
+<li><code>add</code> has type <code>(Int, Int) =&gt; Int</code> because it returns an Int and accepts exactly two Int arguments</li>
+<li><code>nextRandomInt</code> has type <code>() =&gt; Int</code> because it returns an Int but doesn&apos;t accept arguments</li>
+<li><code>setValue</code> has type <code>(Int) =&gt; Unit</code></li>
+<li><code>applyFunction</code> has type <code>((Int, Int) =&gt; Int) =&gt; ((Int, Int) =&gt; Int)</code> where the first argument is a function type itself</li>
+<li>some function <code>fun(x: T1*): T2</code> where <code>x: T1*</code> is the Scala counterpart to Java&apos;s <code>T1... x</code> which both means, that any number of values of the given type can be passed in, would have type <code>(Seq[T1]) =&gt; T2</code></li>
+</ul>
+<p>Functions can be defined anonymously like the first parameter of the <code>applyFunction</code>-application in <code>exampleCalls</code>. The lambda-expression defined here is equivalent to the add function. As you can see, you define a lambda-expression by declaring the typed function-arguments and the function-body.</p>
+<ul>
+<li><p><code>&lt;parameter_list&gt; =&gt; &lt;function_body&gt;</code><br />
+ where <code>&lt;parameter_list&gt;</code> is defined like it is for named function-definitions.</p>
+</li>
+</ul>
+<p>To apply a given function just pass the arguments to the function as you would do it with other defined functions.</p>
+<h2>Currying</h2>
+<p>A function-definition can have multiple braces with multiple arguments (as in the <code>applyFunction</code>-example). This leads to functions that will be executed in several steps. If we take a look at <code>applyFunction</code>: First, a &quot;calculation rule&quot; is passed to the function, which results in some mathematical function; Then the arguments can be passed to evaluate the function&apos;s result.</p>
+<ul>
+<li><p><code>applyFuntion(add)</code> would result in a function with the signature <code>(Int, Int) =&gt; Int</code> and would behave like <code>add</code>.</p>
+</li>
+</ul>
+<p>Functions can be defined nested. That means that you can define a function inside another function. The nested definition is only visible inside the surrounding function.</p>
+<h1>Classes</h1>
+<section class="slide" data-title="Classes"><div class="section-body"><h1>Classes</h1>
+<pre><code class="scala">class Rational(n: Int, d: Int) {
+  private val g = gcd(n, d)
+  val numerator: Int = n / g
+  val denominator: Int = d / g
+  private def gcd(x: Int, y: Int): Int = {
+    if (x == 0) y
+    else if (x &lt; 0) gcd(-x, y)
+    else if (y &lt; 0) -gcd(x, -y)
+    else gcd(y % x, x)
+  }
+  def +(r: Rational) =
+    new Rational(numerator * r.denominator + r.numerator * denominator, 
+	denominator * r.denominator)
+  def -(r: Rational) =
+    new Rational(numerator * r.denominator - r.numerator * denominator, 
+	denominator * r.denominator)
+  def *(r: Rational) = new Rational(numerator * r.numerator, 
+    denominator * r.denominator)
+  def /(r: Rational) = new Rational(numerator * r.denominator, 
+    denominator * r.numerator)
+  override def toString = numerator + &quot;/&quot; + denominator
+}
+</code></pre>
+<aside data-title="Constructors"><div class="aside-body"><p>The identifiers n and d in the parentheses directly after the class name, are called class parameters. The compiler takes them and creates a primary constructor that takes these two arguments. In fact everything in the class body that is not part of a field or method definition is placed in this constructor, like the debug message in the example below. The class parameters can be accessed from inside the class, but not be reassigned. If you would prefix the class parameters with <code>val</code> resp. <code>var</code>, they would be maintained as fields and getters respectively getters &amp; setters would be implicitly provided. Preconditions can be checked with <a href="http://www.scala-lang.org/api/current/index.html#scala.Predef$"><code>require</code></a>. Every other constructor in the class is an auxiliary constructor. Every auxiliary constructor must invoke another constructor of the same class first, either another auxiliary or the primary constructor. The first statement will therefore always be <code>this(...)</code>. Every constructor will eventually end up calling the primary constructor and from there, superclass-constructors can be called. A constructor is not a special method, so the parameters visibility could be private or protected as well. It is also possible to provide default values. Every arbitrary field that is not given a value at object creation time uses the standard values:</p>
+<pre><code class="scala">scala&gt; class Constructors(a1: Int = 1, a2: Int = 2, a3: Int = 3){
+     | println(&quot;A1: %s, A2: %s, A3:%s&quot; format(a1, a2, a3))}
+defined Class Constructors
+scala&gt; new Constructors() 
+A1:1, A2:2, A3:3
+res1: Constructors = Constructors@...
+</code></pre>
+<p>We again recommend that you try it for yourself with the REPL. Define the class and make some objects.</p>
+<pre><code class="scala">scala&gt; new Constructors(5, 5) 
+A1: 5, A2: 5, A3: 3
+...
+scala&gt; new Constructors(a1 = 5, a3 = 5)
+A1: 5, A2: 2, A3: 5
+...
+</code></pre>
+<p><a href="http://timpt.de/topic179.html]">More information on constructors (German language)</a></p>
+</div></aside>
+</div></section>
+<p>The example is taken from Odersky, M.(2011). <a href="http://www.artima.com/pins1ed/functional-objects.html">Scala by Example</a>
+If you would like to get a more thorough understanding of the example (and further refined versions of it), feel free to skim over its sixth chapter. <br />
+The fields numerator and denominator are defined as values, but could have been defined as parameterless methods as well: <code>def numerator :  Int = n / g</code>. The difference is, that as a value, the right-hand side is evaluated when the object is created and the method evaluates every time it is called.</p>
+<h1>Objects</h1>
+<section class="slide" data-title="Singleton objects"><div class="section-body"><h1>Singleton objects</h1>
+<pre><code class="scala">object Rational {
+  def apply(n: Int, d: Int) = {
+    new Rational(n, d)
+  }
+}
+object printRational extends App {
+  val one_half = Rational(1, 2)
+  println(one_half)
+}
+</code></pre>
+<aside data-title="The apply-method"><div class="aside-body"><p>The <em>apply</em>-method is called every time arguments in parentheses are applied to an object. </p>
+<pre><code class="scala">val nums = Array(1,2,3,4,5,6,7,8,9,10) 
+//calls `apply`, is equal to val nums = Array.apply(1,2,3,4,5,6,7,8,9,10)
+</code></pre>
+<p>Of course, you can define apply in your own class and use it for a factory method for example:</p>
+<pre><code class="scala">class Fubar {}
+object Fubar {
+  def apply() = new Fubar
+}
+val myFubar = Fubar() //my:Fubar = Fubar@...
+</code></pre>
+</div></aside>
+</div></section>
+<p>Classes and objects can have the same name. If they are in the same source file, then the object is called a <code>companion object</code> and the class <code>companion class</code>. A companion object can access its classes private fields et vice versa. Scala classes cannot have static members. Any static methods you would have written in Java go into Singleton object(s) in Scala (the Java analogy to a companion object in Scala would be a class with static methods). They are invoked via the objects name, followed by a dot and the function name. </p>
+<p>Objects do not define a type!</p>
+<h1>Case Classes</h1>
+<section class="slide" data-title="Case Classes"><div class="section-body"><h1>Case Classes</h1>
+<ul>
+<li><p><code>case</code> modifier makes the compiler add some things to your class</p>
+<ul>
+<li>a factory method</li>
+<li>&apos;natural&apos; implementations of <code>toString</code>, <code>equals</code> and <code>hashCode</code></li>
+<li>all arguments in parameter list get a <code>val</code> prefix, i.e. they are visible from the outside and cannot be reassigned</li>
+<li>support arbitrarily deep pattern matching, i.e. the members of an object are checked for further patterns</li>
+</ul>
+</li>
+</ul>
+<pre><code class="scala">scala&gt; case class Address(street:String)
+defined class Address
+
+scala&gt; case class Employee(address:Address)
+defined class Employee
+
+scala&gt; val person = Employee(new Address(&quot;Sesamestreet&quot;))
+person: Employee = Employee(Address(Sesamestreet))
+
+scala&gt; person match {case Employee(Address(street))=&gt;println(street)}
+Sesamestreet
+</code></pre>
+<aside data-title="How Scala´s equals differs from Java´s"><div class="aside-body"><p>In Java <code>==</code> compares reference equality on reference types. If you would like to do this in Scala,
+you would have to use <code>eq</code> or <code>ne</code>. In Scala <code>equals</code>, respectively <code>==</code>, compares value equality on all types.</p>
+</div></aside>
+</div></section>
+<h1>Traits</h1>
+<section class="slide" data-title="Traits"><div class="section-body"><h1>Traits</h1>
+<ul>
+<li><p>Collection of behaviour and state </p>
+</li>
+<li><p>A trait with only abstract members translates directly to a Java interface</p>
+</li>
+<li><p>Mixin composition allows to take the members of a class and add the members of (multiple) traits to it without running into the diamond-inheritance problem </p>
+</li>
+<li><p>Traits can add new functionality to an unspecified superclass</p>
+</li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Traits</h1>
+<pre><code class="scala">abstract class Robot {
+
+}
+class Android extends Robot {
+  def calculate(s: String) = &quot;Calculating &quot; + s
+}
+trait GenuinePeoplePersonality extends Robot {
+  def nag(s: String) = s + &quot;...I feel bored and depressed!&quot;
+}
+object TestMarvin extends App {
+  val Marvin = new Android with GenuinePeoplePersonality   
+  val calculateWithGPP = Marvin.calculate _ andThen Marvin.nag _
+  println(calculateWithGPP(&quot;1+1&quot;)) 
+  //Calculating 1+1...I feel bored and depressed
+}
+</code></pre>
+<p>&quot;Mixin-class composition allows the programmers to reuse the delta of a class definition, i.e. all new definitions that are not inherited&quot;
+<a href="http://www.scala-lang.org/old/node/117">(A Tour of Scala)</a></p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Traits versus abstract classes</h1>
+<ul>
+<li>One class can extend <em>several</em> traits using the <code>with</code> keyword</li>
+<li>Abstract classes can take parameters - traits do not have constructors</li>
+<li>Subclassing traits in Java code can be awkward</li>
+<li>When a trait gains or loses a member, any classes that inherit from it must be recompiled</li>
+</ul>
+</div></section>
+<p>Keep traits short and try to express the smallest related idea possible to achieve greater modularization! </p>
+<h1>Inheritance</h1>
+<section class="slide" data-title="Inheritance"><div class="section-body"><h1>Inheritance</h1>
+<ul>
+<li>Compiler assumes that all classes extend <a href="http://www.scala-lang.org/api/current/index.html#scala.AnyRef">scala.AnyRef</a> </li>
+<li><p>As in Java <code>A extends B</code> means, that </p>
+<ul>
+<li>A becomes a subtype of B</li>
+<li>A inherits all non-private members from B</li>
+<li>A overrides members of B with the same name and parameters</li>
+<li>A implements members of B if they are abstract	</li>
+</ul>
+</li>
+<li>(Subtyping) polymorphism and dynamic binding as you would expect it coming from Java</li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Inheritance</h1>
+<ul>
+<li><code>abstract</code> modifier is mandatory for classes with abstract members</li>
+<li><code>abstract</code> modifier is not necessary or allowed for abstract methods (no body or no &apos;=&apos;)</li>
+<li><p><code>override</code> modifier is</p>
+<ul>
+<li><em>optional</em> if a member implements an abstract member with the same name</li>
+<li><em>required</em> if a member overrides a concrete member in a parent class</li>
+<li><em>forbidden</em> if a member does not override or implement some other member </li>
+</ul>
+</li>
+<li><code>final</code> members cannot be overridden</li>
+<li><p>Invoking superclass constructors is straightforward</p>
+<pre><code class="scala">...extends B(someValue)...
+</code></pre>
+</li>
+</ul>
+<aside data-title="Override conventions and the &apos;fragile base class problem&apos;"><div class="aside-body"><p>If a method with a name that is already used by clients is introduced in your framework, the clients are given an error once they recompile their code (instead of changed, possibly wrong behaviour) </p>
+</div></aside>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Inheritance</h1>
+<ul>
+<li><p>TODO Scala has two namespaces for defining</p>
+<ul>
+<li>values (fields, methods, packages and singleton objects)</li>
+<li>types (class and trait names)</li>
+<li><pre><code class="scala">class fubar{
+	val f = 0
+	def f = 1
+}///won´t compile!
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<aside data-title="Overriding a parameterless method with a field"><div class="aside-body"><p>Since fields and methods are in the same namespace, fields may override parameterless methods</p>
+<pre><code class="scala">scala&gt; abstract class rabbit{
+     | def isDangerous : Boolean
+     | }
+defined class rabbit
+
+scala&gt; class trojanRabbit(
+     | val isDangerous : Boolean = true) extends rabbit
+defined class trojanRabbit
+</code></pre>
+</div></aside>
+</div></section>
+<h1>Enums</h1>
+<section class="slide" data-title="Enums"><div class="section-body"><h1>Enums</h1>
+<pre><code class="scala">object WeekDay extends Enumeration {
+  type Operator = Value
+  val Mon, Tue, Wed, Thu, Fri, Sat, Sun = Value
+}
+
+object Size extends Enumeration {
+  type Size = Value
+  val Small = Value(&quot;S&quot;)
+  val Medium = Value(&quot;M&quot;)
+  val Large = Value(&quot;L&quot;)
+}
+</code></pre>
+</div></section>
+<p>Java offers built-in support for enum-types, so that you can define something like:</p>
+<pre><code class="java">public enum WeekDay {
+  Mon, Tue, Wed, Thu, Fri, Sat, Sun;
+}
+</code></pre>
+<p>This comes like some sort of special class. Scala hasn&apos;t something like a class-type enum but Scala also supports Enums. In Scala you simply extend the class <code>Enumeration</code> and create a value for every element and initialize it with <code>Value</code>.</p>
+<p>The type-declaration is a simple type-alias so that you can write <code>Mon</code> instead of <code>WeekDay.Mon</code>.</p>
+<p>If you define an enum like in the <code>WeekEnd</code>-example (taken from the <a href="http://www.scala-lang.org/api/current/index.html#scala.Enumeration">Scala Api</a>) each element has a <code>String</code>-representation equivalent to the given name. If you want some other kind of representation, you can define the elements together with a specific <code>String</code> like in the <code>Size</code>-example.</p>
+<aside data-title="Alternative approach for enums"><div class="aside-body"><p>As enums aren&apos;t supported natively there isn&apos;t one solution for this problem but several. Besides the one shown here, at least one other is very common: The use of case objects. Both ways have there advantages and disadvantages. An example and a comparison can be found <a href="http://stackoverflow.com/questions/1898932/case-classes-vs-enumerations-in-scala">here</a></p>
+</div></aside>
+<h1>Generics</h1>
+<section class="slide" data-title="Generics"><div class="section-body"><h1>Generics</h1>
+<pre><code class="scala">val list = List[Number](new Integer(42))
+val extendedList = new Integer(23) :: list
+
+def printAlias[T &lt;: Any](arg: T) = println(arg)
+
+def printAll(list: List[Number]): Unit = {
+  list match {
+    case hd :: tl =&gt;
+      printAlias(hd)
+      printAll(tl)
+    case List() =&gt; ()
+  }
+}
+
+def addToCollection[T &lt;: Number](el: T, list: List[Number]): List[Number] = {
+  el :: list
+}
+
+val longestList = addToCollection[Integer](new Integer(0), extendedList)
+
+printAll(longestList)
+// returns: 0, 23, 42 (one line each)
+</code></pre>
+</div></section>
+<p>Generics in Scala are semantically identical to Java. The notation differs from each other:</p>
+<ul>
+<li><code>Collection&lt;Type&gt;</code> in Java equals <code>Collection[Type]</code> in Scala</li>
+<li><code>Collection</code> or <code>Collection&lt;?&gt;</code> in Java equals <code>Collection[_]</code> or <code>Collection[T] forSome { type T }</code> in Scala </li>
+<li><code>Collection&lt;? extends Number&gt;</code> in Java equals <code>Collection[_ &lt;: Number]</code> or <code>Collection[T] forSome { type T &lt;: Number }</code> in Scala</li>
+<li><code>public &lt;T extends Number&gt; T add(T n1, T n2)</code> in Java equals <code>def method[T &lt;: Number](n1: T, n2: T): T</code> in Scala</li>
+</ul>
+<p>Scala offers the possibility to define types and to (re-)use them later. This types can be generic, too, like in the example of collType.</p>
+<h1>Pattern Matching</h1>
+<section class="slide" data-title="Pattern Matching"><div class="section-body"><h1>Pattern Matching</h1>
+<h2>Basics</h2>
+<pre><code class="scala">val SpecialCase = ...
+var intValue: Int = ...
+intValue match {
+  case SpecialCase =&gt; println(&quot;number is &quot; + SpecialCase)
+  case 1 =&gt; println(&quot;number is 1&quot;)
+  case 2 =&gt; println(&quot;number is 2&quot;)
+  case 3 | 4 =&gt; println(&quot;number is 3 or 4&quot;)
+  case _ =&gt; println(&quot;number wasn&apos;t between 1 and 4 or &quot; + SpecialCase)
+}
+
+var someValue: AnyVal = ...
+someValue match {
+  case i: Int =&gt; println(&quot;value is an integer: &quot; + i)
+  case b: Boolean =&gt; println(&quot;value is bool: &quot; + b)
+  case c: Char =&gt; println(&quot;value is a char: &quot; + c)
+  case _: Double | _: Float =&gt; println(&quot;value is some floating point number!&quot;)
+  case ref =&gt; println(&quot;type couldn&apos;t be determined! &quot; + ref.getClass())
+}
+</code></pre>
+</div></section>
+<p>Pattern matching is a very powerful variant of Java&apos;s switch-statement.</p>
+<p>Different to Java, exactly one case will always get executed. If two patterns would fit, the first one gets executed.</p>
+<p>You can use pattern matching like switch-statements in Java (first example).<br />
+Note that the value <code>SpecialCase</code> starts with a upper letter and that otherwise the case-clause wouldn&apos;t work as expected (the compiler could not find the value otherwise). You can combine several pattern using &apos;<code>|</code>&apos; so that the case is executed if at least one of the pattern matches the given argument. The last pattern <code>case _</code> is the Scala equivalent to Java&apos;s <code>default</code>.</p>
+<p>You can use pattern matching as a clean solution for type-checking instead of <code>instanceof</code>-checks (for example for value-types as shown in the second example).<br />
+If the given value is of type <code>Int</code> the first case matches and gets executed and the (<code>Int</code>-)value is accessible via the identifier <code>i</code>. If you only need the type but not the actual value, you can use the wildcard <code>_</code> (<code>Float</code>-example). The default case can be &apos;named&apos;, too, like in the <code>ref</code>-line, so that you can try some further (manual) checks.</p>
+<p>In addition to the patterns you can use so-called <strong>guards</strong> (additional conditions) for further specification.<br />
+You can replace the <code>case i: Int ...</code>-line by the following ones to identify integer together with there sign:</p>
+<pre><code class="scala">  case 0 =&gt; println(&quot;value was zero!&quot;)
+  case i: Int if i &gt; 0 =&gt; println(&quot;value was a positive integer: &quot; + i)
+  case i: Int =&gt; println(&quot;value was a negative integer: &quot; + i)
+</code></pre>
+<p>The last case only gets executed for negative integer because positive integer and zero are handled previously and, as said above, only one case gets executed.</p>
+<aside data-title="match compared to switch"><div class="aside-body"><p>&quot;match-Expressions can be seen as a generalization of Java-style switches.&quot;(Odersky et al.)
+But there are three differences to keep in mind:</p>
+<ul>
+<li><code>match</code> is an expression, it always results in a value</li>
+<li>No &quot;fall through&quot; into next case</li>
+<li>If no pattern matches, <code>MatchError</code> is thrown - so cover all cases or add a default</li>
+</ul>
+</div></aside>
+<section class="slide"><div class="section-body"><h1>Pattern Matching</h1>
+<h2>Advanced</h2>
+<pre><code class="scala">case class CaseClass(i: Int, s: String)
+case class RecCaseClass(c: RecCaseClass = null)
+
+var someRef: AnyRef = ...
+someRef match {
+  case hd :: Nil =&gt; Nil
+  case hd :: 7 :: tl =&gt; hd :: tl
+  case CaseClass(0, &quot;&quot;) =&gt; CaseClass(1, &quot;initial text&quot;)
+  case CaseClass(no, &quot;inc&quot;) =&gt; CaseClass(no + 1, &quot;inc&quot;)
+  case CaseClass(no, &quot;dec&quot;) if no &gt; 1 =&gt; CaseClass(no - 1, &quot;dec&quot;)
+  case CaseClass(42, _) =&gt; CaseClass(42, &quot;the answer&quot;)
+  case c @CaseClass(_, _) =&gt; CaseClass(c.s.toInt, c.i.toString)
+  case RecCaseClass(RecCaseClass(content)) =&gt; content
+  case default =&gt; default
+}
+
+val hd :: tl = List(1, 2, 3) // hd = 1; tl = List(2, 3)
+val _ :: el :: _ = List(1, 2, 3) // el = 2
+val CaseClass(i, s) = CaseClass(18, &quot;adult&quot;) // i = 18, s = &quot;adult&quot;
+val (t1, _, t2) = (9, 5, 1) // t1 = 9, t2 = 1
+</code></pre>
+</div></section>
+<p>Besides the value and the type, the structure of some variable can be matched:</p>
+<ol>
+<li>for lists with exactly one element the empty list can be returned</li>
+<li>for lists with some specific element at some specific position, some modifications can be applied (e.g. this element can be removed)</li>
+<li>for case classes with specific parameters, a completely different instance can be constructed</li>
+<li>for case classes with some specific parameter, some other parameter can be influenced</li>
+<li>for case classes with some specific parameter and some additional condition, some other parameter can be influenced</li>
+<li>for case classes with some specific parameter, some other parameter can be replaced</li>
+<li>you can bind the whole pattern to some name while matching some class (and possibly some parameters, too)</li>
+<li>you can match some deep structure and deconstruct it</li>
+<li>you can simply return the argument if no pattern matched</li>
+</ol>
+<p>Pattern matching works also outside of match-statements:</p>
+<ul>
+<li>some list can be deconstructed via a pattern</li>
+<li>some element of a list can be extracted</li>
+<li>some case class can be deconstructed</li>
+<li>some tuple-members can be extracted (further information on Tuples at the end of this slides)</li>
+</ul>
+<aside data-title="How values got extracted"><div class="aside-body"><p>If you use a sctructural pattern matching, the expressions define some deconstruction-logic. Hence, the used elements must support this deconstruction and therefore have to implement an <code>unapply</code>-method. Case classes do this by default (as part of the &apos;case class-magic&apos;) and Lists, too.</p>
+<p>The expression <code>hd :: 7 :: tl</code> therefore describes a double-deconstruction of a List:</p>
+<ul>
+<li>First the head-element of the List is separated from the tail: <code>1st :: list&apos;</code></li>
+<li>Then the first element of the tail is separated to get a triple of <code>1st :: 2nd :: list&apos;&apos;</code></li>
+<li>At least the elements get compared or related to the original pattern <code>hd = 1st</code>, <code>7 == 2nd</code> and <code>tl = list&apos;&apos;</code></li>
+</ul>
+<p>Further information about the <code>unapply</code>-method (also referred to as Extractor) can be found <a href="http://www.scala-lang.org/old/node/112">here</a>.</p>
+</div></aside>
+<h1>Visibility</h1>
+<section class="slide" data-title="Visibility"><div class="section-body"><h1>Visibility</h1>
+<pre><code class="scala">class Visibility {
+  private val id = ...
+  protected var name = ...
+  def compare(v: Visibility): Int = {
+    id - v.id // works (v.id is accessed within the defining class)
+  }
+  def copyNameFrom(v: Visibility) = {
+    name = v.name // works (v.name is accessed within the defining class)
+  }
+}
+
+class Subtype extends Visibility {
+  def getName = name // works (is equivalent to this.name)
+  override def copyNameFrom(v: Visibility) = {
+    name = v.name // would not work (v.name is not accessible)
+  }
+}
+</code></pre>
+</div></section>
+<p>Definitions of classes, traits, objects and members of this definitions (functions, attributes, etc) are public by default. But the visibility (and thereby the accessibility) can be limited to private or protected visibility. The visibilities are defined similarly to Java with some small differences:</p>
+<ul>
+<li>protected members can be accessed within the same instance or a subtype, but then only in a context like <code>this.protectedMember</code> </li>
+<li>Scala has no explicit modifier for Java&apos;s (default) package-visibility.</li>
+</ul>
+<p>At this point of knowledge, Scala seems less powerful than Java, but Scala offers the possibility to parameterize a visibility-modifier:</p>
+<ul>
+<li>you can parameterize the modifier with some class: <code>protected[class]</code> or <code>private[class]</code></li>
+<li>you can parameterize the modifier with some class: <code>protected[package]</code> or <code>private[package]</code></li>
+<li>you can parameterize the modifier with the active instance: <code>protected[this]</code> or <code>private[this]</code></li>
+</ul>
+<p>The same parameters are allowed for the private modifier, but private[scope] can be more stricly than protected[scope]:</p>
+<ul>
+<li><code>protected</code> is (very much) the same as protected[classname]</li>
+<li><code>private</code> is (very much) the same as private[classname]</li>
+<li><code>private[packagename]</code> or <code>protected[packagename]</code> defines a visibility similar to Java&apos;s package-visibility</li>
+<li>using the scope <code>private[this]</code> (or <code>protected[this]</code>, which would be equivalent) for <code>id</code>, the access <code>v.id</code> in <code>compare</code> would be impossible</li>
+<li>using the scope <code>protected[packagename]</code> (or <code>private[packagename]</code>) for <code>name</code>, the access <code>v.name</code> in <code>copyNameFrom</code> in <code>Subtype</code> would be possible</li>
+</ul>
+<p>Note that Scala interprets packages in some kind of hierachy: Assume you have a package called outerPackage and you define a package outerPackage.innerPackage the innerPackage is a sub-package of the outerPackage and therefore classes in the innerPackage can access members of outerpackage with &apos;package&apos; visibility, which would not be possible in Java.</p>
+<aside><div class="aside-body"><p>You can find some further information on Scala&apos;s visibilities and the differences between Scala and Java <a href="http://j2eethoughts.wordpress.com/2010/12/12/access-modifiers-scala-java/">here</a>.</p>
+</div></aside>
+<h1>Exception Handling</h1>
+<section class="slide" data-title="Exception Handling"><div class="section-body"><h1>Exception Handling</h1>
+<p>In Scala all exceptions are unchecked and usually caught via pattern matching</p>
+<pre><code class="scala">try {
+  PreparedStatement stmt =
+    conn.prepareStatement(&quot;INSERT INTO urls (url) VALUES (?)&quot;)
+  stmt.setObject(1, new URL(&quot;http://www.codecommit.com&quot;))
+  stmt.executeUpdate()
+  stmt.close()
+} catch {
+  case e: SQLException =&gt; println(&quot;Database error&quot;)
+  case e: MalformedURLException =&gt; println(&quot;Bad URL&quot;)
+  case e =&gt; {
+    println(&quot;Some other exception type:&quot;)
+    e.printStackTrace()
+  }
+} finally {
+  conn.close()
+}
+</code></pre>
+<p>see <a href="http://www.codecommit.com/blog/scala/scala-for-java-refugees-part-4">Scala for Java Refugees Part 4: Pattern Matching and Exceptions</a></p>
+</div></section>
+<p>Catching all Throwables with <code>case e =&gt; ...</code> or <code>case _ = ...</code> however is error-prone and should be avoided by any means. Control structures like <a href="http://www.scala-lang.org/api/current/index.html#scala.util.control.Breaks">break</a> or <a href="http://www.scala-lang.org/api/current/index.html#scala.util.continuations.package">continuations</a> use <a href="http://www.scala-lang.org/api/current/index.html#scala.util.control.ControlThrowable">ControlThrowables</a> for flow control, so simply catching all Throwables would possibly break the code. 
+Let us have a look at a piece of code from <a href="http://www.tzavellas.com/techblog/2010/09/20/catching-throwable-in-scala/">Spiros Tzavellas Blog</a> showing another reason, why you really should not catch all Throwables:</p>
+<pre><code class="scala">def containsEven(nums: String*): Boolean = {
+  try {
+    for (i &lt;- nums) {
+      if (i.toInt % 2 == 0)
+        return true
+    }
+  } catch { case e =&gt; () }
+  false
+}
+</code></pre>
+<p>You would expect the code to take an arbitrary number of strings and return true, if there is an even number among them, right?</p>
+<p>Unfortunately, it always returns false, because the body of the for loop throws a <a href="http://www.scala-lang.org/api/current/index.html#scala.runtime.NonLocalReturnControl@inheritance-diagram">NonLocalReturnControl</a> that is caught by the enclosing try block.
+That is because the for loop actually calls <code>foreach</code> on <code>nums</code> and passes the body of the for loop as a <a href="http://en.wikipedia.org/wiki/Closure_%28computer_science%29">closure</a>, in this case a <code>Function1</code>. Because of the return, the closure triggers the return of the enclosing method instead of returning at the point of invocation. This is called a non-local return and is vital for control-flow abstractions using closures. 
+To fix the issue, we would better specify the exception that should be caught: <code>case e : NumberFormatException</code>.</p>
+<p>If you have to catch <code>Throwable</code> for some reason by all means, the correct way to do it is to re-throw any <code>ControlThrowable</code> in the catch-block.</p>
+<h1>Frequently used types</h1>
+<section class="slide" data-title="Frequently used types"><div class="section-body"><h1>Frequently used types</h1>
+<pre><code class="scala">val tuple = (42, 23, true, &quot;Foo&quot;)
+val result = tuple._1 + tuple._2
+def swap(t: (Int, Int)): (Int, Int) = (t._2, t._1)
+
+val o1: Option[Double] = Some(4.5)
+val o2: Option[Any] = Nones
+def matchOption[T &lt;: AnyRef](opt: Option[T], default: T): T = {
+  opt match {
+    case None =&gt; default
+    case Some(obj) =&gt; obj
+  }
+}
+matchOption(o1, 2.7) // returns 4.5
+matchOption(o2, &quot;!&quot;) // returns &quot;!&quot;
+
+val e1: Either[Int, String] = Left(42)
+val e2: Either[Int, Bool] = Right(true)
+def handleEitherWithIntAsLeftSide(e: Either[Int, _]) = {
+  e match {
+    case Left(i) =&gt; println(i)
+    case Right(_) =&gt; println(&quot;No Left-side given!&quot;)
+  }
+}
+handleEitherWithIntAsLeftSide(e1) // prints 42
+handleEitherWithIntAsLeftSide(e2) // prints &quot;No Left-side given!&quot;
+</code></pre>
+</div></section>
+<p>Scala offers some very simple but powerful types:</p>
+<ul>
+<li>Tuple</li>
+<li>Option</li>
+<li>Either</li>
+</ul>
+<h2>Tuple</h2>
+<p>In Scala you can pack multiple (1 to 22) values into one object, a so-called tuple.</p>
+<p>The values, the tuple is built from, can be of different types <strong>and</strong> accessing one of this values will return the correct type. The compiler remembers, that:</p>
+<ul>
+<li>the first and second value of <code>tuple</code> is of type <code>Int</code></li>
+<li>the third value is of type <code>Boolean</code></li>
+<li>and the fourth value is of type <code>String</code></li>
+</ul>
+<p>To access some value from a tuple, the tuple offeres some attributes <code>_1</code>, <code>_2</code>, ... depending on the number of values given at creation-time.</p>
+<p>A method can take and return tuples and hence there is no need of defining any return-value-data-container, a method somehow can return mutliple values and not just one (swap-example)</p>
+<h2>Option</h2>
+<p>Scala offers the generic type <code>Option[A]</code> that is inspired by the <strong>Null Object pattern</strong>. An instance of <code>Option[A]</code> can either be <code>None</code> or <code>Some(A)</code>. Lets take a method with return-type <code>Option[A]</code> as example:</p>
+<ul>
+<li>The method can perform some action and at the end got some result to return</li>
+<li>The method can perform some action but can fail and hence haven&apos;t got some result</li>
+</ul>
+<p>The caller now can get such an optional return-value and depending on the kind of return-value can act in different ways (e.g. via <strong>pattern matching</strong>).</p>
+<h2>Either</h2>
+<p>The third type presented here is the generic type <code>Either[A, B]</code>. An instance of <code>Either[A, B]</code> can either be <code>Left(A)</code> or <code>Right(B)</code>. Very similar to <code>Option</code> the value can have two completely different &apos;types&apos;, but by using <code>Either</code> you can for example return either some value or an exception (or message) (<code>Option</code> only offered the possibility to indicate failure, <code>Either</code> additionally can give further information).</p>
+<h2>Examples</h2>
+<section class="slide" data-title="A &quot;repeat&quot; Abstraction in Scala"><div class="section-body"><h1>A <code>repeat</code> Abstraction in Scala</h1>
+<p>Policy: Repeat the same operation n-times and store the results in an array.<br /></p>
+<pre><code class="Scala">object RepeatAbstraction {
+  def repeat[T: scala.reflect.ClassTag](times: Int)(f: ⇒ T): Array[T] = {
+    val array = new Array[T](times)
+    var i = 0
+    while (i &lt; times) { array(i) = f ; i += 1 }
+    array
+} }
+</code></pre>
+<p><em>Example usage</em> (e.g., using the Scala REPL):</p>
+<pre><code class="Scala">import RepeatAbstraction._
+
+val result: Array[Int] = repeat(3) { System.in.read() }
+// Long version:
+// val body /*: () ⇒ Int*/ = () ⇒ { System.in.read() }
+// val result : Array[Int] = repeat(3)(/*f =*/ body())
+
+println(&quot;Charcodes: &quot;+result.mkString(&quot; &quot;))
+</code></pre>
+</div></section>
+<p>This solution allows us to reuse our <em>low-level mechanism</em>.</p>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

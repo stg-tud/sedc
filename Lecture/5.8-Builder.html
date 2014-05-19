@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1380527398000">
+<div id='body-content'>
+<h3>Builder Design Pattern</h3>
+<h3>Intent</h3>
+<section class="slide" data-title="Builder - Intent"><div class="section-body"><h1>Builder - Intent</h1>
+<div class="statement">Divide the construction of multi-part objects in different steps, so that different implementations of these steps can construct different representations of objects.</div>
+</div></section>
+<h3>Structure</h3>
+<section class="slide" data-title="Builder - Structure"><div class="section-body"><h1>Builder - Structure</h1>
+<p><img src="Images/DP-Builder-Structure.png" alt="DP Builder Structure" /></p>
+</div></section>
+<p><code>Builder</code> defines the individual steps of the construction of <code>Product</code>.</p>
+<p><code>Director</code> knows in which order to construct <code>Product</code>.</p>
+<p><code>ConcreteBuilder</code> implements the steps of construction.</p>
+<h3>Example</h3>
+<p>We want to construct different types of cars.</p>
+<p>In this example, cars have an engine and an interior.</p>
+<section class="slide" data-title="Builder - A Car Builder"><div class="section-body"><h1>Builder - A Car Builder</h1>
+<p><img src="Images/DP-Builder-ACar.png" alt="DP Builder ACar" /></p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Builder - A Car Builder</h1>
+<p><img src="Images/DP-Builder-CarBuilder.png" alt="DP Builder CarBuilder" /></p>
+</div></section>
+<p><code>CarBuilder</code> defines the two methods to construct car parts. Concrete builders must implement these methods. For convenience, the instantiation of cars (buildCar()) is implemented in <code>CarBuilder</code>.</p>
+<p><code>CarConstructionDirector</code>  is configured with a <code>CarBuilder</code> and calls the construction methods in the correct order.</p>
+<section class="slide"><div class="section-body"><h1>Two Possible Car Builders</h1>
+<pre><code class="Java">class CheapCarBuilder extends CarBuilder {
+  void buildEngine() {
+    car.setEngine(Engine.SMALL_ENGINE);
+  }
+
+  void buildInterior() {
+    car.setInterior(Interior.PLASTIC_INTERIOR);
+  }
+}
+</code></pre>
+<pre><code class="Java">class LuxuryCarBuilder extends CarBuilder {
+  void buildEngine() {
+    car.setEngine(Engine.SPORT_ENGINE);
+  }
+
+  void buildInterior() {
+    car.setInterior(Interior.WOODEN_INTERIOR);
+  }
+}
+</code></pre>
+</div></section>
+<h3>Discussion</h3>
+<p><strong>Assessment of the Builder Pattern</strong>:</p>
+<ul>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li>Creation of objects can be configured at runtime.</li>
+<li>Concrete builders can use complex logic.<br />
+E.g. a car builder creating cars depending on available parts in storage.</li>
+<li>Good way to create composite structures.</li>
+</ul>
+</li>
+<li><p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>May yield many classes.</li>
+<li>Only works if all objects can be constructed using the same order.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Builder vs. Abstract Factory Pattern</strong>:</p>
+<ul>
+<li><p>Abstract Factory focuses on creating multiple objects of a common family.</p>
+<ul>
+<li>Abstract Factory knows what object to create.</li>
+<li>Configuration is fixed after deployment of the software.</li>
+</ul>
+</li>
+<li><p>Builder focuses on creating complex objects step by step.</p>
+<ul>
+<li>The director knows how to construct the object.</li>
+<li>Configuration is chosen at runtime via the concrete builder.</li>
+</ul>
+</li>
+</ul>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<p>Use <em>Abstract Factory</em> for creating objects depending on finite numbers of factors you know in advance.<br />
+E.g. if there are only three kinds of cars.</p>
+<p>Use <em>Builder</em> for creating complex objects depending on unbound number of factors that are decided at runtime.<br />
+E.g. if cars can be configured with multiple different parts.</p>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

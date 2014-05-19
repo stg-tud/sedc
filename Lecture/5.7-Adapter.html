@@ -1,0 +1,208 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1380527398000">
+<div id='body-content'>
+<h2>Adapter Design Pattern</h2>
+<h3>Intent</h3>
+<section class="slide" data-title="The Adapter Design Pattern"><div class="section-body"><h1>The Adapter Design Pattern</h1>
+<h2>Intent</h2>
+<p>Intent: Fit foreign components into an existing design.</p>
+<p><img src="Images/DP-Adapter-Framework.png" alt="DP Adapter Framework" /></p>
+</div></section>
+<p>We want to reuse existing frameworks or libraries in our software, even if they do not match with our design.</p>
+<p>We do not want to change our design to adhere to the structure of the reused components.</p>
+<h3>Case Study</h3>
+<section class="slide" data-title="The Adapter Design Pattern - Illustrated"><div class="section-body"><h1>The Adapter Design Pattern - Illustrated</h1>
+<p><img src="Images/DP-Adapter-CaseStudy-GraphicalFramework.png" alt="DP Adapter CaseStudy GraphicalFramework" /></p>
+</div></section>
+<p>We have acquired the framework <code>GraphicalFramework</code>.</p>
+<p><code>GraphicalFramework</code> provides the interface <code>Node</code> to draw rectangles with a headline and text to the screen.</p>
+<p>Drawing is done by the framework, we just need to provide the data via the interface <code>Node</code>.</p>
+<section class="slide"><div class="section-body"><h1>Desired Usage of the Framework</h1>
+<p><img src="Images/DP-Adapter-CaseStudy-DesiredUsage.png" alt="DP Adapter CaseStudy DesiredUsage" /></p>
+</div></section>
+<p>Our own design represents different kinds of persons.
+We want to draw our data to the screen:</p>
+<ul>
+<li>Name and department of <code>Employee</code>.</li>
+<li>Name and address of <code>Customer</code>.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Adapting the Framework</h1>
+<p><img src="Images/DP-Adapter-CaseStudy-AdaptingTheFramework.png" alt="DP Adapter CaseStudy AdaptingTheFramework" /></p>
+</div></section>
+<p>We will create adapters to use the functionality of <code>GraphicalFramework</code>  for our classes.</p>
+<p>We have to adapt <code>Employee</code> and <code>Customer</code> to fit with <code>Node</code>.</p>
+<h3>Two Kinds of Adapters</h3>
+<h4>Object Adapter</h4>
+<section class="slide" data-title="Object Adapter"><div class="section-body"><h1>Object Adapter</h1>
+<p><img src="Images/DP-Adapter-Structure-ObjectForm.png" alt="DP Adapter Structure ObjectForm" /></p>
+</div></section>
+<ul>
+<li><code>Adaptee</code> is wrapped by <code>Adapter</code> to fit in the interface of <code>Target</code>.</li>
+<li><code>Adapter</code> forwards calls of <code>Client</code> to <code>request()</code> to the specific methods of <code>Adaptee</code> (e.g, <code>specificRequest()</code>).</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Using Object Adapter</h1>
+<p><img src="Images/DP-Adapter-CaseStudy-ObjectAdapter.png" alt="DP Adapter CaseStudy ObjectAdapter" /></p>
+</div></section>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li><code>Adapter</code> works with <code>Adaptee</code> and any subclass of it.</li>
+<li><code>Adapter</code> can add functionality to <code>Adaptee</code> and its subclasses.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Cannot override methods in <code>Adaptee</code>.</li>
+<li>Cannot reuse <code>Adapter</code> with subclasses of <code>Target</code>.</li>
+<li><code>Adapter</code> and <code>Adaptee</code> are different objects.<br />
+(Need to maintain relation between <code>Adaptee</code> and his <code>Adapter</code>)</li>
+</ul>
+<h4>Class Adapter</h4>
+<section class="slide" data-title="Class Adapter"><div class="section-body"><h1>Class Adapter</h1>
+<p><img src="Images/DP-Adapter-Structure-ClassForm.png" alt="DP Adapter Structure ClassForm" /></p>
+</div></section>
+<p>Instead of having <code>Adaptee</code> as an attribute, <code>Adapter</code> inherits from <code>Adaptee</code>.</p>
+<section class="slide"><div class="section-body"><h1>Using Class Adapter</h1>
+<p><img src="Images/DP-Adapter-CaseStudy-ClassAdapter.png" alt="DP Adapter CaseStudy ClassAdapter" /></p>
+</div></section>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Behavior of <code>Adaptee</code> can be overridden.</li>
+<li>Adapter and <code>Adaptee</code> are the same object, no forwarding.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li><code>Adapter</code> cannot be used with subclasses of <code>Adaptee</code> or <code>Target</code>. </li>
+<li><code>Multiple</code> inheritance may be required.<br />
+In Java: At least one of <code>Target</code> and <code>Adaptee</code> must be an Interface.</li>
+</ul>
+<h3>Takeaway</h3>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<p>Adapter is an effective means to adapt existing behavior to the expected interfaces of a reusable component or framework.</p>
+<p>Two variants: <strong>Object and Class Adapter</strong></p>
+<ul>
+<li>Both have their trade-offs.</li>
+<li>Both have problems with the reusability of the adapter.</li>
+</ul>
+</div></section>
+<h3>Pimp My Library (Scala)</h3>
+<section class="slide" data-title="Pimp My Library (Scala)"><div class="section-body"><h1>Pimp-my-Library Idiom/Pattern (Scala)</h1>
+<h2>Goal</h2>
+<p>Solve the problem that you can change or extend your own code, but if you use other libraries you have to take them as they are.</p>
+<h2>Solution Idea</h2>
+<p>Define a conversion function to convert your object into the required object and make this conversion <code>implicit</code> to let the compiler automatically perform the conversion when needed.<br />
+(<em>Transparent</em> generation of object adapters.)</p>
+</div></section>
+<h4>Example Scenario</h4>
+<p>We want to be able to repeat a certain operation multiple times and want to store the result in some given mutable store.</p>
+<p>But, Scala&apos;s (2.10) mutable collections do not define a common method to add an element to them.</p>
+<p>In the following we develop a generalization of the previously shown <code>repeat</code> method. This variant enables the developer to specify the target data store.</p>
+<section class="slide"><div class="section-body"><p>Implementing a <code>repeatAndStore</code> method <strong>(naïve approach)</strong>.</p>
+<pre><code class="Scala">object ControlFlowStatements {
+  import scala.collection.mutable.Set
+</code></pre>
+<section data-anim-step="1"><div class="section-body"><pre><code class="Scala">  abstract class MutableCollection[T, C[T]](val underlying: C[T]) {
+    def +=(elem: T): Unit
+  }
+</code></pre>
+</div></section>
+<section data-anim-step="2"><div class="section-body"><pre><code class="Scala">  implicit def setToMutableCollection[T](set: Set[T]) =
+    new MutableCollection(set) { def +=(elem: T) = set += (elem) }
+</code></pre>
+</div></section>
+<pre><code class="Scala">  def repeatAndStore[T, C[T]]
+      (times: Int)(f: ⇒ T)(collection: MutableCollection[T, C]): C[T] = {
+    var i = 0; while (i &lt; times) { collection += f; i += 1 }
+    collection.underlying
+  }
+</code></pre>
+<pre><code class="Scala">}
+</code></pre>
+<aside data-title="Example Usage"><div class="aside-body"><pre><code class="Scala">object CFSDemo extends App {
+  import ControlFlowStatements._
+
+  val nanos =
+    repeatAndStore(5) {
+      System.nanoTime()
+    }(new scala.collection.mutable.HashSet[Long]())
+
+}
+</code></pre>
+<p>What is the type of <code>nanos</code>?</p>
+</div></aside>
+</div></section>
+<p>The previous solution has two issues:</p>
+<ol>
+<li>The <code>repeatAndStore</code> method requires a <code>MutableCollection</code> which is basically an implementation-internal type.</li>
+<li>It returns the original collection to make the usage easier, but important type information is lost (the <code>HashSet</code> has become a <code>Set</code>).</li>
+</ol>
+<section class="slide"><div class="section-body"><p>Implementing a <code>repeatAndStore</code> method.</p>
+<pre><code class="Scala">object ControlFlowStatementsBase {
+  trait Mutable[-C[_]] {
+    def add[T](collection: C[T], elem: T): Unit
+  }
+
+  implicit object Set extends Mutable[Set] {
+    def add[T](collection: Set[T], elem: T) { collection += elem }
+  }
+
+  implicit object MutableBuffer extends Mutable[Buffer] {
+    def add[T](collection: Buffer[T], elem: T) { collection += elem }
+  }
+
+  def repeatWithContextBound[T, X[T] &lt;: AnyRef: Mutable]
+  (times: Int)
+      (f: ⇒ T)(collection: X[T]): collection.type = {
+    var i = 0
+    while (i &lt; times) { 
+	    implicitly[Mutable[X]].add(collection, f); i += 1 
+    }
+    collection
+  }
+}
+</code></pre>
+<aside data-title="Example Usage"><div class="aside-body"><pre><code class="Scala">object CFSDemo extends App {
+  import ControlFlowStatements._
+
+  val nanos_1: HashSet[Long] = 
+    repeatWithContextBound(5){ System.nanoTime() }(new HashSet[Long]())
+
+  val nanos_2: ArrayBuffer[Long] = 
+    repeatWithContextBound(5){ System.nanoTime() }(new ArrayBuffer[Long]())
+
+  val nanos_3: nanos_1.type = 
+    repeatWithContextBound(5) {System.nanoTime() }(nanos_1)
+
+  def stricterEquals[X &lt;: AnyRef](a: X)(b: a.type) = a == b
+  stricterEquals(nanos_1)(nanos_3)
+  // /* correctly won&apos;t compile */ stricterEquals(nanos_2)(nanos_3)
+}
+</code></pre>
+</div></aside>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

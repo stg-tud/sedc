@@ -1,0 +1,408 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1386146217000">
+<div id='body-content'>
+<h1>Domain Specific Languages</h1>
+<section class="slide" data-title="Domain Specific Languages (DSLs)"><div class="section-body"><h1>Domain Specific languages (DSLs)</h1>
+<blockquote><p>[...] a good programmer in these times does not just write
+programs. [...] a good programmer does language design,
+though not from scratch, but building on the frame of a base
+language. -Guy Steele Jr.</p>
+</blockquote>
+</div></section>
+<section class="slide" data-title="Definition"><div class="section-body"><h1>Definition</h1>
+<blockquote><p>A <strong>Domain Specific Language</strong> is a computer programming language focused on a particular domain -Martin Fowler</p>
+</blockquote>
+</div></section>
+<section class="slide" data-title="second DSL example"><div class="section-body"><h1>DSLs - a first example</h1>
+<p>An example of a DSL is an Antlr grammar for integers, comments and lower case letters. </p>
+<pre><code class="Antlr">integer : (HEX_PREFIX | OCTAL_PREFIX)? DIGITS;            
+DIGITS : &apos;1&apos;..&apos;9&apos; &apos;0&apos;..&apos;9&apos;*;                                             
+ML_COMMENT : &apos;/*&apos; ( options {greedy=false;} : . )* &apos;*/&apos; ; .                                                  
+NO_LOWERCASE_LETTERS : (~(&apos;a&apos;..&apos;z&apos;))+;       
+</code></pre>
+</div></section>
+<section class="slide" data-title="second DSL example"><div class="section-body"><h1>DSLs - a second example</h1>
+<p>Here, we create an SQL table, insert and select records from it. </p>
+<pre><code class="SQL">CREATE TABLE Persons
+(
+PersonID int,
+LastName varchar(255),
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+insert into Persons values(1,&apos;Eichberg&apos;,&apos;Michael&apos;,&apos;Hochschulstr. 10&apos;,&apos;Darmstadt&apos;);
+select Address from Persons where LastName=&apos;Eichberg&apos;;
+</code></pre>
+<p>Other examples of DSLs are : HTML, SQL, Yacc, Antlr ...</p>
+</div></section>
+<p>What distinguishes DSLs is their high expressiveness inside the boundaries of a particular domain and limited expressiveness outside the boundaries of that domain. </p>
+<p>So, a single project may use many DSLs in different parts where every language is targeted towards a specific domain.</p>
+<section class="slide" data-title="Reasons for using DSLs"><div class="section-body"><h1>Reasons for using DSLs</h1>
+<ul>
+<li>A DSL is designed with a <em>domain expert</em> in mind. Hence, it is easier for domain experts, who are usually not software developers, to understand DSL code than code in a  general purpose programming language(GPL).</li>
+<li>The code is (up to a certain level) self-documented.</li>
+<li>It may be easier to apply formal methods on DSLs as reasoning can be done within the domain semantics.</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Desired properties of DSLs"><div class="section-body"><h1>Desired properties of DSLs</h1>
+<ul>
+<li>Precise representation of domain concepts</li>
+<li>Composability with other DSLs/GPLs</li>
+<li>Reasonable performance</li>
+<li>Infrastructure reusability (parser, compiler, linker, ...)</li>
+<li>High modularity (i.e., modular checking and compilation)</li>
+<li>Static (type) safety</li>
+<li>Tool support for debugging/syntax highlighting/code completion </li>
+</ul>
+</div></section>
+<h2>Tradeoffs when building a standalone DSL</h2>
+<p>When building a classical (standalone) DSL you need to implement your own parser/compiler (basically the whole tool suite). However, the DSL can be tailored to the domain&apos;s needs.</p>
+<section class="slide" data-title="DSLs takeaway"><div class="section-body"><h1>DSLs Takeaway</h1>
+<table border="1">
+	<tr>
+		<th></th>
+		<th>DSLs</th>
+	</tr>
+	<tr>
+		<th>Precise representation of domain concepts</th>
+		<td><center>++</center></td>
+	</tr>
+	<tr>
+		<th>Tool support</th>
+		<td>+/-</td>
+	</tr>
+	<tr>
+		<th>Infrastructure reuse</th>
+		<td>--</td>
+	</tr>
+	<tr>
+		<th>Modularity</th>
+		<td>-</td>
+	</tr>
+	<tr>
+		<th>Composability</th>
+		<td>--</td>
+	</tr>
+	<tr>
+		<th>Static safety</th>
+		<td>+/-</td>
+	</tr>
+</table>
+</div></section>
+<p>A standalone DSL is excellent for representing domain concepts. An example is ANTLR.</p>
+<p>Developing tools is usually a lot of work, but there are basically no limits.</p>
+<p>There is no infrastructure reuse as the whole &quot;package&quot; (grammar/parser/compiler/...) has to be built from scratch.</p>
+<p>Composability is typically not supported.</p>
+<section class="slide" data-title="Embedding of a DSL"><div class="section-body"><h1>Embedding of a DSL</h1>
+<ul>
+<li><p>Example: SQLj (An embedding of SQL in Java)</p>
+</li>
+</ul>
+<pre><code class="SQL">sql private static iterator EmployeeIterator(String, String, BigDecimal);
+...
+EmployeeIterator iter;
+#sql [ctx] iter = {
+  SELECT LASTNAME
+       , FIRSTNME
+       , SALARY
+    FROM DSN8710.EMP
+   WHERE SALARY BETWEEN :min AND :max
+};
+do {
+  #sql {
+    FETCH :iter
+     INTO :lastname, :firstname, :salary
+  };
+  // Print row...
+} while (!iter.endFetch());
+iter.close();
+</code></pre>
+</div></section>
+<ul>
+<li>The DSL has its own syntax which is different from the syntax of the host language.</li>
+<li>A special compiler is needed to compile/to preprocess the code. Afterwards it is passed to the host language compiler.</li>
+<li>Tools need to be adapted.</li>
+</ul>
+<section class="slide" data-title="Embedding of DSLs takeaway"><div class="section-body"><h1>Embedding of DSLs Takeaway</h1>
+<p><strong>Heterogenous Embedding</strong></p>
+<table border="1">
+	<tr>
+		<th></th>
+		<th>DSLs</th>
+		<th>Embedding of DSLs</th>
+	</tr>
+	<tr>
+		<th>Precise representation of domain concepts</th>
+		<td><center>++</center></td>
+		<td>o</td>
+	</tr>
+	<tr>
+		<th>Tool support</th>
+		<td>+/-</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<th>Infrastructure reuse</th>
+		<td>--</td>
+		<td>o</td>
+	</tr>
+	<tr>
+		<th>Modularity</th>
+		<td>-</td>
+		<td>o</td>
+	</tr>
+	<tr>
+		<th>Composability</th>
+		<td>--</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<th>Static safety</th>
+		<td>+/-</td>
+		<td>+</td>
+	</tr>
+</table> 
+</div></section>
+<p>Embedding of a DSL in a host language usually provides some level of static type safety.</p>
+<p>Embedding of a DSL in a host language will make it not composable as it has its own compiler/interpreter that differs from that of the host language.</p>
+<p>The tool support is just for the host language not for the embedded language.</p>
+<section class="slide" data-title="Embedded Domain Specific Languages (EDSLs)"><div class="section-body"><h1>Embedded Domain Specific Languages (EDSLs)</h1>
+<p>Embedding a DSL into an already existing general purpose programming language such that it only uses the GPLs mechanisms will greatly reduce the implementation effort.</p>
+<p>The embedded language will make use of the features of the host language.</p>
+<p>But on the other side embedding the DSL as a library makes it <strong>tightly coupled</strong> to the host language.</p>
+<p>There are many approaches for embedding a DSL into a general purpose language.</p>
+</div></section>
+<section class="slide" data-title="Embedded Interpreter"><div class="section-body"><h1>Embedded Interpreter</h1>
+<p>Make use of the host language parser and compiler by embedding the DSL using host language expressions.</p>
+<p>The written syntax is interpreted by a host language interpreter</p>
+<p>This is known as the <strong>Interpreter pattern</strong></p>
+</div></section>
+<section class="slide" data-title="Pure Embedding"><div class="section-body"><h1>Pure Embedding</h1>
+<p>Similar to a traditional library approach, however, domain specific semantics are taken into consideration while constructing the language. In particular, domain types are implemented as host language types.</p>
+<p>However the host language and DSL are tightly coupled.</p>
+</div></section>
+<section class="slide" data-title="Embedded DSLs Takeaway"><div class="section-body"><h1>Embedded DSLs Takeaway</h1>
+<table border="1">
+	<tr>
+		<th></th>
+		<th>DSLs</th>
+		<th>Embedding of DSLs</th>
+		<th>Embedded DSLs</th>
+	</tr>
+	<tr>
+		<th>Precise representation of domain concepts</th>
+		<td><center>++</center></td>
+		<td>o</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<th>Tool support</th>
+		<td>+/-</td>
+		<td>-</td>
+		<td>+/-</td>
+	</tr>
+	<tr>
+		<th>Infrastructure reuse</th>
+		<td>--</td>
+		<td>o</td>
+		<td>++</td>
+	</tr>
+	<tr>
+		<th>High Modularity</th>
+		<td>-</td>
+		<td>o</td>
+		<td>o</td>
+	</tr>
+	<tr>
+		<th>Composability</th>
+		<td>--</td>
+		<td>-</td>
+		<td>+</td>
+	</tr>
+	<tr>
+		<th>Static safety</th>
+		<td>+/-</td>
+		<td>+</td>
+		<td>+/-</td>
+	</tr>
+</table> 
+</div></section>
+<p>Embedded DSLs are bound by the syntax of the host language which limits the possibility to precisely capture the domain concepts.</p>
+<p>Concerning tool support, there is tool support (syntax highlighting, code completion,...) for the host language but there <strong>is no</strong> tool support for the embedded DSL (e.g. slick).</p>
+<p>The static safety depends on the type safety of the host language. So if the host language is dynamically typed then there is no type safety for the EDSL.</p>
+<section class="slide" data-title="Host Languages used for Building DSLs"><div class="section-body"><h1>Host Languages used for Building DSLs</h1>
+<ul>
+<li>Many of today&apos;s general purpose languages facilitate the development of EDSLs. For example: (Java,) Haskell, Scala,...</li>
+<li>Scala is particularly well suited due to its rich set of advanced features: path-dependent types, mixin composition, syntactic flexibility, advanced type system, ...</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Case Study- The *Regions* language"><div class="section-body"><h1>Case Study- The <em>Regions</em> language</h1>
+<ul>
+<li>Derived from the image processing domain.</li>
+<li>It is basically for one domain specific type <strong>Regions</strong>.</li>
+<li>Along with operations required for describing regions and building more complex regions.</li>
+<li>For demonstration purposes, the language is kept simple. However, it can be easily extended without changing the basic language structure.</li>
+</ul>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>The <em>Regions</em> language - cont</h1>
+<pre><code class="Scala">
+trait Regions{
+
+   type Vector = (double,double)
+   type Region
+
+   def univ : Region
+   def empty : Region  
+   def circle : Region
+   def scale(v : Vector, x : Region) : Region
+   def union(x : Region, y : Region) : Region
+}
+  
+def program(semantics : Regions) : semantics.Region ={   
+   import semantics._
+  
+   val ellipse24=scale ((2,4), circle)
+   union (univ,ellipse24) //The returned expression
+}
+  
+</code></pre>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<p>Here two type members are declared:</p>
+<ul>
+<li><strong>Vector</strong> as a pair of doubles</li>
+<li><strong>Region</strong> as an abstract domain type that will be defined in subclasses.</li>
+</ul>
+<p>Beside type members, operations are defined to represent </p>
+<ul>
+<li>empty regions</li>
+<li>universal regions: that include every point</li>
+<li>circle to represent a unit circle aroung the origin of the coordinate space</li>
+<li>scaling a region by a by a vector v resulting in a new scaled region</li>
+<li>and the union between regions </li>
+</ul>
+<p>A client of the Regions interface is defined having a dependent return type that depends on the <strong>semantics</strong> implementation of type</p>
+<section class="slide"><div class="section-body"><h1>Various semantics for the <em>Regions</em> type</h1>
+<p>After defining the trait of the Regions language, we can now define various semantics that extend this trait and implement abstract types and operations.</p>
+<p>An example of the operations are :</p>
+<ul>
+<li>checking if a point is inside or outside a region</li>
+<li>pretty printing of region operations</li>
+</ul>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>The <em>Evaluation</em> trait</h1>
+<pre><code class="scala">
+trait Evaluation extends Regions{
+
+   type Region = Vector =&gt; boolean
+
+   def univ : Region = p =&gt; true
+   def empty : Region  = p =&gt; false
+   def circle : Region = p =&gt; p._1*p._1 + p._2*p._2 &lt; 1
+   def scale(v : Vector, x : Region) : Region = p =&gt; x(p._1/v._1,p._2/v._2)
+   def union(x : Region, y : Region) : Region = p =&gt; x(p) || y(p)
+}   
+
+object Eval extends Evaluation
+ 
+  
+</code></pre>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<p>A region is seen as a set of points</p>
+<p>Points inside the region are mapped to <em>true</em> and those outside are mapped to <em>false</em></p>
+<p>For example, the universal region contains all points so it will always output true. On the other hand, the empty region does not
+contain any point so it will always output false. </p>
+<p>Also in circle, a point is seen is a part of the unit circle if the square sum of its components is less than or equal one.</p>
+<p>In union, we can use characteristic functions of regions we want to combine to map all
+points to true which are mapped to true by any of the composed regions.</p>
+<section class="slide"><div class="section-body"><h1>The pretty printing trait</h1>
+<pre><code class="scala">trait Printing extends Regions {
+
+type Region = String
+
+   def univ : Region = &quot;univ&quot;
+   def empty : Region = &quot;empty&quot;
+   def circle : Region = &quot;circle&quot;
+   def scale(v : Vector, x : Region) : Region =
+      &quot;scale(&quot; + v + &quot;, &quot; + x + &quot;)&quot;
+
+   def union(x : Region, y : Region) : Region =
+      &quot;union(&quot; + x + &quot;, &quot; + y + &quot;)&quot;
+}
+
+object Print extends Printing
+  
+</code></pre>
+</div></section>
+<p>Mapping the domain type <em>Regions</em> to a string and ouputing the corresponding string representation for every operation.</p>
+<section class="slide"><div class="section-body"><h1>Optimizing the <em>Regions</em> DSL</h1>
+<pre><code class="scala">trait Optimization extends Regions {
+
+   val semantics : Regions
+
+   type Region = (semantics.Region, boolean)
+
+   def univ : Region = (semantics.univ, true)
+   def empty : Region = (semantics.empty, false)
+   def circle : Region = (semantics.circle, false)
+
+   def scale(v : Vector, x : Region) : Region =
+      if (x._2) (semantics.univ, true)
+      else (semantics.scale(v, x._1), false)
+
+   def union(x : Region, y : Region) : Region =
+     if (x._2 || y._2) (semantics.univ, true)
+     else (semantics.union(x._1, y._1), false)
+}
+
+// prints &quot;union(univ, scale((2.0,4.0), circle)&quot;
+println(program(Print))
+
+object OptimizePrint extends Optimization { val semantics = Print }
+
+// prints &quot;(univ, true)&quot;
+println(program(OptimizePrint))  
+</code></pre>
+</div></section>
+<p>The <em>Region</em> here is represented as a pair of unoptimized region and a boolean value that indicates whether this region is statically known to be universal or not</p>
+<p>For example, in the <em>union</em> operation, if any of the regions is the universal region then the resulting region is universal.</p>
+<p>In the Optimization trait, the actual optimization is done in the <em>union</em> and <em>scale</em> operations. Where these operations can make use of the additional information
+given in the <em>univ, empty and circle</em> regions to shorten evaluation paths.</p>
+<p>Since the Optimization trait can work on any region semantics, therefore, it can work with the Pretty printing and optimization semantics defined before.</p>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

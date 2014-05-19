@@ -1,0 +1,158 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1387353328000">
+<div id='body-content'>
+<h2>Template-Method Design Pattern</h2>
+<section class="slide" data-title="The Template-Method Pattern in a Nutshell"><div class="section-body"><h1>The Template-Method Pattern in a Nutshell</h1>
+<p><strong>Intent:</strong></p>
+<ul>
+<li>Separate high-level policies from detailed low-level mechanisms.</li>
+<li>Separate invariant from variant parts.</li>
+</ul>
+<p>  <img src="Images/DP-TemplateMethod-Structure.png" style="float:right"></p>
+<p><strong>Solution Idea:</strong><br />
+Use abstract classes to: </p>
+<ul>
+<li>Define interfaces to detailed mechanisms and variant parts.</li>
+<li>Implement high-level policies and invariant parts to these interfaces.</li>
+<li>Control sub-class extensions.</li>
+<li>Avoid code duplication.</li>
+</ul>
+</div></section>
+<p>The Template-Method Pattern plays a key role in the design of object-oriented frameworks.</p>
+<section class="slide" data-title="Example Application of Template Method"><div class="section-body"><h1>Example Application of Template Method</h1>
+<p><strong>Functional requirements:</strong></p>
+<ul>
+<li>Need a family of sorting algorithms …
+(bubble sort, quick sort, etc.)</li>
+<li>for different kinds of data (int, double, etc.)</li>
+<li>Clients that use sorting algorithms should be reusable with a variety of specific algorithms.</li>
+</ul>
+<p><strong>Non-functional requirements on the design</strong></p>
+<ul>
+<li>Need to separate the high-level „sorting“ policies from low-level mechanisms.</li>
+<li><p>Low-level mechanisms are responsible for:</p>
+<ul>
+<li>deciding when an element is out of order,</li>
+<li>swapping out-of-order elements.</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Separating the Policy of Sorting"><div class="section-body"><h1>Separating the Policy of Sorting</h1>
+<p>  <img src="Images/DP-TemplateMethodBubbleSorter.png" style="float:right"></p>
+<pre><code class="Java">public abstract class BubbleSorter {
+  protected int length = 0;
+</code></pre>
+<p>  <em>Policy</em>:<br /></p>
+<pre><code class="Java">  protected void sort() {
+    if (length &lt;= 1) return;
+      for (int nextToLast = length - 2; nextToLast &gt;= 0; nextToLast--)
+        for (int index = 0; index &lt;= nextToLast; index++)
+          if (outOfOrder(index)) swap(index);
+  }
+</code></pre>
+<p>  <em>Mechanisms</em>:</p>
+<pre><code class="Java">  protected abstract void swap(int index);
+  protected abstract boolean outOfOrder(int index);
+</code></pre>
+<pre><code class="Java">}
+</code></pre>
+</div></section>
+<p>Implement the sorting policy in a template method, <code>sort</code>. Hide mechanisms needed for implementing the sorting policy behind abstract methods (<code>outOfOrder</code> and <code>swap</code>), which are called by the template method.</p>
+<section class="slide" data-title="Filling the Template for Specific Algorithns"><div class="section-body"><h1>Filling the Template for Specific Algorithns</h1>
+<p>  <img src="Images/DP-TemplateMethodBubbleSorter.png" style="float:right"></p>
+<pre><code class="Code">public class IntBubbleSorter 
+  extends BubbleSorter {
+	  
+  private int[] array = null;
+
+  public void sort(int[] theArray) {
+    array = theArray;
+	length = array.length;
+    super.sort();
+  }
+  protected void swap(int index) {
+    int temp = array[index];
+    array[index] = array[index + 1];
+    array[index + 1] = temp;
+  }
+  protected boolean outOfOrder(int index) {
+    return (array[index] &gt; array[index + 1]);
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>What are the advantages and deficiencies of the Template-Method Pattern?</p>
+</div></footer>
+</div></section>
+<p>The advantages and deficiencies of the Template-Method Pattern are basically those of inheritance:
+<strong>Template method forces mechanisms to extend a specific policy.</strong></p>
+<ul>
+<li>Implementation of low-level mechanisms depends on the template.</li>
+<li>Cannot re-use low-level mechanisms functionality.<br />
+<code>swap</code> and <code>outOfOrder</code> implemented in <code>IntBubbleSorter</code> may be useful in other contexts as well, e.g., for quick sort.</li>
+</ul>
+<section class="slide" data-title="Template Method Pattern in Log4J"><div class="section-body"><h1>Template Method Pattern in Log4J</h1>
+<p>  <img src="Images/DP-Log4J.png" style="float:right"></p>
+<p><strong><code>interface Appender</code></strong><br />
+Implement this interface for your own strategies for outputting log statements.
+[…]<br /></p>
+<p><code>public void doAppend(LoggingEvent event)</code><br />
+Log in Appender specific way.<br /></p>
+<p><strong><code>abstract class AppenderSkeleton implements Appender</code></strong><br />
+Abstract superclass of the other appenders. This class provides the code for common functionality, such as support for threshold filtering and support for general filters.
+[…]<br /></p>
+<p><code>protected abstract void append(LoggingEvent event)</code><br />
+Subclasses should implement this method to perform actual logging.<br /></p>
+<p><code>public void doAppend(LoggingEvent event)</code><br />
+This method performs threshold checks and invokes filters before delegating actual logging to the append(LoggingEvent) method.</p>
+</div></section>
+<section class="slide" data-title="Functional Counterpart of Template"><div class="section-body"><h1>Functional Counterpart of Template</h1>
+<p>One can look at the Template-Method Pattern as a style for emulating higher-order functions available in programming languages that support functional-style programming.</p>
+<hr />
+<p>Alternative design for Log4J in Scala<strong>?</strong></p>
+<pre><code class="Scala">class AppenderSkeleton(
+  private val append : (LoggingEvent) =&gt; Unit
+) {
+  def doAppend(loggingEvent : LoggingEvent) {
+    // filtering, threshold checks, …
+    append(loggingEvent)
+  }
+}
+</code></pre>
+<aside data-title="Higher-order Functions"><div class="aside-body"><p><strong><em>Higher-order function</em>: A function parameterized by other functions.</strong></p>
+<ul>
+<li><em>First-order functions</em> abstract over variations in data.</li>
+<li><em>Higher-order functions</em> abstract over variations in sub-computations.</li>
+<li><em>First-class functions</em> are values that can be passed as parameters and returned as results.</li>
+</ul>
+</div></aside>
+</div></section>
+<p>Whether this is a feasible design or not requires a detailed analysis of the context; i.e., the <code>AppenderSkeleton</code> class. In this case, the method <code>close</code> indicates that an <code>Appender</code> may be in different states which suggests that the standard implementation approach is best suited (also in Scala).</p>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

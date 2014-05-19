@@ -1,0 +1,190 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1387350338000">
+<div id='body-content'>
+<h1>Design Patterns</h1>
+<h2>Introduction to Design Patterns</h2>
+<section class="slide" data-title="What is a Design Pattern"><div class="section-body"><h1>What is a Design Pattern</h1>
+<blockquote><p>A design pattern describes:</p>
+<ul>
+<li><p>A problem that occurs over and over again in our environment.</p>
+</li>
+<li><p>The core of the solution to that problem, </p>
+</li>
+<li>in such a way that you can use this solution a million times over, without ever doing it the same way twice.</li>
+</ul>
+<p><strong>Christopher Alexander, professor of architecture.</strong></p>
+</blockquote>
+</div></section>
+<section class="slide"><div class="section-body"><h1>What is a Design Pattern</h1>
+<div class="statement">Aggressive disregard for originality.</div>
+<p><strong>Rule of three:</strong></p>
+<ul>
+<li>Once is an event.</li>
+<li>Twice is an incident.</li>
+<li>Thrice is a pattern. </li>
+</ul>
+</div></section>
+<section class="slide" data-title="Motivation for Software Design Patterns"><div class="section-body"><h1>Motivation for Software Design Patterns</h1>
+<p>  <img src="Images/Cover-DesignPatterns.jpg" style="float:right"></p>
+<ul>
+<li><p><strong>Designing reusable software is hard!</strong><br />
+(Originality is Overrated)</p>
+</li>
+<li><p><strong>Some design solutions reoccur; understanding their core is beneficial</strong></p>
+</li>
+<li><p><strong>Systematic software-development</strong></p>
+</li>
+</ul>
+</div></section>
+<ul>
+<li><p>Designing reusable software is hard! (Originality is Overrated)<br /></p>
+<ul>
+<li>Novices are overwhelmed.</li>
+<li>Experts draw from experience.</li>
+</ul>
+</li>
+<li><p>Some design solutions reoccur. Understanding their core is beneficial.</p>
+<ul>
+<li>Know when to apply.</li>
+<li>Know how to establish them in a generic way.</li>
+<li>Know the consequence (trade-offs).</li>
+</ul>
+</li>
+<li><p>Systematic software-development</p>
+<ul>
+<li>Documenting expert knowledge.</li>
+<li>Use of generic solutions.</li>
+<li>Use of shared vocabulary.</li>
+<li>Raising the abstraction level.</li>
+</ul>
+</li>
+</ul>
+<section class="slide" data-title="Design Patterns and Change"><div class="section-body"><h1>Design Patterns and Change</h1>
+<p>  <img src="Images/Cover-DesignPatterns.jpg" style="float:right"></p>
+<ul>
+<li><p><strong>Most patterns address issues of software change.</strong></p>
+<ul>
+<li><p>Most patterns allow some part of the system to vary independent of the other parts.</p>
+</li>
+<li><p>We often try to identify what varies in a system and encapsulate it.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Elements of Design Patterns"><div class="section-body"><h1>Elements of Design Patterns</h1>
+<p>  <img src="Images/Cover-DesignPatterns.jpg" style="float:right"></p>
+<ul>
+<li><p><strong>Pattern Name</strong></p>
+</li>
+<li><p><strong>Intent</strong></p>
+</li>
+<li><p><strong>Solution</strong></p>
+</li>
+<li><p><strong>Consequences</strong></p>
+</li>
+</ul>
+</div></section>
+<ul>
+<li><strong>Pattern Name</strong>: A short mnemonic to increase your design vocabulary.</li>
+<li><strong>Intent</strong>: Description when to apply the pattern (conditions that have to be met before it makes sense to apply the pattern).</li>
+<li><strong>Solution</strong>: The elements that make up the design, their relationships, responsibilities, and collaborations.</li>
+<li><strong>Consequences</strong>: Costs and benefits of applying the pattern. Language and implementation issues as well as impact on system flexibility, extensibility, or portability.<br />
+The goal is to help understand and evaluate a pattern.</li>
+</ul>
+<section class="slide" data-title="R. Martin&apos;s Chess Analogy"><div class="section-body"><h1>R. Martin&apos;s Chess Analogy</h1>
+<ul>
+<li><p>When people begin to play chess they learn the rules and physical requirements of the game.</p>
+</li>
+<li><p>As they progress, they learn the principles.</p>
+</li>
+<li><p>However, to become a master of chess, one must study games of other masters.</p>
+</li>
+</ul>
+<hr />
+<ul>
+<li><p>So it is with software. First one learns the rules. The algorithms, data structures, and languages of software.<br /></p>
+</li>
+<li><p>Later, one learns the principles of software design.<br /></p>
+</li>
+<li><p>But to truly master software design, one must study the designs of other masters. </p>
+</li>
+</ul>
+</div></section>
+<section class="story"><div class="section-body"><h1>R. Martin‘s Chess Analogy</h1>
+<p>When people begin to play chess they learn the rules and physical requirements of the game. They learn the names of the pieces, the way they move and capture, the board geometry and orientation. 
+At this point, people can play chess, although they will probably not be very good players. </p>
+<p>As they progress, they learn the principles. They learn the value of protecting the pieces and their relative value. They learn the strategic value of the center squares and the power of a threat…</p>
+<p>At this point, they can play a good game. They know how to reason through the game and can recognize “stupid” mistakes.</p>
+<p>However, to become a master of chess, one must study games of other masters. Buried in those games are patterns that must be understood, memorized, and applied repeatedly until they become second nature. </p>
+<p>There are thousands upon thousands of these patterns. Opening patterns are so numerous that there are books dedicated to their variations. Midgame patterns and ending patterns are also prevalent, and the master must be familiar with them all. </p>
+<p>So it is with software. First one learns the rules. The algorithms, data structures, and languages of software. 
+At this point, one can write programs, albeit not very good ones. </p>
+<p>Later, one learns the principles of software design. One learns the 
+importance of cohesion and coupling, of information hiding and dependency management. </p>
+<p>But to truly master software design, one must study the designs of other masters. Deep within those designs 
+are patterns that can be used in other designs. Those patterns must be understood, memorized, and applied 
+repeatedly until they become second nature. </p>
+</div></section>
+<section class="slide" data-title="Software Patterns"><div class="section-body"><h1>Software Patterns</h1>
+<p>Some selected books:</p>
+<p><img src="Images/Cover-DesignPatterns.jpg" alt="Cover DesignPatterns" />
+<img src="Images/Cover-HeadsFirstDesignPatterns.jpg" alt="Cover HeadsFirstDesignPatterns" />
+<img src="Images/Cover-PatternsOfEAA.jpg" alt="Cover PatternsOfEAA" />
+<img src="Images/Cover-SystemOfPatterns.jpg" alt="Cover SystemOfPatterns" /></p>
+<p>(And many more books!)</p>
+</div></section>
+<section class="slide" data-title="Patterns in Architecture"><div class="section-body"><h1>Patterns in Architecture</h1>
+<p><img src="Images/DP-PatternsInArchitecture.png" alt="DP PatternsInArchitecture" /></p>
+</div></section>
+<p>In architecture there are also rules (e.g., specification of required amount of light in a room) as in software design (e.g., low coupling, high cohesion, number of parameters per method), but in both cases these rules allow to judge an existing configuration but do not generate solutions. Patterns are working solutions and represent solutions that obey design rules and, moreover, suggest a specific solution (dining corner with light from three sides, curved entry path).</p>
+<div class="statement">Patterns are ubiquitous.</div>
+<section class="slide" data-title="Patterns Taught in SED&amp;C"><div class="section-body"><h1>Patterns Taught in SED&amp;C</h1>
+<ul>
+<li>Quick warm up with the Template Method Pattern</li>
+<li>The Strategy Pattern</li>
+<li>The Decorator Pattern</li>
+<li>The Proxy Pattern</li>
+<li>The Visitor Pattern</li>
+<li>The Bridge Pattern</li>
+<li>The Adapter Pattern</li>
+<li>The Builder Pattern</li>
+<li>The Command Pattern</li>
+</ul>
+<aside data-title="Patterns You Should Know"><div class="aside-body"><h1>Patterns You Should Know:</h1>
+<ul>
+<li>The Factory Pattern</li>
+<li>The Abstract Factory Pattern</li>
+<li>The Observer Pattern</li>
+<li>The Composite Pattern</li>
+</ul>
+</div></aside>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

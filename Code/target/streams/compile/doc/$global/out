@@ -1,0 +1,70 @@
+[0m[[0minfo[0m] [0mMain Scala API documentation to /Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/target/scala-2.10/api...[0m
+[0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.10.3[0m
+[0m[[0mdebug[0m] [0mCalling Scaladoc with arguments:[0m
+[0m[[0mdebug[0m] [0m	-P:continuations:enable[0m
+[0m[[0mdebug[0m] [0m	-Xplugin:/Users/Michael/.ivy2/cache/org.scala-lang.plugins/continuations/jars/continuations-2.10.3.jar[0m
+[0m[[0mdebug[0m] [0m	-d[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/target/scala-2.10/api[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/lib/JObjC.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_40.jdk/Contents/Home/jre/classes:/Users/Michael/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.3.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.3.jar[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_pattern/composite/Component.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_pattern/composite/Composite.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_pattern/composite/Leaf.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_pattern/template_method/Lecturer.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_pattern/template_method/Person.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_principle/single_responsibility/r0/Location.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/design_principle/single_responsibility/r1/Location.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/scala_introduction/calculator/RPNCalculator.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/jv/scala_introduction/variables/ClassAttribute.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/java/util/CodeDuplicationError.java[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/demos/expression_problem/Demo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/demos/expression_problem/Expression.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/demos/rmi/Hello.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/abstract_factory/AbstractFactoryDemo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/abstract_factory/base/AbstractFactory.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/adapter/Repeat.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/adapter/pimp_my_library/RichInputStreamDemo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/adapter/pimp_my_library/package.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/command/CommandWithPrototype.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/command/plain/Command.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/composite/Component1.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/composite/Component2.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/composite/Composite1.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/composite/Composite2.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/composite/Leaf1.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/composite/Leaf2.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/decorator/delegation/Demo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/decorator/structural/Demo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/template_method/Coffeebreak.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/template_method/FirstOrderFunctionCoffeeBreak.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/template_method/Repeat.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/template_method/Template.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/visitor/Expressions.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_pattern/visitor/oo/Expressions.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/liskov/Demo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/Light.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/Shutter.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/alt/SmartHome.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/r0/SmartHome.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/r1/Base.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/r1/Dimmed.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/r1/Estate.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/r1/Lighted.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/design_principle/single_responsibility/r1/LightedAndDimmedBuilding.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/continuations/Demo.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/higher_order_functions/Repeat.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/inheritance/constructors/SuperSub.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/inheritance/constructors/SuperSubNonIdiomatic.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/virtual_types_and_method_dependent_types/base/Space.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/virtual_types_and_method_dependent_types/param/Space.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/virtual_types_and_method_dependent_types/traits/Space.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/pl_features/virtual_types_and_method_dependent_types/traits/adv/CompleteSpace.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/scala_introduction/other/Other.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/scala_introduction/privateThis/Trial.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/scala_introduction/variables/ClassAttribute.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/scala_introduction/variables/Protected.scala[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/src/main/scala/sc/scala_introduction/variables/inner/Inner.scala[0m
+[0m[[33mwarn[0m] [0mdropping dependency on node with no phase object: pickler[0m
+[0m[[0minfo[0m] [0mMain Scala API documentation successful.[0m

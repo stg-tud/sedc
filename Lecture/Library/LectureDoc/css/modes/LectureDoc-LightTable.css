@@ -1,0 +1,5 @@
+body.ldjs-light-table{background-color:#ffffff;margin:auto;overflow-y:scroll;}body.ldjs-light-table section.slide{height:288px;width:384px;}
+body.ldjs-light-table div.section-body{-moz-transform-origin:0 0;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scale(0.375);-moz-transform:scale(0.375);transform:scale(0.375);}
+body.ldjs-light-table div.ldjs-light-table-slide{display:inline-block;width:384px;padding:0px;margin:5px;cursor:pointer;}body.ldjs-light-table div.ldjs-light-table-slide a,body.ldjs-light-table div.ldjs-light-table-slide input{pointer-events:none;}
+div.ldjs-light-table-slide span.ldjs-light-table-slide-number{white-space:nowrap;}
+@media print{body.ldjs-light-table{text-align:center;}body.ldjs-light-table section.slide{text-align:left;}}

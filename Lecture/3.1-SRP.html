@@ -1,0 +1,612 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1383132346000">
+<div id='body-content'>
+<h2>Single Responsibility Principle</h2>
+<section class="slide" data-title="Single Responsibility Principle"><div class="section-body"><h1>Single Responsibility Principle</h1>
+<div class="statement">A class should have only one reason to change.</div>
+<footer><div class="footer-body"><p>Agile Software Development; Robert C. Martin; Prentice Hall, 2003</p>
+</div></footer>
+</div></section>
+<h3>Example</h3>
+<section class="slide"><div class="section-body"><p><strong>What do you think of the following design?</strong></p>
+<p><img src="Images/SRP-Rectangle-GUI-GeometryApp-GraphicalApplication.png" alt="Rectangle-GUI-GeometryApp-GraphicalApplication" /></p>
+</div></section>
+<p>Observation:</p>
+<ul>
+<li>Rectangle provides a method to draw a rectangle shapes on the screen. For that, Rectangle uses GUI to implement draw().</li>
+<li>GeometricApplication is a package for geometrical computations, which also uses Rectangle (area()). </li>
+<li><strong>GeometricApplication depends on GUI (GUI has to be deployed along with Rectangle) even if it only needs the geometrical functions of rectangles.</strong></li>
+</ul>
+<p>Evaluation:</p>
+<ul>
+<li><p><code>Rectangle</code> has multiple responsibilities!</p>
+<ul>
+<li>Geometrics of rectangles: <code>area()</code></li>
+<li>Drawing of rectangles: <code>draw()</code></li>
+</ul>
+</li>
+<li><code>Rectangle</code> has low cohesion!<br />
+It is not a representation of a coherent concept, but a point to bundle needed functionality without consideration of their cohesion. Geometrics and drawing do not naturally belong together. </li>
+</ul>
+<p>Problems:<br /></p>
+<ul>
+<li><code>Rectangle</code> has multiple reasons to change.</li>
+<li>If drawing functionality changes in the future, we need to retest and redeploy <code>Rectangle</code> in context of <code>GeometricalApplication</code>!</li>
+</ul>
+<section class="slide"><div class="section-body"><p><strong>A Single-Responsibility Compliant Design</strong></p>
+<p><img src="Images/SRP-TwoRectangleClasses.png" alt="A Single-Responsibility Compliant Design" /></p>
+</div></section>
+<p><strong>Assessment:</strong></p>
+<ul>
+<li><p>Split responsibilities:</p>
+<ul>
+<li><code>Rectangle</code> models geometric properties of rectangles.</li>
+<li><code>DrawableRectangle</code> models visual properties of graphical rectangles.</li>
+</ul>
+</li>
+<li><p>Computational Geometry Application uses only <code>Rectangle</code>. It only depends on the geometrical aspects.</p>
+</li>
+<li>GUI uses <code>DrawableRectangle</code> and indirectly <code>Rectangle</code>. It needs both aspects and therefore depends on both.</li>
+<li>Both classes can be reused easily!<br />
+Only changes to the responsibilities we use will affect us.</li>
+<li>Both classes are easily understood!<br />
+Each implements one concept.<br />
+<code>Rectangle</code> represents a rectangle shape by its geometric properties.<br />
+<code>DrawableRectangle</code> represents a rectangle by its visual properties.</li>
+</ul>
+<h3>Responsibility and Cohesion</h3>
+<section class="slide" data-title="Responsibility"><div class="section-body"><h1>Responsibility</h1>
+<ul>
+<li><p>In general, <strong>a class is assigned the responsibility to know or do something</strong> (one thing).<br />
+Examples:</p>
+<ul>
+<li>Class <code>PersonData</code> is responsible for knowing the data of a person.<br /></li>
+<li>Class <code>CarFactory</code> is responsible for creating <code>Car</code> objects.</li>
+</ul>
+</li>
+<li>A responsibility is an axis of change. </li>
+<li>A class with only one responsibility has only one reason to change!</li>
+</ul>
+</div></section>
+<p>In general, if new functionality must be achieved, or existing functionality needs to be changed, the responsibilities of classes must be changed.</p>
+<section class="slide" data-title="Cohesion"><div class="section-body"><h1>Cohesion</h1>
+<ul>
+<li><p>Cohesion measures the degree of togetherness among the elements of a class.<br /></p>
+</li>
+<li><p>In a class with high cohesion every element is part of the implementation of exactly one concept. The elements of the class work together to achieve one common functionality.</p>
+</li>
+<li><p>A class with high cohesion implements only one responsibility!<br /></p>
+</li>
+</ul>
+</div></section>
+<p>Cohesion actually <em>measures</em> the extent to which operations and data within a class belong to the concept this class is representing. Therefore, a class with low cohesion – i.e., a class where the operations and data actually belongs to several concepts – violates the single-responsibility principle.</p>
+<p>Common metrics that are defined to measure the cohesion (such as LCOM(*)) are usually not working at the conceptual level and hence, would identify a class such as <code>PersonData</code> that stores information regarding a person and which usually offers a large number of &quot;getter&quot; and &quot;setter&quot; methods as non-cohesive. But, from a conceptual perspective this class is cohesive.</p>
+<section class="slide"><div class="section-body"><ul>
+<li><p>Applying the single-responsibility principle maximizes the cohesion of classes.</p>
+</li>
+<li><p>Classes with high cohesion ...</p>
+<ul>
+<li>can be reused easily,</li>
+<li>are easily understood,</li>
+<li>protect clients from changes, that should not affect them.</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<h3>Further Scenarios</h3>
+<section class="slide" data-title="The Employee Example"><div class="section-body"><p><strong>Should we split the responsibilities of this class?</strong></p>
+<div style="text-align:center">
+	<img src="Images/SRP-Employee.png" alt="SRP Employee" />
+</div>
+</div></section>
+<p>The class <code>Employee</code> which has two responsibilities:</p>
+<ol>
+<li>Calculating an employee’s payment.</li>
+<li>Storing employee data in the database.</li>
+</ol>
+<p>Calculating the payment is part of the business rules. It corresponds to a real-world concept the application shall implement. Storing information in the database is a technical aspect. It is a necessity of the IT architecture that we have selected; does not correspond to a real-world concept.</p>
+<p>Mixing business rules and technical aspects is calling for trouble! <strong>From experience</strong>, we know that both aspects are extremely volatile. Hence, most probably we should split the class in this case. </p>
+<h3>Application</h3>
+<section class="slide" data-title="When to apply the Single-Responsibility Principle?"><div class="section-body"><p>We <strong>should split</strong> a class that has two responsibilities if:</p>
+<ul>
+<li><p>Both responsibilities will change separately.</p>
+</li>
+<li><p>The responsibilities are used separately by other classes.</p>
+</li>
+<li><p>Responsibilities pertain to optional features of the system.</p>
+</li>
+</ul>
+<p>We <strong>should not</strong> split responsibilities if:</p>
+<ul>
+<li><p>Both responsibilities will only change together, e.g. if they together implement one common protocol.</p>
+</li>
+<li><p>Both responsibilities are only used together by other classes.</p>
+</li>
+<li><p>Responsibilities pertain to mandatory features.</p>
+</li>
+</ul>
+<footer><div class="footer-body"><p>This principle also applies at higher-abstraction levels, such as the component-level or the service-oriented layer.</p>
+</div></footer>
+</div></section>
+<h2>Strategic Application of Principles</h2>
+<section class="slide"><div class="section-body"><h1>Strategic Application of Principles</h1>
+<div class="statement">Only apply a principle, if there is a symptom!</div>
+<p>Be agile and modify the design when needed.</p>
+</div></section>
+<p>Choose the kinds of changes to guide your application of the single-responsibility principle. Guess the most likely kinds of changes derived from experience. Experienced designers hope to know the user and an industry well enough to judge the probability of different kinds of changes.
+Invoke the single-responsibility principle against the most probable changes.</p>
+<p>An axis of change is an axis of change only if the change actually occurs.</p>
+<h3>The Smart Home Example</h3>
+<p>In the following we will reason about a typical object-oriented design of a smart home.</p>
+<section class="slide" data-title="The Smart Home Example"><div class="section-body"><h1>The Smart Home Example</h1>
+<p>A smart home has many features that are controlled automatically:
+Heating, Lighting, Shutters,  ...</p>
+<p><img src="Images/SRP-SmartHome.png" alt="SRP SmartHome" /></p>
+</div></section>
+<h4>Java Solution</h4>
+<section class="slide" data-title="The Smart Home Example - Java Solution"><div class="section-body"><p><strong>A prototypical object-oriented solution (Part 1):</strong></p>
+<pre><code class="java">abstract class Location {
+   private List&lt;Shutter&gt; shutters; // FEATURE: DARKENING
+   private List&lt;Light&gt; lights; // FEATURE: LIGHTING
+
+   public Location(List&lt;Shutter&gt; shutters, List&lt;Light&gt; lights) {
+      this.shutters = shutters;
+      this.lights = lights;
+   }
+
+   public List&lt;Shutter&gt; shutters() { return shutters; }
+   public List&lt;Light&gt; lights() { return lights; }
+}
+
+abstract class CompositeLocation&lt;L extends Location&gt; extends Location {
+   private List&lt;L&gt; locations;
+
+   public CompositeLocation(List&lt;L&gt; locations) {
+      super(shutters(locations), lights(locations));
+      this.locations = locations;
+   }
+   private static List&lt;Light&gt; lights(List&lt;? extends Location&gt; locs) {…}
+   private static List&lt;Shutter&gt; shutters(List&lt;? extends Location&gt; locs) {…}
+
+   public List&lt;L&gt; locations() { return locations; }
+}
+</code></pre>
+</div></section>
+<p><code>Location</code> is the base class that declares the functionality that some location can offer (optionally!). Hence, it takes multiple responsibilities.</p>
+<section class="slide"><div class="section-body"><p><strong>A prototypical object-oriented solution (Part 2):</strong></p>
+<pre><code class="java">class Room extends Location {
+   public Room(List&lt;Shutter&gt; shutters, List&lt;Light&gt; lights) {
+      super(shutters, lights);
+   }
+}
+
+class Floor extends CompositeLocation&lt;Room&gt; {
+   public Floor(List&lt;Room&gt; locations) { super(locations); }
+}
+
+class House extends CompositeLocation&lt;Floor&gt; {
+   public House(List&lt;Floor&gt; locations) { super(locations); }
+}
+
+class Main {
+   public static void main(String[] args) {
+      House house = new House(null);
+      List&lt;Floor&gt; floors = house.locations();
+   }
+}
+</code></pre>
+<p>The question: <strong>Split or Not Split?</strong></p>
+</div></section>
+<p>In the prototypical solution all (optional) features are declared by the main interface (<code>Location</code>). 
+We should split the code, if we want to be able to make functional &quot;packages&quot;, such as heating control, lighting control, or security, optional. Consider, e.g., the case that the provider may want to sell several configurations of a smart home, each with a specific selection of features.<br /></p>
+<section class="slide" data-title="The Smart Home Example - Java&apos;s Limitations"><div class="section-body"><p><strong>Sketching a solution if would like to split (Part 1):</strong></p>
+<pre><code class="java">public interface Location { }
+
+interface CompositeLocation&lt;L extends Location&gt; extends Location {
+   abstract List&lt;L&gt; locations();
+}
+
+class Room implements Location { }
+
+class Floor implements CompositeLocation&lt;Room&gt; {
+   private List&lt;Room&gt; rooms;
+
+   public List&lt;Room&gt; locations() { return rooms; }
+}
+
+class House implements CompositeLocation&lt;Floor&gt; {
+   private List&lt;Floor&gt; floors;
+
+   public List&lt;Floor&gt; locations() { return floors; }
+}
+</code></pre>
+</div></section>
+<p>So far we are just modeling the basic structure of a building (<code>House</code>).</p>
+<section class="slide"><div class="section-body"><p><strong>Sketching a solution if would like to split (Part 2):</strong></p>
+<pre><code class="java">interface LocationWithLights extends Location {
+   List&lt;Light&gt; lights();
+}
+
+class RoomWithLights extends Room implements LocationWithLights {
+   private List&lt;Light&gt; lights;
+   public List&lt;Light&gt; lights() { return lights; }
+}
+
+abstract class CompositeLocationWithLights&lt;LL extends LocationWithLights&gt;
+   implements CompositeLocation&lt;LL&gt; {
+
+   public List&lt;Light&gt; lights() {
+      List&lt;Light&gt; lights = new ArrayList&lt;Light&gt;();
+      for (LocationWithLights child : locations()) {
+         lights.addAll(child.lights());
+      }
+      return lights;
+   }
+}
+</code></pre>
+<p><img src="Images/InTheRain.png" alt="InTheRain" /></p>
+</div></section>
+<p>Given the shown code/the proposed solution, we can identify several issues:</p>
+<ul>
+<li><code>class FloorWithLights extends ...</code><br />
+The class should inherit from (<code>CompositeLocationWithLights</code> and <code>Floor</code>) ? (we don&apos;t want code duplication!)</li>
+<li><code>class HouseWithLights extends ...</code><br />
+The class should inherit from ? (we don&apos;t want code duplication!)</li>
+<li>Imagine that we have another additional feature; e.g., shutters and we want to avoid code duplication!</li>
+</ul>
+<div class="statement">Ideally, we would like to have several versions of class definitions - one per responsibility - which can be “mixed and matched” as needed.</div>
+<p>Additional downloads:</p>
+<ul>
+<li><p><a href="Code/SmartHome.java.zip">The complete source code.</a></p>
+</li>
+</ul>
+<h4>Scala Solution</h4>
+<p>The following code snippets are taken from:</p>
+<ul>
+<li>Scala for the Impatient</li>
+<li>Programming in Scala 1.1</li>
+<li>Scala in Depth</li>
+<li>The Scala Specification</li>
+</ul>
+<section class="slide" data-title="Scala - Traits"><div class="section-body"><h2>Traits in Scala</h2>
+<hr />
+<pre><code class="scala">abstract class Table[A, B](defaultValue: B) {
+   def get(key: A): Option[B]
+   def set(key: A, value: B)
+   def apply(key: A) = get(key) match {
+      case Some(value) ⇒ value
+      case None        ⇒ defaultValue
+   }
+}
+</code></pre>
+<pre><code class="scala">class ListTable[A, B](defaultValue: B) extends Table[A, B](defaultValue) {
+   private var elems: List[(A, B)] = Nil
+   def get(key: A) = elems.find(_._1.==(key)).map(_._2)
+   def set(key: A, value: B) = { elems = (key, value) :: elems }
+}
+</code></pre>
+<pre><code class="scala">trait SynchronizedTable[A, B] extends Table[A, B] {
+   abstract override def get(key: A): Option[B] = 
+      synchronized { super.get(key) }
+   abstract override def set(key: A, value: B) =
+      synchronized { super.set(key, value) }
+}
+</code></pre>
+<pre><code class="scala">object ASynchronizedTable
+   extends ListTable[String, Int](0) with SynchronizedTable[String, Int]
+</code></pre>
+<aside data-title="A Table That Logs Calls"><div class="aside-body"><pre><code class="scala">trait LoggingTable[A, B] extends Table[A, B] { 
+   abstract override def get(key: A): B = { 
+      println(&quot;Get Called&quot;); super.get(key) 
+   }
+   abstract override def set(key: A, value: B) = { 
+      println(&quot;Set Called&quot;); super.set(key, value)  
+   }
+}
+</code></pre>
+<pre><code class="scala">object ASynchronizedTable 
+   extends ListTable[String, Int](0) 
+   with LoggingTable
+   with SynchronizedTable
+
+</code></pre>
+</div></aside>
+</div></section>
+<p>In Scala, traits are a unit of code reuse that encapsulate abstract and concrete method, field and type definitions. Traits are reused by mixing them into classes. Multiple traits can be mixed into a class (mixin composition). </p>
+<p>Unlike classes, traits cannot have constructor parameters. Traits are always initialized after the superclass is initialized.</p>
+<p>One major difference when compared to multiple inheritance is that the target method of <code>super</code> calls is not statically bound as in case of (multiple) inheritance. The target is determined anew whenever the trait is mixed in. This (the <strong>dynamic</strong> nature of <code>super</code> calls) makes it possible to stack multiple modifications on top of each other.</p>
+<section class="slide" data-title="Scala - Mixin Composition"><div class="section-body"><h2>Mixin Composition in Scala</h2>
+<hr />
+<ul>
+<li>In Scala, if you mixin multiple traits into a class the inheritance relationship on base classes forms a directed acyclic graph.</li>
+<li>A linearization of that graph is performed.</li>
+</ul>
+<p>The Linearization (<code>Lin</code>) of a class <code>C</code> (<code>class C extends C1 with ... with Cn</code>) is defined as:</p>
+<pre><code> Lin(c) = C, Lin(Cn) ⪼ ... ⪼ Lin(C1)     
+</code></pre>
+<p>where ⪼ concatenates the elements of the left operand with the right operand, but elements of the right operand replace those of the left operand.</p>
+<pre><code class="no-highlight">{a,A} ⪼ B = a,(A ⪼ B) if a ∉ B
+           = (A ⪼ B) if a ∈ B
+</code></pre>
+</div></section>
+<p>The result of the linearization in particular determines the target of <code>super</code> calls made in traits.</p>
+<section class="slide" data-title="Scala - Mixin Composition"><div class="section-body"><h2>Mixin Composition in Scala</h2>
+<hr />
+<pre><code class="scala">abstract class AbsIterator extends AnyRef { ... }
+trait RichIterator extends AbsIterator { ... }
+class StringIterator extends AbsIterator { ... }
+class Iter extends StringIterator with RichIterator { ... }
+</code></pre>
+<p>The linearization of class <code>Iter</code> is:</p>
+<pre><code>{ Iter, Lin(RichIterator) ⪼ Lin(StringIterator) }
+</code></pre>
+<pre><code>{ Iter, Lin(RichIterator) ⪼ { StringIterator ⪼ Lin(AbsIterator) } }
+</code></pre>
+<pre><code>{ Iter, Lin(RichIterator) ⪼ { StringIterator, AbsInterator, AnyRef } }
+</code></pre>
+<pre><code>{ Iter,  { RichIterator, AbsInterator, AnyRef } ⪼ 
+         { StringIterator, AbsInterator, AnyRef } }
+</code></pre>
+<pre><code>{ Iter, RichIterator, StringIterator, AbsIterator, AnyRef, Any }
+</code></pre>
+</div></section>
+<aside data-title="Multiple Inheritance vs. Mixin Compositions"><div class="aside-body"><p>In case of multiple inheritance, the method called by a <code>super</code> call is statically determined based on the place where the call appears. With traits, the called method is determined by the linearization of the class. In a way, <code>super</code> is much more flexible.</p>
+</div></aside>
+<section class="slide" data-title="Scala - Abstract Types"><div class="section-body"><h1>Abstract Types in Scala</h1>
+<hr />
+<pre><code class="scala">class Food
+abstract class Animal {
+   type SuitableFood &lt;: Food
+   def eat(food: SuitableFood)
+}
+</code></pre>
+<pre><code class="scala">class Grass extends Food
+class Cow extends Animal {
+   type SuitableFood = Grass
+   override def eat(food: Grass) {}
+}
+</code></pre>
+<aside data-title="Generics and Abstract Types"><div class="aside-body"><p>Generics and abstract types can sometimes be used interchangeably.</p>
+</div></aside>
+</div></section>
+<p>An <strong>abstract type declaration</strong> is a placeholder for a type that will be defined concretely in a subclass. In the given example, <code>SuitableFood</code>  refers to some type of <code>Food</code> (<code>Food</code> is an upper bound) that is still unknown. Different subclasses can provide different realizations of <code>SuitableFood</code> - depending on the needs of the respective animal.</p>
+<section class="slide" data-title="Scala - Path-dependent types"><div class="section-body"><h1>Path-dependent types in Scala</h1>
+<hr />
+<ul>
+<li>In Scala objects can have types as members.</li>
+<li>The meaning of a type depends on the path you use to access it.</li>
+<li>The path is determined by the reference to an Object.</li>
+<li>Different paths give rise to different types.</li>
+<li>In general, a path-dependent type names an outer object</li>
+</ul>
+<pre><code class="scala">class DogFood extends Food
+class Dog extends Animal {
+  type SuitableFood = DogFood
+  override def eat(food: DogFood) {}
+}
+</code></pre>
+<pre><code>scala&gt; val bessy = new Cow
+   bessy: Cow = Cow@10cd6d
+scala&gt; val lassie = new Dog
+   lassie: Dog = Dog@d11fa6
+scala&gt; lassie eat (new bessy.SuitableFood)
+   &lt;console&gt;:13: error: type mismatch;
+    found   : Grass
+    required: DogFood
+          lassie eat (new bessy.SuitableFood)
+</code></pre>
+</div></section>
+<section class="slide" data-title="The Smart Home Example - Scala Basis"><div class="section-body"><p><strong>Splitting up using Scala (Java Inspired Base):</strong></p>
+<pre><code class="scala">trait Shutter
+trait Light
+
+abstract class Location {
+   def shutters: List[Shutter]
+   def lights: List[Light]
+}
+
+class Room(
+   val lights: List[Light],
+   val shutters: List[Shutter]) extends Location
+
+abstract class CompositeLocation[L &lt;: Location] extends Location {
+   def lights: List[Light] = locations.flatMap(_.lights)
+   def shutters: List[Shutter] = locations.flatMap(_.shutters)
+   def locations: List[L]
+}
+
+class Floor(val locations: List[Room]) extends CompositeLocation[Room]
+
+class House(val locations: List[Floor]) extends CompositeLocation[Floor]
+
+object Main extends App {
+   val house = new House(new Floor(new Room(Nil, Nil) :: Nil) :: Nil)
+   val floors: List[Floor] = new House(Nil).locations
+}
+</code></pre>
+</div></section>
+<section class="slide" data-title="The Smart Home Example - Scala Solution"><div class="section-body"><p><strong>Splitting up using Scala (Base):</strong></p>
+<pre><code class="scala">trait Building {
+
+   trait TLocation {}
+   type Location &lt;: TLocation
+
+   trait TRoom extends TLocation
+   type Room &lt;: TRoom with Location
+   def createRoom(): Room
+
+   trait CompositeLocation[L &lt;: Location] extends TLocation {
+      def locations: List[L]
+   }
+
+   trait TFloor extends CompositeLocation[Room]
+   type Floor &lt;: TFloor with Location
+   def createFloor(locations: List[Room]): Floor
+
+   trait THouse extends CompositeLocation[Floor]
+   type House &lt;: THouse with Location
+   def createHouse(locations: List[Floor]): House
+
+   def buildHouse(specification: String): House = {
+      // imagine to parse the specification...
+      createHouse(List(createFloor(List(createRoom()))))
+   }
+}
+</code></pre>
+</div></section>
+<p>Note, that the <code>buildHouse</code> method constructs a <code>House</code> object though the concrete type is not yet known.</p>
+<p>What we want to achieve is that:</p>
+<ul>
+<li>Features that are developed independently (such as heating, cooling or lighting) can be (freely) combined </li>
+<li>The solution is type safe even in the presence of new optional features (which requires appropriate support by the available programming language)</li>
+<li>We do not duplicate code (Copy &amp; Paste programming).</li>
+</ul>
+<p>Additionally, the underlying programming language should also support separate compilation to enable us to deploy our solution independently.</p>
+<section class="slide"><div class="section-body"><p><strong>Splitting up using Scala (adding Lights):</strong></p>
+<pre><code class="scala">trait Lights extends Building {
+
+   trait TLocation extends super.TLocation {
+      def lights(): List[Light]
+      def turnLightsOn = lights.foreach(_.turnOn())
+      def turnLightsOff = lights.foreach(_.turnOff())
+   }
+   type Location &lt;: TLocation
+
+   trait TRoom extends super.TRoom with TLocation
+   type Room &lt;: TRoom with Location
+
+   trait CompositeLocation[L &lt;: Location] 
+      extends super.CompositeLocation[L] with TLocation {
+      def lights: List[Light] = locations.flatMap(_.lights())
+   }
+
+   trait TFloor extends super.TFloor with CompositeLocation[Room]
+   type Floor &lt;: TFloor with Location
+
+   trait THouse extends super.THouse with CompositeLocation[Floor]
+   type House &lt;: THouse with Location
+}
+</code></pre>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>Splitting up using Scala (Combining Lights and Shutters):</strong></p>
+<pre><code class="scala">trait LightsAndShutters extends Lights with Shutters {
+
+   trait TLocation 
+      extends super[Lights].TLocation 
+      with super[Shutters].TLocation
+   type Location &lt;: TLocation
+
+   trait TRoom extends super[Lights].TRoom with super[Shutters].TRoom 
+      with TLocation
+   type Room &lt;: TRoom with Location
+
+   trait CompositeLocation[L &lt;: Location]
+      extends super[Lights].CompositeLocation[L]
+      with super[Shutters].CompositeLocation[L]
+      with TLocation
+
+   trait TFloor extends super[Lights].TFloor with super[Shutters].TFloor 
+      with CompositeLocation[Room]
+   type Floor &lt;: TFloor with Location
+
+   trait THouse extends super[Lights].THouse with super[Shutters].THouse 
+      with CompositeLocation[Floor]
+   type House &lt;: THouse with Location
+}
+</code></pre>
+<footer><div class="footer-body"><p>Scala does not have native support for deep, nested mixin composition; does not support Virtual Classes.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>Splitting up using Scala (Using Our Combined):</strong></p>
+<pre><code class="scala">object BuildingsWithLightsAndShutters extends LightsAndShutters with App {
+
+    type Location = TLocation
+    type Room = TRoom
+    type Floor = TFloor
+    type House = THouse
+
+    def createRoom(): Room = 
+       new Room { 
+	   var lights = List.empty[Light]; 
+	   var shutters = List.empty[Shutter] 
+       }
+    def createFloor(rooms: List[Room]): Floor = 
+       new Floor { val locations = rooms }
+    def createHouse(floors: List[Floor]): House = 
+       new House { val locations = floors }
+
+    val h = buildHouse(&quot;three floors with 6 rooms each&quot;)
+    h.lights
+    h.shutters
+    h.locations
+    h.turnLightsOn
+}
+</code></pre>
+<aside data-title="Rooms for different kinds of buildings?"><div class="aside-body"><h1>Does it compile?</h1>
+<pre><code class="scala">val r1 = BuildingsWithLightsAndShutters.createRoom()
+val rO = BuildingsWithLights.createRoom()
+BuildingsWithLightsAndShutters.createFloor(List(r1, rO))
+</code></pre>
+</div></aside>
+<aside data-title="Further Information"><div class="aside-body"><ul>
+<li>For further information search for the <strong>Cake Pattern in Scala</strong>.</li>
+<li>More advanced language concepts such as <strong>Virtual Classes</strong> and <strong>Dependent Classes</strong> would make the solution even easier (much less boilerplate code!)</li>
+</ul>
+</div></aside>
+</div></section>
+<p>Basically, in the first 4 lines we create type aliases for location, room, floor and house which &quot;fixes&quot; our abstract type definitions. After that we implement the factory methods as required. For the method parameter types and return types, we still use the names of the type definitions. </p>
+<aside><div class="aside-body"><p>Additional downloads:</p>
+<ul>
+<li><p><a href="Code/SmartHome.scala.zip">The complete scala source code.</a></p>
+</li>
+</ul>
+<p>Further information: </p>
+<ul>
+<li><a href="http://www.scala-lang.org/docu/files/IC_TECH_REPORT_200433.pdf">Independently Extensible Solutions to the Expression Problem</a></li>
+<li><a href="https://lirias.kuleuven.be/bitstream/123456789/186941/1/scalina-final.pdf">Safe Type-level Abstraction in Scala</a></li>
+</ul>
+</div></aside>
+<h3>Summary</h3>
+<section class="slide" data-title="Strategic Application of Principles - Summary"><div class="section-body"><div class="statement">A class should have only one reason to change.</div>
+<p>Applying the single-responsibility principle maximizes the cohesion of classes.</p>
+<ul>
+<li><p>Classes with high cohesion </p>
+<ul>
+<li>can be reused easily,</li>
+<li>are easily understood,</li>
+<li>protect clients from changes, that should not affect them.</li>
+</ul>
+</li>
+</ul>
+<p><strong>But, be strategic in applying the single-responsibility principle.</strong><br /></p>
+</div></section>
+<p>Carefully study the context and make informed trade-offs. Guess most likely axes of change and separate along them. Be agile: Only apply the single-responsibility principle when needed.</p>
+<p>As we have seen in the previous example, achieving the desired separation may not be straightforward with typical object-oriented mechanisms.</p>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

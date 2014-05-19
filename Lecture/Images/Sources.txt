@@ -1,0 +1,21 @@
+Image:		EclipseCodeAndProjectGrowth.png
+Source:		http://eclipsehowl.wordpress.com/2012/06/26/juno-the-best-simultaneous-release-of-its-time/
+License: 	Unknown
+
+Image(s):	NatoSEConferenceX.png
+Source: 	http://homepages.cs.ncl.ac.uk/brian.randell/NATO/N1968/index.html
+License: 	Unknown
+
+Image(s):	AlanKay.jpg
+Source:		Unknown
+License:	Unknown
+
+Image(s):	ImageBrowser.jpg
+Source:		Unknown
+License:	Unknown
+
+Images(s):	DahlAndNygaard.jpg
+Source:		Unknown
+License:	Unknown
+
+(All other images/graphics are created by Michael Eichberg.)

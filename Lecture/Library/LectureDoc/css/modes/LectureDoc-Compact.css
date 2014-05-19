@@ -1,0 +1,8 @@
+body.ldjs-lecture-notes{background-color:#ffffff;}body.ldjs-lecture-notes div#ldjs-lecture-notes{padding:0 1em;}body.ldjs-lecture-notes div#ldjs-lecture-notes div.ldjs-lecture-notes-subsection{clear:both;overflow:hidden;margin-bottom:1em;}
+body.ldjs-lecture-notes div#ldjs-lecture-notes div.ldjs-lecture-notes-sidebar{float:right;width:642px;overflow:hidden;padding-left:1em;}body.ldjs-lecture-notes div#ldjs-lecture-notes div.ldjs-lecture-notes-sidebar section.slide{height:480px;width:640px;}
+body.ldjs-lecture-notes div#ldjs-lecture-notes div.ldjs-lecture-notes-sidebar div.section-body{-moz-transform-origin:0 0;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scale(0.625);-moz-transform:scale(0.625);transform:scale(0.625);}
+body.ldjs-lecture-notes div#ldjs-lecture-notes div.ldjs-lecture-notes-sidebar>aside{max-width:100%;margin-top:1em;font-size:0.715em;}
+body.ldjs-lecture-notes div#ldjs-lecture-notes aside{border-radius:0;background:inherit;box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none;padding:0.3em 1em;border-left:5px solid #44d;}
+body.ldjs-lecture-notes div#ldjs-lecture-notes div#ldjs-lecture-notes-footer{clear:both;padding-top:1em;text-align:center;padding-bottom:1em;}
+body.ldjs-lecture-notes div#ldjs-lecture-notes div.ldjs-lecture-notes-content{border-top:1px solid #ccc;}
+@media print{body.ldjs-lecture-notes{background-color:white;}body.ldjs-lecture-notes div.ldjs-lecture-notes-slide-minipicture{page-break-before:always;}}

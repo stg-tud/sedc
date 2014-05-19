@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1391689795000">
+<div id='body-content'>
+<header><div class="header-body"><h1>Software Engineering <img src="Images/STG-logo.jpg" title="Software Technology Group" style="float:right"></h1>
+<h2>Design &amp; Construction</h2>
+<p><strong>Winter Semester 2013/2014</strong></p>
+<p><strong>Department of Computer Science</strong><br />
+<strong>Technische Universität Darmstadt</strong></p>
+</div></header>
+<p><strong><a href="mailto:eichberg@informatik.tu-darmstadt.de">Dr. Michael Eichberg</a> (Examiner - Lecture)</strong></p>
+<p><strong><a href="mailto:maier@st.informatik.tu-darmstadt.de">Dr. Ingo Maier</a> (Exercise)</strong></p>
+<p><a href="mailto:amann@st.informatik.tu-darmstadt.de">Sven Amann</a> (Exercise)</p>
+<p>For announcements and discussions related to the lecture and exercise, we use the Fachschaft&apos;s forum: <a href="https://www.fachschaft.informatik.tu-darmstadt.de/forum//viewforum.php?f=234">Software Engineering Design &amp; Construction Forum</a>.</p>
+<h1>Lecture</h1>
+<p><strong>The lecture will be Wednesdays 09:50am-11:30am in Room S101/A04</strong></p>
+<ul>
+<li><a href="0-Organization.html">0-Organization</a> (Last updated: 2013/10/14)</li>
+<li><a href="1-Introduction-General.html">1-General Introduction</a> (Last updated: 2013/10/14)</li>
+<li><a href="2-PL-Design-Style.html">2-Programming Languages - Design and Style</a> (Last updated: 2013/10/24)</li>
+<li><p><a href="3-CDP.html">3-Class Design Principles</a> (Last updated: Unchanged) </p>
+<ul>
+<li><a href="3.1-SRP.html">3.1-Single Responsibility Principle</a> (Last updated: 2013/10/30 (after the lecture))</li>
+<li><a href="3.2-OCP.html">3.2-Open Close Principle</a>(Last updated: 2013/11/06)</li>
+<li><a href="3.3-LSP.html">3.3-Liskov Substitution Principle</a>(Last updated: 2013/11/06)</li>
+<li><a href="3.4-ISP.html">3.4-Interface Segregation Principle</a>(Last updated: 2013/11/19)</li>
+<li><a href="3.5-DIP.html">3.5-Dependency Inversion Principle</a>(Last updated: 2013/11/19)</li>
+</ul>
+</li>
+<li><a href="4-Inheritance.html">4-Inheritance</a>(Last updated: 2013/12/04)</li>
+<li><a href="I-1.1-ReactiveProgramming.pdf">I.1-Introduction to Reactive Programming</a>(Last updated: 2013/12/04)</li>
+<li><a href="I-1.2-ReactiveProgramming.pdf">I.2-Reactive Programming</a>(Last updated: 2013/12/17)</li>
+<li><p><a href="5-DesignPatterns.html">5-Design Patterns</a>(Last updated: 2013/12/18)	</p>
+<ul>
+<li><a href="5.1-TemplateMethod.html">5.1-Template Method Design Pattern</a>(Last updated: 2013/12/18)	 </li>
+<li><a href="5.2-Strategy.html">5.2-Strategy Design Pattern</a>(Last updated: 2013/12/18)</li>
+<li><a href="5.3-Decorator.html">5.3-Decorator Design Pattern</a>(Last updated: 2014/01/15) </li>
+<li><a href="5.4-Proxy.html">5.4-Proxy Design Pattern</a>(Last updated: Unchanged)</li>
+<li><a href="5.5-Visitor.html">5.5-Visitor Design Pattern</a>(Last updated: 2014/02/06 - corrected a dead link)</li>
+<li><a href="5.6-Bridge.html">5.6-Bridge Design Pattern</a>(Last updated: Unchanged)</li>
+<li><a href="5.7-Adapter.html">5.7-Adapter Design Pattern</a>(Last updated: Unchanged)</li>
+<li><a href="5.8-Builder.html">5.8-Builder Design Pattern</a>(Last updated: Unchanged)</li>
+<li><a href="5.9-Command.html">5.9-Command Design Pattern</a>(Last updated: Unchanged)</li>
+</ul>
+</li>
+<li><a href="6-EDSL.html">6-EDSL</a>(Last updated: 2013/12/04)	</li>
+</ul>
+<h1>Exercise</h1>
+<p><strong>The exercise will be Thursdays 11:40am-13:20am in Room S311/0012</strong></p>
+<p><a href="Exercise.pdf">Exercise Organization.pdf</a> (Last updated: 2013/10/17)</p>
+<h1>Supplementary Material</h1>
+<ul>
+<li><a href="Introduction-Scala.html">Introduction to Scala</a> (Last updated: 2013/10/17)</li>
+<li><a href="Code/RPNCalculatorFromJavaToScala.zip">Introduction To Scala - Code Samples.zip</a> (Last updated: 2013/10/29)</li>
+<li><a href="TestYourJava.html">Test your Java</a> (Last updated: 2013/10/29)</li>
+<li><a href="TrialExam.pdf">Trial Exam</a> (Last updated: 2014/01/20)</li>
+<li><p><a href="Evaluation-Results.pdf">Results of the Evaluation</a> (Last updated: 2014/01/22)</p>
+</li>
+</ul>
+<h1>Overview</h1>
+<p><strong>PRELIMINARY</strong></p>
+<table class="overview">
+	<tr><th>Week</th><th>Date</th><th>Type</th><th>Topic</th></tr>
+	
+	<tr><td>1. </td><td>15.10.</td><td><strong>1. Lecture</strong></td><td>The Birth of Software Engineering, Software vs. Hardware Engineering</td></tr>
+	<tr><td>1. </td><td>16.10.</td><td>Presentation</td><td>Introduction to Scala for Java Developers - Part 1</td></tr>
+
+	<tr><td>2. </td><td>23.10.</td><td><strong>2. Lecture</strong></td><td>To Code Is To Design, Programming Languages - Style and Design</td></tr>
+	<tr><td>2. </td><td>24.10.</td><td>Presentation/Exercise</td><td>Introduction to Scala for Java Developers - Part 2; Closures</td></tr>
+
+	<tr><td>3. </td><td>30.10.</td><td><strong>3. Lecture</strong></td><td>Class Design Principles - SRP</td></tr>
+	<tr><td>3. </td><td>31.10.</td><td><em>No Exercise</em></td><td>/</td></tr>
+
+	<tr><td>4. </td><td>6.11. </td><td><strong>4. Lecture</strong></td><td>Class Design Principles - SRP (Applied) &amp; OCP</td></tr>
+	<tr><td>4. </td><td>7.11. </td><td>Exercise</td><td>SRP</td></tr>
+
+	<tr><td>5. </td><td>13.11.</td><td><strong>5. Lecture</strong></td><td>Class Design Principles - LSP</td></tr>
+	<tr><td>5. </td><td>14.11.</td><td>Exercise</td><td>LSP and Types</td></tr>
+
+	<tr><td>6. </td><td>20.11.</td><td><strong>6. Lecture</strong></td><td>Class Design Principles - ISP &amp; DIP</td></tr>
+	<tr><td>6. </td><td>21.11.</td><td>Exercise</td><td>Applying Design Principles</td></tr>
+
+	<tr><td>7. </td><td>27.11.</td><td><strong>7. Lecture</strong></td><td>A Critical View On Inheritance</td></tr>	
+	<tr><td>7. </td><td>28.11.</td><td>Exercise</td><td>Design of a Card Game</td></tr>
+
+	<tr><td>8. </td><td>4.12. </td><td><strong>8. Lecture</strong></td><td>Domain Specific Languages and Introduction to Reactive Programming</td></tr>
+	<tr><td>8. </td><td>5.12. </td><td>Exercise</td><td>DSL for Reactive Programming</td></tr>
+
+	<tr><td>9. </td><td>11.12.</td><td><strong>9. Lecture</strong></td><td>Reactive Programming</td></tr>
+	<tr><td>9. </td><td>12.12.</td><td>Exercise</td><td><em>Reactive Programming Applied</em></td></tr>
+
+	<tr><td>10.</td><td>18.12.</td><td><strong>10. Lecture</strong></td><td>Template Method Pattern, Strategy Pattern</td></tr>	
+	<tr><td>10.</td><td>19.12.</td><td><em>No exercise</em></td><td><em>(Prepare for the intermediate exam.)</em></td></tr>
+
+	<tr><td>11.</td><td>15.1.</td><td><strong>11. Lecture</strong></td><td>Decorator Pattern</td></tr>
+	<tr><td>11.</td><td>16.1.</td><td>Exercise</td><td><em>Short exam (45 minutes).</em></td></tr> 
+
+	<tr><td>12.</td><td>22.1. </td><td><strong>12. Lecture</strong></td><td>Proxy and Visitor Pattern (Part I)</td></tr>
+	<tr><td>12.</td><td>23.1. </td><td>Exercise</td><td>Comprehending Patterns/Studying Pattern Implementations</td></tr>
+
+	<tr><td>13.</td><td>29.1. </td><td><strong>13. Lecture</strong></td><td>Visitor (Part II)</td></tr>
+	<tr><td>13.</td><td>30.1. </td><td>Exercise  </td><td>Visitor Pattern</td></tr>
+
+	<tr><td>14.</td><td>5.2.</td><td><strong>14. Lecture</strong></td><td>Bridge, Adapter, Builder and Command Pattern</td></tr>
+	<tr><td>14.</td><td>6.2.</td><td>Exercise</td><td>Bridge, Adapter and Command Pattern</td></tr>
+	
+	<tr><td>15.</td><td>12.2.</td><td><em>Lecture</em></td><td>Wrap-up/Questions</td></tr>
+</table>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

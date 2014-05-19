@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1383083341000">
+<div id='body-content'>
+<h1>Test Your Java</h1>
+<section class="slide"><div class="section-body"><h1>What will be the output?</h1>
+<hr />
+<pre><code class="java">public class Test{ 
+
+   public static void main(String[] args) { 
+       Object o = null; 
+       try{ 
+           o = Test.&lt;Double&gt;cast(&quot;toto&quot;); 
+       }catch(ClassCastException cce){ 
+           System.out.println(&quot;oops&quot;); 
+       } 
+       System.out.println(o == null); 
+       System.out.println(o instanceof String); 
+       System.out.println(o instanceof Double); 
+   } 
+
+   private static &lt;T&gt; T cast(Object i) { 
+       return (T)i; 
+   } 
+
+}  
+</code></pre>
+<aside data-title="Solution"><div class="aside-body"><p><strong>The output will be:</strong></p>
+<pre><code>false
+true
+false
+</code></pre>
+</div></aside>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

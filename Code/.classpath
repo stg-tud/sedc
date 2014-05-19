@@ -1,0 +1,10 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/scala" output="target/scala-2.10/classes"/>
+  <classpathentry kind="src" path="src/main/java" output="target/scala-2.10/classes"/>
+  <classpathentry kind="src" path="src/test/scala" output="target/scala-2.10/test-classes"/>
+  <classpathentry kind="src" path="src/test/java" output="target/scala-2.10/test-classes"/>
+  <classpathentry kind="lib" path="/Users/Michael/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.3.jar"/>
+  <classpathentry kind="lib" path="/Users/Michael/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.3.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="output" path="bin"/>
+</classpath>

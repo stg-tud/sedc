@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="64" height="48">
+	<g stroke="#ccc" fill="#ccc">
+		<rect x="0" y="0" width="64" height="48" fill="none" />
+		<path fill="white" d="M 48 0 q 0 16 16 16 l 0 -16 l -16 0" />
+		<path d="M 0 32 l 8 -16 l 12 32 l -20 0 l 0 -16 M 14 32 l 8 -4 l 24 12 l 12 -8 l 6 6 L 64 48 L 0 48" />
+	</g>
+</svg>

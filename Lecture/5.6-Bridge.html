@@ -1,0 +1,95 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1380527398000">
+<div id='body-content'>
+<h2>Bridge Design Pattern</h2>
+<h3>Intent</h3>
+<section class="slide" data-title="The Bridge Design Pattern"><div class="section-body"><h1>The Bridge Design Pattern</h1>
+<h2>Intent</h2>
+<div class="statement">Decouple an abstraction from its implementation. So that the two can vary independently.</div>
+</div></section>
+<h3>Motivation by Example</h3>
+<section class="slide" data-title="Motivation by Example"><div class="section-body"><h1>Motivation by Example</h1>
+<p>We want to support multiple operating systems:</p>
+<p><img src="Images/DP-Bridge-Windows-OS.png" alt="DP Bridge Windows OS" /></p>
+<p>We want to provide different types of windows:</p>
+<p><img src="Images/DP-Bridge-Windows-Types.png" alt="DP Bridge Windows Types" /></p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Motivation by Example</h1>
+<p><strong>Two dimensions of variability!</strong></p>
+<p><img src="Images/DP-Bridge-Windows-No-Solution.png" alt="DP Bridge Windows No Solution" /></p>
+<footer><div class="footer-body"><p>Can you imagine a better solution?</p>
+</div></footer>
+</div></section>
+<p>Several problems:</p>
+<ul>
+<li>Implementation bound to abstraction</li>
+<li>Code duplication and proliferation of classes</li>
+</ul>
+<h3>Structure</h3>
+<section class="slide" data-title="Structure"><div class="section-body"><h1>Structure</h1>
+<p><img src="Images/DP-Bridge-Structure.png" alt="DP Bridge Structure" /></p>
+</div></section>
+<p>Combine inheritance and object composition:</p>
+<ul>
+<li>Use inheritance to model variations of the abstraction.</li>
+<li>Use object composition to abstract from implementation variations. </li>
+</ul>
+<section class="slide" data-title="Bridge-Based Designs Illustrated"><div class="section-body"><h1>Bridge-Based Designs Illustrated</h1>
+<p><img src="Images/DP-Bridge-Windows-BridgePatternApplied.png" alt="DP Bridge Windows BridgePatternApplied" /></p>
+</div></section>
+<p><strong>The Rationale Underlying the Solution</strong>:</p>
+<ul>
+<li>Object composition and inheritance provide different trade-offs for expressing variations. </li>
+<li>Object composition is used to implement dynamic variations with a fixed interface.</li>
+<li>Implementation variations are more of this kind; although not always…</li>
+<li>For static variations inheritance is preferred, because it supports structural variations. </li>
+<li>Abstraction variations are mostly static.</li>
+<li>They often imply variation of structure.</li>
+</ul>
+<blockquote><p><strong>Inheritance allows adding of new field and methods.</strong></p>
+<p><strong>Composition demands a fixed interface.</strong></p>
+</blockquote>
+<h3>Advantages</h3>
+<p>Decoupling interface and implementation:</p>
+<ul>
+<li>Implementation can be configured at run-time.</li>
+<li>The implementation in use is hidden inside the abstraction.</li>
+</ul>
+<p>Improved extensibility: </p>
+<ul>
+<li>Both abstractions and their implementations become independently extensible by subclassing without a class proliferation.</li>
+<li>Different abstractions and implementations can be combined.</li>
+</ul>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<p>The Bridge Pattern instructs to use object composition to bridge between two inheritance hierarchies when you need to combine two kinds of variations of an object type.</p>
+<p>The Bridge Pattern allows to vary an abstraction and its implementation independently of each other.</p>
+<p>Works well as long as there is no dependency between the implementation on abstraction variations, i.e., if they do not vary co-variantly.</p>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

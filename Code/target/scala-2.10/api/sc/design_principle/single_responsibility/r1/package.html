@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>r1 - sc.design_principle.single_responsibility.r1</title>
+          <meta name="description" content="r1 - sc.design principle.single responsibility.r1" />
+          <meta name="keywords" content="r1 sc.design principle.single responsibility.r1" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'sc.design_principle.single_responsibility.r1.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="sc">sc</a>.<a href="../../package.html" class="extype" name="sc.design_principle">design_principle</a>.<a href="../package.html" class="extype" name="sc.design_principle.single_responsibility">single_responsibility</a></p>
+        <h1>r1</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">r1</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="sc.design_principle.single_responsibility.r1.Base" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BaseextendsAnyRef"></a>
+      <a id="Base:Base"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Base.html"><span class="name">Base</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.Dimmed" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DimmedextendsBase"></a>
+      <a id="Dimmed:Dimmed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Dimmed.html"><span class="name">Dimmed</span></a><span class="result"> extends <a href="Base.html" class="extype" name="sc.design_principle.single_responsibility.r1.Base">Base</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.Estate" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EstateextendsBase"></a>
+      <a id="Estate:Estate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Estate.html"><span class="name">Estate</span></a><span class="result"> extends <a href="Base.html" class="extype" name="sc.design_principle.single_responsibility.r1.Base">Base</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.Lighted" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightedextendsBase"></a>
+      <a id="Lighted:Lighted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Lighted.html"><span class="name">Lighted</span></a><span class="result"> extends <a href="Base.html" class="extype" name="sc.design_principle.single_responsibility.r1.Base">Base</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.LightedAndDimmed" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightedAndDimmedextendsLightedwithDimmed"></a>
+      <a id="LightedAndDimmed:LightedAndDimmed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LightedAndDimmed.html"><span class="name">LightedAndDimmed</span></a><span class="result"> extends <a href="Lighted.html" class="extype" name="sc.design_principle.single_responsibility.r1.Lighted">Lighted</a> with <a href="Dimmed.html" class="extype" name="sc.design_principle.single_responsibility.r1.Dimmed">Dimmed</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.LightedAndDimmedEstate" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightedAndDimmedEstateextendsLightedAndDimmedwithEstate"></a>
+      <a id="LightedAndDimmedEstate:LightedAndDimmedEstate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LightedAndDimmedEstate.html"><span class="name">LightedAndDimmedEstate</span></a><span class="result"> extends <a href="LightedAndDimmed.html" class="extype" name="sc.design_principle.single_responsibility.r1.LightedAndDimmed">LightedAndDimmed</a> with <a href="Estate.html" class="extype" name="sc.design_principle.single_responsibility.r1.Estate">Estate</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.LightedAndDimmedRealEstate" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightedAndDimmedRealEstateextendsLightedAndDimmed"></a>
+      <a id="LightedAndDimmedRealEstate:LightedAndDimmedRealEstate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LightedAndDimmedRealEstate.html"><span class="name">LightedAndDimmedRealEstate</span></a><span class="result"> extends <a href="LightedAndDimmed.html" class="extype" name="sc.design_principle.single_responsibility.r1.LightedAndDimmed">LightedAndDimmed</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.Lighten" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightenextendsAnyRef"></a>
+      <a id="Lighten:Lighten"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Lighten.html"><span class="name">Lighten</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="sc.design_principle.single_responsibility.r1.Enlighted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Enlighted"></a>
+      <a id="Enlighted:Enlighted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Enlighted$.html"><span class="name">Enlighted</span></a><span class="result"> extends <a href="Lighted.html" class="extype" name="sc.design_principle.single_responsibility.r1.Lighted">Lighted</a> with <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.LightedAndDimmedBuilding" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LightedAndDimmedBuilding"></a>
+      <a id="LightedAndDimmedBuilding:LightedAndDimmedBuilding"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LightedAndDimmedBuilding$.html"><span class="name">LightedAndDimmedBuilding</span></a><span class="result"> extends <a href="LightedAndDimmed.html" class="extype" name="sc.design_principle.single_responsibility.r1.LightedAndDimmed">LightedAndDimmed</a> with <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.Main" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Main"></a>
+      <a id="Main:Main"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Main$.html"><span class="name">Main</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.r1.MyLightedAndDimmedEstate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MyLightedAndDimmedEstate"></a>
+      <a id="MyLightedAndDimmedEstate:MyLightedAndDimmedEstate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MyLightedAndDimmedEstate$.html"><span class="name">MyLightedAndDimmedEstate</span></a><span class="result"> extends <a href="LightedAndDimmedRealEstate.html" class="extype" name="sc.design_principle.single_responsibility.r1.LightedAndDimmedRealEstate">LightedAndDimmedRealEstate</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+    </body>
+      </html>

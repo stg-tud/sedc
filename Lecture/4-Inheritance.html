@@ -1,0 +1,1158 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1385732670000">
+<div id='body-content'>
+<h1>Inheritance</h1>
+<section class="slide" data-title="A Critical View On Inheritance"><div class="section-body"><h1>A Critical View On Inheritance</h1>
+<div class="statement">Inheritance is the main built-in variability mechanism of OO languages.</div>
+<p>Common functionality can be implemented by a base class and each variation can be implemented by a separate subclass. </p>
+</div></section>
+<ul>
+<li>In the following, we analyze the strengths and deficiencies of inheritance with respect to supporting variability. </li>
+<li>Many design patterns that we will discuss in the following sections propose solutions to compensate for deficiencies of inheritance.</li>
+<li>This section serves as a bridge between the block on design principles and the blocks about design patterns and advanced languages.<br /></li>
+</ul>
+<h2>Desired Properties Of Inheritance</h2>
+<section class="slide" data-title="Desired Properties"><div class="section-body"><h1>Desired Properties</h1>
+<hr />
+<h2>Built-in support for OCP.</h2>
+<hr />
+<h2>Good Modularity.</h2>
+<hr />
+<h2>Support for structural variations.</h2>
+<hr />
+<h2>Variations can be represented in type declarations.</h2>
+<hr />
+</div></section>
+<p>A good support for OCP, reduces the need to anticipate variations. Inheritance allows replacing the implementation of arbitrary methods of a base class (unless it is explicitly forbidden, e.g., in Java methods can be declared as <code>ﬁnal</code>).</p>
+<p>Of course, support for variability in a class is conditioned by the granularity of its methods and the abstractions built-in.</p>
+<p>When we achieve good modularity, the base class can remain free of any variation-specific functionality; each variation is implemented in a separate subclass. </p>
+<p>In general, inheritance allows to design the most suitable interface for each variation.
+Different variations of a type may need to extend the base interface with variation-specific fields and methods. (In addition to varying the implementation of the inherited base interface.)</p>
+<p>The property that variations can be represented in type declarations is necessary for type-safe access of variation-specific interfaces. </p>
+<section class="slide" data-title="Desired Properties By Example"><div class="section-body"><h1>Desired Properties By Example</h1>
+<h2>Variation of selection functionality of table widgets.</h2>
+<pre><code class="Java">class TableBase extends Widget { 
+  TableModel model; 
+  String getCellText(int row, int col){return model.getCellText(row, col);}
+  void paintCell(int r, int c){getCellText(row, col) … } 
+}
+abstract class TableSel extends TableBase { 
+  abstract boolean isSelected(int row, int col); 
+  void paintCell(int row, int col) { if (isSelected(row, col)) … }
+}
+class TableSingleCellSel extends TableSel { 
+  int currRow; int currCol; 
+  void selectCell(int r, int c){currRow = r; currCol = c;} 
+  boolean isSelected(int r, int c){return r == currRow &amp;&amp; c == currCol;} 
+} 
+class TableSingleRowSel extends TableSel { 
+  int currRow; 
+  void selectRow(int row) { currRow = row; } 
+  boolean isSelected(int r, int c) { return r == currRow;} 
+} 
+class TableRowRangeSel extends TableSel { … } 
+class TableCellRangeSel extends TableSel { … } 
+</code></pre>
+</div></section>
+<p>The modularization of these variations by inheritance is illustrated by the given (pseudo-)code: </p>
+<ul>
+<li>TableBase implements basic functionality of tables as a variation of common functionality for all widgets, e.g., display of tabular data models. </li>
+<li>The abstract class <code>TableSel</code> extends <code>TableBase</code> with functionality that is common for all types of table selection, e.g., rendering of selected cells. </li>
+<li><code>TableSingleCellSel</code>, <code>TableSingleRowSel</code>, <code>TableRowRangeSel</code>, and <code>TableCellRangeSel</code> implement specific types of table selections. </li>
+</ul>
+<p><strong>Assessment</strong></p>
+<p><strong>Built-in support for OCP</strong>:<br />
+The implementation of paintCell in <code>TableSel</code> can be overridden.</p>
+<p><strong>Good modularity</strong>:<br />
+Each table selection model is encapsulated in a separate class.</p>
+<p><strong>Support for structural variations:</strong><br /></p>
+<ul>
+<li>Different operations and variables are declared and implemented by <code>TableSingleCellSel</code> and <code>TableSingleRowSel</code>: <code>currRow</code>, <code>currCel</code>, <code>selectCell</code> and <code>currRow</code>, <code>selectRow</code>, respectively.</li>
+<li>Can design the most suitable interface for each type of table selection. </li>
+<li>Do not need to design a base interface that fits all future variations.</li>
+</ul>
+<p><strong>Variations can be represented in type declarations:</strong></p>
+<ul>
+<li><p>We know that a variable declared with type <code>TableSingleRowSel</code> would always refer to a table supporting single row selection.</p>
+</li>
+</ul>
+<h2>Deficiencies of Inheritance</h2>
+<h3>Non-Reusable, Hard-to-Compose Extensions</h3>
+<section class="slide" data-title="Non-Reusable, Hard-to-Compose Extensions"><div class="section-body"><h1>Non-Reusable, Hard-to-Compose Extensions</h1>
+<p>An Extract from Java’s Stream Hierarchy</p>
+<p><img src="Images/Inheritance-java.io.png" alt="Inheritance Java.Io" /></p>
+</div></section>
+<p>Consider an extract from <code>java.io</code> package that consists of classes for reading from a source. Streams abstract from concrete data sources and sinks:</p>
+<ul>
+<li><code>InputStream</code> is root of stream classes reading from a data source.</li>
+<li><code>FileInputStream</code> implements streams that read from a file.</li>
+<li><code>PipedInputStream</code> implements streams that read from a PipedOutputStream.<br />
+Typically, a thread reads from a <code>PipedInputStream</code> data written to the corresponding <code>PipedOutputStream</code> by another thread.</li>
+<li><code>ByteArrayInputStream</code> implements streams that read from memory.</li>
+</ul>
+<section class="slide" data-title="Non-Reusable, Hard-to-Compose Extensions"><div class="section-body"><h1>Non-Reusable, Hard-to-Compose Extensions</h1>
+<p>An Extract from Java’s Stream Hierarchy --  <strong>A Simple Variation</strong></p>
+<p><img src="Images/Inheritance-ByteArrayDataInputStream.png" alt="Inheritance ByteArrayDataInputStream" /></p>
+</div></section>
+<p>Need a variation of <code>ByteArrayInputStream</code> capable of reading whole sentences and not just single bytes.
+We could implement it as a subclass of <code>ByteArrayInputStream</code>. The blue part in the name of the class denotes the delta (<code>DataInputStream</code>) needed to implement this variation.</p>
+<p>Further Variations that are conceivable:</p>
+<ul>
+<li><p>Reading whole sentences with other kinds of streams:</p>
+<ul>
+<li>FileInputStream objects that are able to read whole sentences.</li>
+<li>PipedInputStream should read whole sentences too.
+…</li>
+</ul>
+</li>
+<li>Writing the given data back (“red” in the following slide)</li>
+<li>Buffering content (“green” in the following slide),</li>
+<li>Counting the numbers of lines processed,</li>
+<li>…	</li>
+</ul>
+<section class="slide" data-title="Non-Reusable, Hard-to-Compose Extensions"><div class="section-body"><h1>Non-Reusable, Hard-to-Compose Extensions</h1>
+<p>An Extract from Java’s Stream Hierarchy --  <strong>A Simple Variation</strong></p>
+<p><img src="Images/Inheritance-Complex.png" alt="Inheritance Complex" /></p>
+<blockquote><p>Each kind of variation would have to be re-implemented 
+for all kinds of streams,
+for all meaningful combinations of variations</p>
+</blockquote>
+</div></section>
+<p>Assessment: The design is complex and suffers from a huge amount of code duplication.</p>
+<section class="slide" data-title="Non-Reusable, Hard-to-Compose Extensions"><div class="section-body"><h1>Non-Reusable, Hard-to-Compose Extensions</h1>
+<div class="statement">Extensions defined in subclasses of a base class cannot be reused with other base classes.</div>
+<p>Result:</p>
+<ul>
+<li>Code duplication</li>
+<li>Maintenance nightmare</li>
+</ul>
+</div></section>
+<p>A particular type of variation needs to be re-implemented for all siblings of a base type which results in code duplication.</p>
+<p>Large number of independent extensions are possible:</p>
+<ul>
+<li>For every new functionality we want.</li>
+<li>For every combination of every functionality we want.</li>
+</ul>
+<p>Maintenance nightmare: exponential growth of number of classes.</p>
+<h3>Weak Support for Dynamic Variability</h3>
+<section class="slide" data-title="Weak Support for Dynamic Variability"><div class="section-body"><h1>Weak Support for Dynamic Variability</h1>
+<div class="statement">Variations supported by an object are fixed at object creation time and cannot be (re-)configured dynamically.</div>
+</div></section>
+<section class="slide" data-title="Dynamic Variability Illustrated"><div class="section-body"><h1>Dynamic Variability Illustrated (I)</h1>
+<h2>The configuration of an object’s implementation may depend on values from the runtime context.</h2>
+<p><strong>Potential Solution:</strong><br />
+Mapping from runtime values to classes to be instantiated can be implemented by conditional statements.</p>
+<p><strong>Issue:</strong> 
+Such a mapping is error-prone and not extensible.<br />
+When new variants of the class are introduced, the mapping from configuration variables to classes to instantiate must be changed.</p>
+</div></section>
+<p><strong>Example:</strong>
+Table widget options may come from some dynamic configuration panel; depending on the configuration options, different compositions of table widget features need to be instantiated.</p>
+<section class="slide"><div class="section-body"><h1>Dynamic Variability Illustrated (II)</h1>
+<h2>The behavior of an object may vary depending on its state or context of use.</h2>
+<p><strong>Potential Solution:</strong><br />
+Mapping from runtime values to object behavior can be implemented by conditional statements in the implementation of object’s methods.</p>
+<p><strong>Issue:</strong>  <br />
+Such a mapping is error-prone and not extensible.<br />
+When new variants of the behavior are introduced, the mapping from dynamic variables to implementations must be changed.</p>
+</div></section>
+<p><strong>Example:</strong>
+An account object’s behavior may vary depending on the amount of money available. The behavior of a service then may need to vary depending on the client’s capabilities.</p>
+<h3>The Fragile Base Class Problem</h3>
+<p>Cf. <code>Item 17</code> of Joshua Bloch&apos;s, <strong>Effective Java</strong>.</p>
+<h4>The Fragile Base Class Problem Illustrated</h4>
+<section class="slide" data-title="The Fragile Base Class Problem Illustrated"><div class="section-body"><h1>The Fragile Base Class Problem Illustrated</h1>
+<h2>An Instrumented HashSet</h2>
+<pre><code class="Java">import java.util.*;
+public class InstrumentedHashSet&lt;E&gt; extends HashSet&lt;E&gt; {
+  private int addCount = 0;    
+  public InstrumentedHashSet() {    } 
+  public InstrumentedHashSet(int initCap, float loadFactor) {
+    super(initCap, loadFactor);
+  }    
+
+  @Override public boolean add(E e) { addCount++; return super.add(e); }
+  @Override public boolean addAll(Collection&lt;? extends E&gt; c) {
+    addCount += c.size();
+    return super.addAll(c);
+  }
+  public int getAddCount() { return addCount; }
+
+  public static void main(String[] args) {
+    InstrumentedHashSet&lt;String&gt; s = new InstrumentedHashSet&lt;String&gt;();
+    s.addAll(Arrays.asList(&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;));
+    System.out.println(s.getAddCount());
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>What is printed on the screen?</p>
+</div></footer>
+</div></section>
+<p>Suppose we want to implement <code>HashSets</code> that know the number of their elements.</p>
+<p>We implement a class <code>InstrumentedHashSet</code> that inherits from <code>HashSet</code> and overrides methods that change the state of a <code>HashSet</code> … </p>
+<p>The answer to the question is 6 because the implementation of <code>addAll</code> in <code>HashSet</code> internally calls <code>this.add(...)</code>.  Hence, added elements are counted twice.</p>
+<section class="slide"><div class="section-body"><h1>The Fragile Base Class Problem Illustrated</h1>
+<h2>An Instrumented HashSet</h2>
+<pre><code class="Java">import java.util.*;
+public class InstrumentedHashSet&lt;E&gt; extends HashSet&lt;E&gt; {
+  private int addCount = 0;    
+  public InstrumentedHashSet() {    } 
+  public InstrumentedHashSet(int initCap, float loadFactor) {
+    super(initCap, loadFactor);
+  }    
+
+  @Override public boolean add(E e) { addCount++; return super.add(e); } 
+  // @Override public boolean addAll(Collection&lt;? extends E&gt; c) {
+  //  addCount += c.size();
+  //  return super.addAll(c);
+  // }
+  public int getAddCount() { return addCount; }
+
+  public static void main(String[] args) {
+    InstrumentedHashSet&lt;String&gt; s = new InstrumentedHashSet&lt;String&gt;();
+    s.addAll(Arrays.asList(“aaa&quot;, “bbb&quot;, “ccc&quot;));
+    System.out.println(s.getAddCount());
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>Is the counting problem solved, by not overriding <code>addAll</code>?</p>
+</div></footer>
+</div></section>
+<p><strong>For the moment</strong> yes. But, not principally. </p>
+<p>What if in the future the designers of <code>HashSet</code> decide to re-implement <code>addAll</code> to insert the elements of the parameter collection as a block rather than by calling <code>add</code> on each element of the collection? Might be necessary for efficiency reasons.</p>
+<h4>The Fragile Base Class Problem in a Nutshell</h4>
+<section class="slide" data-title="The Fragile Base Class Problem in a Nutshell"><div class="section-body"><h1>The Fragile Base Class Problem in a Nutshell</h1>
+<div class="statement">Changes in base classes may lead to unforeseen problems in subclasses. </div>
+<p><strong>“Inheritance Breaks Encapsulation”</strong></p>
+</div></section>
+<p><em>You can modify a base class in a seemingly safe way</em>. But this modification, when inherited by the derived classes, might cause them to malfunction.</p>
+<p>You can&apos;t tell whether a base class change is safe simply by examining the base class&apos; methods in isolation. You must look at (and test) all derived classes as well.
+You must check all code that uses the base class and its derived classes; this code might also be broken by the changed behavior.</p>
+<p>A simple change to a key base class can render an entire program inoperable.</p>
+<section class="slide"><div class="section-body"><h1>The Fragile Base Class Problem in a Nutshell</h1>
+<h2>Fragility by dependencies on the self-call structure</h2>
+<ul>
+<li>The fragility considered so far is caused by dependencies on the self-call structure of the base class.</li>
+<li>Subclasses make assumptions about the calling relationship between <code>public</code> and <code>protected</code> methods of the base class. </li>
+<li>These assumptions are implicitly encoded in the overriding decisions of the subclass.</li>
+<li>If these assumptions are wrong or violated by future changes of the structure of superclass’ self-calls, the subclass’s behavior is broken.</li>
+</ul>
+<footer><div class="footer-body"><p>Is it possible to solve the fragile-base class problem by avoiding assumptions about the self-call structure of the base class in the implementations of the subclasses?</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>The Fragile Base Class Problem in a Nutshell</h1>
+<h2>Fragility by addition of new methods.</h2>
+<p>Another kind of fragility is caused by extensions of the base class with new methods that were not there when the class was subclassed. </p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Consider a base collection class.</li>
+<li>To ensure some (e.g., security) property, we want to enforce that all elements added to the collection satisfy a certain predicate.</li>
+<li>We override <em>every method</em> that is relevant for ensuring the security property to consistently check the predicate.</li>
+<li>Yet, the <strong>security may be defeated unintentionally</strong> if a new method is added to the base class which is relevant for the (e.g., security) property.</li>
+</ul>
+</div></section>
+<p>Several holes of this nature had to be fixed when <code>Hashtable</code> and <code>Vector</code> were retrofitted to participate in the Java Collection Frameworks.</p>
+<section class="slide"><div class="section-body"><h1>The Fragile Base Class Problem in a Nutshell</h1>
+<h2>Fragility by addition of new methods.</h2>
+<p><strong>Accidental method capture</strong>: A new release of the base class accidentally includes a method with the same name.</p>
+<p>Your code does not compile because the new method in the base class has the same signature but a different return type.</p>
+<p>Your methods get involved in things you never thought about because the added method has the same signature and return type.</p>
+</div></section>
+<h3>Taming Inheritance</h3>
+<section class="slide" data-title="Taming Inheritance"><div class="section-body"><h1>Taming Inheritance</h1>
+<div class="statement"><strong>Implementation inheritance</strong> (<code>extends</code>) is a powerful way to achieve code reuse.</div>
+<hr />
+<div class="statement">But, if used inappropriately, it leads to fragile software.</div>
+</div></section>
+<p>Next, we discuss rules of thumb for making &quot;good use&quot; of inheritance.</p>
+<section class="slide" data-title="Dos and Don&apos;ts"><div class="section-body"><h1>Dos and Don&apos;ts</h1>
+<ul>
+<li><p>It is always safe to use inheritance within a package.<br />
+The subclass and the superclass implementation are under the control of the same programmers.</p>
+</li>
+<li><p>It is also OK to extend classes specifically designed and documented for extension.</p>
+</li>
+<li><p>Avoid inheriting from concrete classes not designed and documented for inheritance across package boundaries.</p>
+</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Document for Inheritance"><div class="section-body"><div class="statement">Design and document for inheritance or else prohibit it.</div>
+<p><strong>Joshua Bloch, Effective Java</strong></p>
+</div></section>
+<section class="slide" data-title="Documenting Self-Use"><div class="section-body"><h1>Classes Must Document Self-Use</h1>
+<ul>
+<li><p>Each public/protected method/constructor must indicate self-use:</p>
+<ul>
+<li>Which overridable methods it invokes.</li>
+<li>In what sequence.</li>
+<li>How the results of each invocation affect subsequent processing.</li>
+</ul>
+</li>
+<li>A class must document any circumstances under which it might invoke an overridable method.  (Invocations might come from background threads or static initializers.)</li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Common Conventions for Documenting Self-Use</h1>
+<ul>
+<li><p>The description of self-invocations to overridable methods is given at the end of a method’s documentation comment.</p>
+</li>
+<li><p>The description starts with “This implementation …”. <br />
+Indicates that the description tells something about the internal working of the method. </p>
+</li>
+</ul>
+</div></section>
+<p>Overridable method = non-final and either public or protected</p>
+<section class="slide" data-title="Example of Documentation On Self-Invocation"><div class="section-body"><h1>Example of Documentation On Self-Invocation</h1>
+<h2>Taken from: <code>java.util.AbstractCollection</code></h2>
+<pre><code class="Java">public boolean remove(Object o)
+</code></pre>
+<blockquote><p>Removes a single instance of the specified element from this collection.<br />
+…<br />
+<strong>This implementation removes the element from the collection using the iterator&apos;s remove method.</strong>
+Note that this implementation throws an UnsupportedOperationException if the iterator returned by this collection&apos;s iterator() method does not implement the remove(…) method.</p>
+</blockquote>
+<footer><div class="footer-body"><p>This documents the contract.</p>
+</div></footer>
+</div></section>
+<p>The documentation makes explicit that overriding <code>iterator()</code> will affect the behavior of <code>remove</code> and what the effect would be.</p>
+<section class="slide" data-title="Documenting Self-Use In API Documentation"><div class="section-body"><h1>Documenting Self-Use In API Documentation</h1>
+<div class="statement">Do implementation details have a rightful place in a good API documentation?</div>
+</div></section>
+<p>The answer is simple: It depends!</p>
+<ul>
+<li><p>Keep in mind: There are two kinds of clients of an extensible class:</p>
+<ul>
+<li>Ordinary clients create instances of the class and call methods in its interface (black-box use).</li>
+<li>Clients that extend the class via inheritance.</li>
+</ul>
+</li>
+<li><p>Ordinary clients should not know such details.<br />
+… At least as long as a mechanism for LSP is in place.</p>
+</li>
+<li>Subclassing clients need them. That’s their &quot;interface&quot;.</li>
+</ul>
+<p><strong>Current documentation techniques and tools lack proper means of separating the two kinds of API documentations.</strong></p>
+<section class="slide" data-title="Provide And Document Hooks To Internals"><div class="section-body"><h1>Provide And Document Hooks To Internals</h1>
+<h2>Example taken from: <code>java.util.AbstractList</code></h2>
+<pre><code class="Java">protected void removeRange(int fromIndex, int toIndex)
+</code></pre>
+<blockquote><p>Removes from a list …</p>
+<p>This method is called by the clear operation on this list and its sub lists. Overriding this method to take advantage of the internals of the list implementation can substantially improve the performance of the clear operation on this list and its sub lists…<br />
+This implementation gets a list iterator positioned before <code>fromIndex</code> and repeatedly calls <code>ListIterator.next</code> and <code>ListIterator.remove</code>. Note: If <code>ListIterator.remove</code> requires linear time, this implementation requires quadratic time.</p>
+</blockquote>
+</div></section>
+<p>A class must document the supported hooks to its internals. These internals are irrelevant for ordinary users of the class. But, they are crucial for enabling subclasses to specialize the functionality in an effective way.</p>
+<section class="slide" data-title="Carefully Design and Test Hooks To Internals"><div class="section-body"><h1>Carefully Design and Test Hooks To Internals</h1>
+<ul>
+<li>Provide <strong>as few protected methods and fields as possible</strong></li>
+<li>Each of them represents a commitment to an implementation detail.</li>
+<li>Designing a class for inheritance places limitations on the class.</li>
+<li>Do not provide too few hooks.<br />
+A missing protected method can render a class practically unusable for inheritance.</li>
+</ul>
+<footer><div class="footer-body"><p>How to decide about the protected members to expose?</p>
+</div></footer>
+</div></section>
+<p>W.r.t. designing the internal hooks and making decisions about the kind and number of internal hooks, no silver bullet exists. You have to think hard, take your best guess, and test.</p>
+<p>Test your class for extensibility before releasing them. By writing test subclasses (At least one subclass should be written by someone other than the superclass author).</p>
+<section class="slide" data-title="Constructors Must Not Invoke Overridable Methods"><div class="section-body"><div class="statement">Constructors Must Not Invoke Overridable Methods</div>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>Constructors Must Not Invoke Overridable Methods</strong></p>
+<hr />
+<p><strong>Java Example</strong></p>
+<pre><code class="Java">class JavaSuper {
+  public JavaSuper() { printState(); }
+
+  public void printState() { System.out.println(&quot;no state&quot;); }
+}
+
+class JavaSub extends JavaSuper {
+    private int x = 42; // the result of a tough computation
+
+    public void printState() { System.out.println(&quot;x = &quot; + x); }
+}
+
+class JavaDemo {
+    public static void main(String[] args) {
+        JavaSuper s = new JavaSub();
+        s.printState();
+    }
+}
+</code></pre>
+<footer><div class="footer-body"><p>What is printed? (<code>printState</code> is called two times.)</p>
+</div></footer>
+</div></section>
+<p>The result is (<a href="Code/src/inheritance/constructors/JavaSuper.java">The complete code.</a>):</p>
+<pre><code>x = 0
+x = 42
+</code></pre>
+<p><strong>Problem</strong>: 
+An overridable method called by a constructor may get invoked on a non-initialized receiver.
+As a result a failure may occur.</p>
+<p><strong>Reason</strong>: </p>
+<ul>
+<li>The superclass constructor runs before the subclass constructor. </li>
+<li>The overridden method will get invoked before the subclass constructor has been invoked. </li>
+<li>The overridden method will not behave as expected if it depends on any initialization done by the subclass constructor.</li>
+</ul>
+<section class="slide"><div class="section-body"><p><strong>Constructors Must Not Invoke Overridable Methods</strong></p>
+<hr />
+<p><strong>Scala Example (One-to-one translation of the Java code)</strong></p>
+<div style="position:absolute;bottom:20px;right:50px;background:#bbb;padding:1em">
+Result:
+  <code><pre>
+  <strong><s>x = 0</s></strong>
+  x = 42
+  </pre></code>
+</div>
+<div style="position:absolute;bottom:245px;right:50px;background:#ffffaa;padding:1em">
+Not idiomatic Scala code!
+</div>
+<pre><code class="Scala">class ScalaSuper {
+
+    // executed at the end of the initialization
+    printState();
+
+    def printState() {
+        println(&quot;no state&quot;)
+    }
+}
+
+class ScalaSub extends ScalaSuper {
+    var y: Int = 42 // What was the question?
+
+    override def printState() { println(&quot;y = &quot;+y) }
+}
+
+object ScalaDemo extends App {
+    val s = new ScalaSub
+    s.printState() // after initialization
+}
+</code></pre>
+</div></section>
+<p>The complete code: <a href="Code/src/inheritance/constructors/SuperSubNonIdiomatic.scala">SuperSubNonIdiomatic.scala</a>.</p>
+<p>For further details: <a href="http://www.scala-lang.org/docu/files/ScalaReference.pdf">Scala Language Specification</a></p>
+<section class="slide"><div class="section-body"><p><strong>Constructors Must Not Invoke Overridable Methods</strong></p>
+<hr />
+<p><strong>Scala Example (Refined using an early field definition clause.)</strong></p>
+<div style="position:absolute;bottom:20px;right:50px;background:#bbb;padding:1em">
+Result:<code><pre>
+<strong>x = 42</strong>
+x = 42
+</pre></code></div>
+<div style="position:absolute;bottom:200px;right:50px;background:#ffffaa;padding:1em">
+Idiomatic Scala code!<br>
+An <em>early field definition clause</em><br> is used to define the field value<br> before the supertype<br> constructor is called.
+</div>
+<pre><code class="Scala">class Super {
+
+    // executed at the end of the initialization
+    printState();
+
+    def printState() {
+        println(&quot;no state&quot;)
+    }
+}
+
+class Sub(var y: Int = 42) extends Super {
+    override def printState() {
+        println(&quot;y = &quot;+y)
+    }
+}
+
+object Demo extends App {
+    val s = new Sub
+    s.printState() // after initialization
+}
+</code></pre>
+</div></section>
+<p>The complete code: <a href="Code/src/inheritance/constructors/SuperSub.scala">SuperSub.scala</a>.</p>
+<p>For further details: <a href="http://www.scala-lang.org/docu/files/ScalaReference.pdf">Scala Language Specification (5.1.6 Early Definitions)</a></p>
+<p>Recommended reading: <a href="http://spot.colorado.edu/~reids/papers/how-scala-experience-improved-our-java-development-reid-2011.pdf">How Scala Experience Improved Our Java Development</a></p>
+<h3>Variations At The Level Of Multiple Objects</h3>
+<section class="slide" data-title="Variations at the Level of Multiple Objects"><div class="section-body"><h1>Variations at the Level of Multiple Objects</h1>
+<p>So far:<br />
+<strong>We considered variations, whose scope are individual classes.</strong></p>
+<div class="statement">But, no class is an island!</div>
+</div></section>
+<p>Examples of class groupings:</p>
+<ul>
+<li>data structures such as trees and graphs,</li>
+<li>sophisticated frameworks,</li>
+<li>the entire application.</li>
+</ul>
+<p>Classes in a group may be related in different ways: </p>
+<ul>
+<li>by references to each other, </li>
+<li>by signatures of methods and fields, </li>
+<li>by instantiation, </li>
+<li>by inheritance, </li>
+<li>by shared state and dependencies. </li>
+</ul>
+<h4>Illustrative Example: Window Menus</h4>
+<section class="slide" data-title="Illustrative Example: Window Menus"><div class="section-body"><h1>Illustrative Example: Window Menus</h1>
+<p>  <img src="Images/Inheritance-ConcreteMenu.png" style="position:absolute;top:10px;right:5px"></p>
+<p><img src="Images/Inheritance-Menus.png" alt="Inheritance Menus" /></p>
+</div></section>
+<p>For illustration, we will consider variations of menu structures:</p>
+<ul>
+<li>A menu is a GUI component consisting of a list of menu items corresponding to different application-specific actions. </li>
+<li>Menus are usually organized hierarchically: a menu has several menu items.</li>
+<li>There may be different variants of menus (popup, menu bar).</li>
+<li>There may be different variants of menu items.</li>
+<li>A menu item can be associated with a cascade menu which pops up when the item is selected.</li>
+</ul>
+<p>Menu and menu item objects are implemented by multiple classes that are organized in inheritance hierarchies to represent variations of the elements of the object structure.</p>
+<ul>
+<li>A menu represented by class <code>Menu</code> maintains a list of menu items. </li>
+<li>Subclasses of <code>Menu</code> implement specialized menus.</li>
+<li>A <code>PopupMenu</code> is a subclass of <code>Menu</code> implementing pop-up menus. </li>
+<li><code>MenuBar</code> is a subclass of <code>Menu</code>, implementing a menu bar which is usually attached at the top edge of a window and serves as the top level menu object of the window.</li>
+<li>Simple menu items are implemented by class <code>MenuItem</code>`</li>
+<li><p>Subclasses of <code>MenuItem</code> implement specialized menu items: </p>
+<ul>
+<li>class <code>CheckMenuItem</code> for check-box menu items, </li>
+<li>class <code>RadioMenuItem</code> for radio-button menu items, </li>
+<li><code>CascadeMenuItem</code> for menu items that open cascade menus. It contains a reference to an instance of a <code>PopupMenu</code>, a subclass of <code>Menu</code> implementing pop-up menus. </li>
+</ul>
+</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Different Kinds of Menus</h1>
+<pre><code class="Java">abstract class Menu { 
+  List&lt;MenuItem&gt; items; 
+
+  MenuItem itemAt(int i) { 
+    return items.get(i); 
+  } 
+
+  int itemCount() { return items.size(); } 
+  void addItem(MenuItem item) { items.add(item); } 
+  void addAction(String label, Action action) { 
+    items.add(new MenuItem(label, action)); 
+  } 
+   ... 
+} 
+
+class PopupMenu extends Menu { ... } 
+
+class MenuBar extends Menu { ... } 
+</code></pre>
+</div></section>
+<p>Classes involved in the implementation of menu functionality refer to each other in the declarations and implementations of their ﬁelds and methods. </p>
+<section class="slide" data-title="Different Kinds of Menu Items"><div class="section-body"><h1>Different Kinds of Menu Items</h1>
+<pre><code class="Java">class MenuItem { 
+  String label; 
+  Action action; 
+
+  MenuItem(String label, Action action) {
+    this.label = label; 
+    this.action = action; 
+  } 
+
+  String displayText() { return label; } 
+
+  void draw(Graphics g) { … displayText() … }
+} 
+
+class CascadeMenuItem extends MenuItem { 
+  PopupMenu menu; 
+
+  void addItem(MenuItem item) { menu.addItem(item); } 
+  …
+} 
+
+class CheckMenuItem extends MenuItem { … }  
+
+class RadioMenuItem extends MenuItem { … }
+</code></pre>
+</div></section>
+<section class="slide" data-title="Inheritance for Optional Features of Menus"><div class="section-body"><h1>Inheritance for Optional Features of Menus</h1>
+<ul>
+<li>Variations of menu functionality affect multiple objects constituting the menu structure.</li>
+<li>Since these objects are implemented by different classes, we need several new subclasses to express variations of menu functionality.</li>
+<li><strong>This technique has several problems</strong>, which will be illustrated in the following by a particular example variation: Adding accelerator keys to menus. </li>
+</ul>
+</div></section>
+<p>Various optional features related to functionality of menus: </p>
+<ul>
+<li>Support for accelerator keys for a quick selection of a menu item using a specific key stroke, </li>
+<li>Support for multi-lingual text in menu items,</li>
+<li>Support for context help, </li>
+</ul>
+<section class="slide" data-title="Menu Items with Accelerator Keys"><div class="section-body"><h1>Menu Items with Accelerator Keys</h1>
+<pre><code class="Java">class MenuItemAccel extends MenuItem { 
+  KeyStroke accelKey; 
+
+  boolean processKey(KeyStroke ks) { 
+    if (accelKey != null &amp;&amp; accelKey.equals(ks)) {  
+      performAction(); 
+      return true; 
+    } 
+    return false; 
+  } 
+
+  void setAccelerator(KeyStroke ks) { accelKey = ks; }
+
+  void draw(Graphics g) { 
+    super.draw(g); 
+    displayAccelKey(); 
+  }  
+  … 
+} 
+</code></pre>
+</div></section>
+<p>The extension of menu items with accelerator keys is implemented in class <code>MenuItemAccel</code>, a subclass of <code>MenuItem</code>. </p>
+<p>The extension affects both the implementation of existing methods as well as the structure and interface of menu items. E.g., the implementation of the <code>draw</code> method needs to be extended to display the accelerator key besides the label of the item.</p>
+<p>New attributes and methods are introduced </p>
+<ul>
+<li>to store the key associated to the menu item, </li>
+<li>to change this association, </li>
+<li>to process an input key,</li>
+<li>to display the accelerator key </li>
+</ul>
+<section class="slide" data-title="Menus with Accelerator Keys"><div class="section-body"><h1>Menus with Accelerator Keys</h1>
+<pre><code class="Java">abstract class MenuAccel extends Menu {
+
+  boolean processKey(KeyStroke ks) { 
+    for (int i = 0; i &lt; itemCount(); i++) { 
+      if (((MenuItemAccel) itemAt(i)).processKey(ks)) return true;  
+    } 
+    return false; 
+  }
+
+  void addAction(String label, Action action) { 
+    items.add(new MenuItemAccel(label, action));
+  } 
+  …
+} 
+</code></pre>
+</div></section>
+<p><code>MenuAccel</code> implements the extension of menus with accelerator keys: </p>
+<ul>
+<li>adds the new method <code>processKey</code> for processing keys</li>
+<li>overrides method <code>addAction</code> to ensure that the new item added for an action supports accelerator keys</li>
+</ul>
+<h4>Non-Explicit Covariant Dependencies</h4>
+<section class="slide" data-title="Non-Explicit Covariant Dependencies"><div class="section-body"><h1>Non-Explicit Covariant Dependencies</h1>
+<p><strong>Covariant dependencies between objects:</strong><br />
+The varying functionality of an object in a group may need to access the corresponding varying functionality of another object of the group.</p>
+<p>The type declarations in our design do not express covariant dependencies between the objects of a group. </p>
+<p>References between objects are typed by invariant types, which provide a fixed interface.</p>
+<p><em>Covariant dependencies are emulated by type-casts</em>.</p>
+<pre><code class="Java">abstract class MenuAccel extends Menu {
+
+  boolean processKey(KeyStroke ks) { 
+    for (int i = 0; i &lt; itemCount(); i++) { 
+      if (((MenuItemAccel) itemAt(i)).processKey(ks)) return true;  
+    } 
+    return false; 
+  }
+  …
+} 
+</code></pre>
+<p>  <img src="Images/InTheRain.png" style="position:absolute;bottom:60px;right:20px"></p>
+</div></section>
+<p>The method <code>processKey</code> in a menu with accelerator keys needs to call <code>processKey</code> on its items.</p>
+<ul>
+<li>Items of a menu are accessed by calling the method <code>itemAt</code>. </li>
+<li>The method <code>itemAt</code> is inherited from class <code>Menu</code>, where it was declared with return type <code>MenuItem</code>. </li>
+<li>Thus, to access the extended functionality of menu items, <strong>we must cast the result</strong> of <code>itemAt</code> to <code>MenuItemAccel</code>. </li>
+</ul>
+<p>The design <strong>cannot guarantee that such a type cast will always be successful</strong>, because items of <code>MenuAccel</code> are added over the inherited method <code>addItem</code>, which accepts all menu items, both with and without the accelerator functionality.</p>
+<p><strong>Potential for LSP violation!</strong></p>
+<h4>Instantiation-Related Reusability Problems</h4>
+<section class="slide" data-title="Instantiation-Related Reusability Problems"><div class="section-body"><h1>Instantiation-Related Reusability Problems</h1>
+<p><strong>Code that instantiates the classes of an object group cannot be reused with different variations of the group.</strong></p>
+<pre><code class="Java">abstract class Menu { 
+
+  void addAction(String label, Action action) { 
+    items.add(new MenuItem( // &lt;= Creates a MenuItem
+      label, action
+    )); 
+  } 
+  … 
+} 
+</code></pre>
+<pre><code class="Java">abstract class MenuAccel extends Menu { 
+
+  void addAction(String label, Action action) { 
+    items.add(new MenuItemAccel( // &lt;= Creates a MenuItemAccel
+    	label, action
+    ));
+  } 
+  …
+}
+</code></pre>
+<p><strong>Instantiation code can be spread all over the application.</strong></p>
+</div></section>
+<ul>
+<li><code>MenuItem</code> is instantiated in <code>Menu.addAction(...)</code>. </li>
+<li>In <code>MenuAccel</code>, we override <code>addAction(...)</code>, so that it instantiates <code>MenuItemAccel</code>. </li>
+</ul>
+<p>A menu of an application can be built from different reusable pieces, provided by different menu contributors.</p>
+<section class="slide" data-title="Menu Contributor for Operations on Files"><div class="section-body"><h1>Menu Contributor for Operations on Files</h1>
+<p><strong>A menu of an application can be built from different reusable pieces, provided by different menu contributors.</strong></p>
+<pre><code class="Java">interface MenuContributor { 
+   void contribute(Menu menu); 
+} 
+</code></pre>
+<pre><code>class FileMenuContrib implements MenuContributor { 
+
+  void contribute(Menu menu) { 
+    CascadeMenuItem openWith = new CascadeMenuItem(”Open With”);       
+    menu.addItem(openWith);
+    MenuItem openWithTE = 
+	 new MenuItem(”Text Editor”, createOpenWithTEAction());        
+    openWith.addItem(openWithTE);
+
+    MenuItem readOnly = 
+        new CheckMenuItem(”Read Only”, createReadOnlyAction()); 
+    menu.addItem(readOnly) 
+    …  
+   } 
+   …  
+}
+</code></pre>
+</div></section>
+<p>The code shows the implementation of a menu contributor for operations on ﬁles. It implements the method contribute, which extends the given menu object with menu items to open ﬁles with diﬀerent text editors, to change the read-only ﬂag of the ﬁle, and so on. Since the menu items are created by directly instantiating the respective classes, this piece of code cannot be reused for menus with support for key accelerators or any other extensions of the menu functionality. </p>
+<section class="slide"><div class="section-body"><h1>Instantiation-Related Reusability Problem</h1>
+<ul>
+<li>In some situations, overriding of instantiation code can cause a cascade effect. </li>
+<li>An extension of class C mandates extensions of all classes that instantiate C.</li>
+<li>This in turn mandates extensions of further classes that instantiate classes that instantiate C. </li>
+</ul>
+<footer><div class="footer-body"><p>Can you imagine a workaround to address instantiation-related problems?</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="Abstract Factory Pattern"><div class="section-body"><h1>Abstract Factory Pattern</h1>
+<p><img src="Images/Inheritance-AbstractFactory.png" alt="Inheritance AbstractFactory" /></p>
+</div></section>
+<section class="slide" data-title="Factories for Instantiating Objects"><div class="section-body"><h1>Factories for Instantiating Objects</h1>
+<pre><code class="Java">interface MenuFactory { 
+  MenuItem createMenuItem(String name, Action action); 
+  CascadeMenuItem createCascadeMenuItem(String name); 
+  … 
+} 
+</code></pre>
+<p>The <em>Abstract Factory design pattern</em> enables abstraction from group variations by late-bound instantiation of the classes of the group’s objects.</p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Factories for Instantiating Objects</h1>
+<pre><code class="Java">class FileMenuContrib implements MenuContributor { 
+
+  void contribute(
+      Menu menu, 
+      MenuFactory factory // &lt;= we need a reference to the factory
+  ) { 
+    MenuItem openWith = 
+        factory.createCascadeMenuItem(”Open With”);
+    menu.addItem(openWith); 
+    MenuItem openWithTE = factory.createMenuItem(...); 
+    openWith.addItem(openWithTE); 
+    … 
+    MenuItem readOnly = factory.createCheckMenuItem(...);
+    menu.addItem(readOnly) 
+    … 
+  } 
+  … 
+} 
+</code></pre>
+</div></section>
+<p>The code of <code>FileMenuContrib</code> can be reused with different variations of menu functionality, by using it with different factory implementations.</p>
+<section class="slide"><div class="section-body"><h1>Factories for Instantiating Objects</h1>
+<pre><code class="Java">class BaseMenuFactory implements MenuFactory { 
+
+  MenuItem createMenuItem(String name, Action action) {     
+    return new MenuItem(name, action);  
+  }
+
+  CascadeMenuItem createCascadeMenuItem(String name) { 
+    return new CasadeMenuItem(name); 
+  } 
+  …
+} 
+</code></pre>
+<hr />
+<pre><code class="Java">class AccelMenuFactory implements MenuFactory { 
+
+  MenuItemAccel createMenuItem(String name, Action action) { 
+    return new MenuItemAccel(name, action); 
+  } 
+
+  CascadeMenuItemAccel createCascadeMenuItem(String name) {
+    return new CasadeMenuItemAccel(name); 
+  } 
+  …
+} 
+</code></pre>
+</div></section>
+<section class="slide" data-title="Deficiencies Of The Factory Pattern"><div class="section-body"><h1>Deficiencies Of The Factory Pattern</h1>
+<ul>
+<li>The infrastructure for the design pattern must be implemented and maintained. </li>
+<li>Increased complexity of design.</li>
+<li><p>Correct usage of the pattern cannot be enforced: </p>
+<ul>
+<li>No guarantee that classes are instantiated exclusively over factory methods, </li>
+<li>No guarantee that only objects are used together that are instantiated by the same factory. </li>
+</ul>
+</li>
+<li><p>Issues with managing the reference to the abstract factory. </p>
+<ul>
+<li>The factory can be implemented as a Singleton for convenient access to it within entire application.<br />
+This solution <strong>would allow to use only one specific variant</strong> of the composite within the same application. </li>
+<li>A more flexible solution requires explicit passing of the reference to the factory from object to object.<br />
+<strong>Increased complexity of design.</strong></li>
+</ul>
+</li>
+</ul>
+</div></section>
+<p>Several studies have shown that the comprehensibility of some code/framework  significantly decreases, when it is no longer possible to directly instantiate objects.</p>
+<h4>Combining Composite &amp; Individual Variations</h4>
+<section class="slide" data-title="Combining Composite &amp; Individual Variations"><div class="section-body"><h1>Combining Composite &amp; Individual Variations</h1>
+<div class="statement">Problem: How to combine variations of individual classes with those of features of a class composite.</div>
+<p>Feature variations at the level of object composites (e.g., accelerator key support).</p>
+<p>Variations of individual elements of the composite (e.g., variations of menus and items).</p>
+</div></section>
+<section class="slide" data-title="Menu Items with Accelerator Keys"><div class="section-body"><h1>Menu Items with Accelerator Keys</h1>
+<pre><code class="Java">class MenuItemAccel extends MenuItem { 
+</code></pre>
+<pre><code class="no-highlight">    KeyStroke accelKey; 
+    boolean processKey(KeyStroke ks) { 
+      if (accelKey != null &amp;&amp; accelKey.equals(ks)) {  
+        performAction(); 
+        return true; 
+      } 
+      return false; 
+    } 
+    void setAccelerator(KeyStroke ks) { accelKey = ks; } 
+    void draw(Graphics g) { super.draw(g); displayAccelKey(); }  
+    …
+</code></pre>
+<pre><code class="Java">} 
+
+class CascadeMenuItemAccel extends ???
+class CheckMenuItemAccel extends ???
+class RadioMenuItemAccel extends ???
+</code></pre>
+<footer><div class="footer-body"><p>How to extend subclasses of <code>MenuItem</code> for different variants of items with the accelerator key feature? </p>
+<p>We need subclasses of them that also inherit the additional functionality in <code>MenuItemAccel</code>.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="Menus with Accelerator Keys"><div class="section-body"><h1>Menus with Accelerator Keys</h1>
+<pre><code class="Java">abstract class MenuAccel extends Menu { 
+</code></pre>
+<pre><code class="no-highlight">  boolean processKey(KeyStroke ks) { 
+    for (int i = 0; i &lt; itemCount(); i++) { 
+      if (((MenuItemAccel) itemAt(i)).processKey(ks)) return true;  
+    } 
+    return false; 
+  } 
+
+  void addAction(String label, Action action) { 
+    items.add(new MenuItemAccel(label, action));
+  } 
+  …
+</code></pre>
+<pre><code class="Java">}
+
+class PopupMenuAccel extends ??? 
+class MenuBarAccel extends ???
+</code></pre>
+<footer><div class="footer-body"><p>How to extend subclasses of Menu with the accelerator key feature? </p>
+<p>We need subclasses of them that also inherit the additional functionality in <code>MenuAccel</code>.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="Combining Composite &amp; Individual Variations"><div class="section-body"><div class="statement">In languages with single inheritance, such as Java, combining composite &amp; individual variations is non-trivial and leads to code duplication.</div>
+</div></section>
+<section class="slide" data-title="The Problem in a Nutshell"><div class="section-body"><h1>The Problem in a Nutshell</h1>
+<p><img src="Images/Inheritance-AbstractExample.png" alt="Inheritance AbstractExample" /></p>
+<ul>
+<li>We need to extend <code>A</code> (and parallel to it also its subclasses <code>B</code> and <code>C</code>) with an optional feature (<em>should not necessarily be visible to existing clients</em>).</li>
+<li>This excludes the option of modifying <code>A</code> in-place, which would be bad anyway because of OCP.</li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Alternative Designs</h1>
+<p><img src="Images/Inheritance-AbstractExampleAlternativesI.png" alt="Inheritance AbstractExampleAlternativesI" /> </p>
+<hr />
+<p><img src="Images/Inheritance-AbstractExampleAlternativesII.png" alt="Inheritance AbstractExampleAlternativesII" /></p>
+</div></section>
+<p>There are two possibilities ( (I) creating a parallel hierarchy or (II) creating additional subclasses of <code>B</code> and <code>C</code>) to add an optional feature to <code>A</code> incrementally without affecting clients in a single inheritance setting. </p>
+<p>In both cases, code needs to be duplicated which leads to a maintenance problem.</p>
+<section class="slide"><div class="section-body"><h1>Combining Composite and Individual Variations</h1>
+<h2>Using some form of multiple inheritance</h2>
+<pre><code class="Java">class PopupMenuAccel extends PopupMenu, MenuAccel { } 
+class MenuBarAccel extends MenuBar, MenuAccel { }
+</code></pre>
+<pre><code class="Java">class CascadeMenuItemAccel extends CascadeMenuItem, MenuItemAccel {    
+  boolean processKey(KeyStroke ks) { 
+    if (((PopupMenuAccel) menu).processKey(ks) ) return true;  
+    return super.processKey(ks); 
+  } 
+} 
+
+class CheckMenuItemAccel extends CheckMenuItem, MenuItemAccel { ... }
+class RadioMenuItemAccel extends RadioMenuItem, MenuItemAccel { ... }
+</code></pre>
+<footer><div class="footer-body"><p>Does this solve our problem?</p>
+</div></footer>
+</div></section>
+<div class="statement">The design with multiple inheritance has its problems.</div>
+<p>It requires additional class declarations that explicitly combine the extended element class representing the composite variation with sub-classes that describe its individual variations. </p>
+<ul>
+<li>Such a design produces an excessive number of classes.</li>
+<li>The design is also not stable with respect to extensions with new element types.</li>
+<li>The developer must not forget to extend the existing variations of the composite with combinations for the new element types. </li>
+</ul>
+<h4>Summary</h4>
+<section class="slide" data-title="Summary"><div class="section-body"><h1>Summary</h1>
+<ul>
+<li><p>General agreement in the early days of OO:<br />
+<strong>Classes are the primary unit of organization.</strong></p>
+<ul>
+<li>Standard inheritance operates on isolated classes.</li>
+<li>Variations of a group of classes can be expressed by applying inheritance to each class from the group separately. </li>
+</ul>
+</li>
+<li><p>Over the years, it turned out that sets of collaborating classes are also units of organization. In general, extensions will generally affect a set of related classes.</p>
+</li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><div class="statement">(Single-) Inheritance does not appropriately support OCP with respect to changes that affect a set of related classes!Almost all features that proved useful for single classes are not available for sets of related classes.</div>
+</div></section>
+<p>Mainstream OO languages have only insufficient means for organizing collaborating classes: packages, name spaces, etc. These structures have serious problems:</p>
+<ul>
+<li>No means to express variants of a collaboration.</li>
+<li>No polymorphism.</li>
+<li>No runtime semantics.</li>
+</ul>
+<section class="slide" data-title="Desired Features"><div class="section-body"><h1>Desired Features</h1>
+<ul>
+<li><p><strong>Incremental programming at the level of sets of related classes.</strong><br />
+In analogy to incremental programming at the level of individual classes enabled by inheritance. <em>(I.e., we want to be able to model the accelerator key feature by the difference to the default menu functionality.)</em></p>
+</li>
+<li><p><strong>Polymorphism at the level of sets of related classes → Family polymorphism.</strong><br />
+In analogy to subtype polymorphism at the level of individual classes.
+<em>(I.e., we want to be able to define behavior that is polymorphic with respect to the particular object group variation.)</em></p>
+</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Family Polymorphism"><div class="section-body"><h1>&quot;Family Polymorphism&quot;</h1>
+<p><img src="Images/Inheritance-MenusFamilyPolymorphism.png" alt="Inheritance MenusFamilyPolymorphism" /></p>
+<p>We want to avoid:</p>
+<ul>
+<li>code duplication</li>
+<li>casts</li>
+<li>the necessity to re-implement methods (e.g. <code>addAction</code>)</li>
+</ul>
+<p><strong>Ideally would like to have several versions of class definitions - one per responsibility - which can be mixed and matched on-demand.</strong></p>
+<p>   <div style="position:absolute;bottom:0;right:0;background:#bbb;border:0 0;margin: 0 0;padding: 0.5em 0.5em">
+Recall the SmartHome example.
+   </div></p>
+</div></section>
+<p>The question may arise whether this is this a real problem or not. As we will see in the following it is a very real problem which even shows up in mature deployed software.</p>
+<h4>Case Study: Java AWT and Swing</h4>
+<p>Some of the material used in the following originally appeared in the paper: Bergel et al, <em>Controlling the Scope of Change in Java</em>, <strong>International Conference on Object-Oriented Programming Systems Languages and Applications 2005</strong></p>
+<p>AWT is a GUI framework that was included in the first Java release and which directly interfaces the underlying operating system. Therefore, only a small number of widgets are supported to make code easier to port.</p>
+<p>Swing extends AWT core classes (by subclassing) with functionality such as: &quot;pluggable look and feel&quot; and &quot;double buffering&quot;. The Swing-specific support for double buffering to provide smooth flicker-free animation is implemented, among others, in the methods <code>update()</code>, <code>setLayout()</code>, etc.. Furthermore, Swing adds more widgets.</p>
+<section class="slide" data-title="The Design of AWT and Swing"><div class="section-body"><h1>The Design of AWT and Swing</h1>
+<p>  <img src="Images/Inheritance-CaseStudyAWTSwing.png" style="float:right;padding:0 0" ></p>
+<p>A small subset of the core of AWT (<code>Component</code>, <code>Container</code>, <code>Frame</code>, <code>Window</code>) and Swing.</p>
+</div></section>
+<p><strong>Issues:</strong></p>
+<ul>
+<li>Features defined in <code>JWindow</code> are duplicated in <code>JFrame</code>. Due to the absence of an inheritance link between <code>JFrame</code> and <code>JWindow</code> (<code>JWindow</code>: 551 LOC; <code>JFrame</code>: 829 LOC, 241 lines of code are duplicated; 43% of <code>JWindow</code> reappears as 29% of <code>JFrame</code>.</li>
+<li>While a <code>Window</code> is a <code>Component</code> in AWT, a <code>JWindow</code> is not a <code>JComponent</code> in Swing.</li>
+<li>While a <code>Button</code> is a Component and <code>JButton</code> is a <code>JComponent</code>, a <code>JButton</code> is not a <code>Button</code>!</li>
+<li>A Swing <code>Component</code> is a <code>Container</code> for other components.<br />
+<em>Feature inherited from <code>Container</code> (<code>JComponent extends Container</code>).</em></li>
+<li>Types of subcomponents in <code>Container</code> are <code>Component</code> not <code>JComponent</code>.</li>
+<li>Ubiquitous runtime type checks and type casts are the result!</li>
+</ul>
+<section class="slide" data-title="AWT Code"><div class="section-body"><h1>AWT Code</h1>
+<pre><code class="Java">public class Container extends Component {
+  int ncomponents;
+  Component components[] = new Component[0];
+   
+  public Component add (Component comp) {
+    addImpl(comp, null, -1);
+    return comp;
+  }
+
+  protected void addImpl(Component comp, Object o, int ind) {
+    …
+    component[ncomponents++] = comp;
+    …
+  }
+
+  public Component getComponent(int index) {
+    return component[index];
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>The code contains no type checks and/or type casts.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="Swing Code"><div class="section-body"><h1>Swing Code</h1>
+<pre><code class="Java">public class JComponent extends Container {
+
+  public void paintChildren (Graphics g) {
+    …
+    for (; i &gt; = 0 ; i--) {
+      Component comp = getComponent (i);
+      isJComponent = (comp instanceof JComponent); // type check
+      …
+      ((JComponent)comp).getBounds(); // type cast
+      …
+    }
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>The code contains (many) type checks and/or type casts.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="About the Development of Swing"><div class="section-body"><h1>About the Development of Swing</h1>
+<blockquote><p>“In the absence of a large existing base of clients of AWT, Swing might have been designed differently, with AWT being refactored and redesigned along the way.</p>
+<p>Such a refactoring, however, was not an option and we can witness various anomalies in Swing, such as duplicated code, sub-optimal inheritance relationships, and excessive use of run-time type discrimination and downcasts.”</p>
+</blockquote>
+</div></section>
+<h2>Takeaway</h2>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway I</h1>
+<ul>
+<li><p>Inheritance is a powerful mechanism for supporting variations and stable designs in presence of change.<br />
+Three desired properties:</p>
+<ul>
+<li><strong>Built-in support for OCP</strong> and reduced need for preplanning and abstraction building.</li>
+<li><strong>Well-modularized</strong> implementations of variations.</li>
+<li><strong>Support for variation of structure/interface</strong> in addition to variations of behavior.</li>
+<li><strong>Variations</strong> can participate in <strong>type declarations</strong>.</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Takeaway II</h1>
+<ul>
+<li><p>Inheritance has also deficiencies</p>
+<ul>
+<li><p><strong>Variation implementations are not reusable and not easy to compose.</strong></p>
+<ul>
+<li>Code duplication.</li>
+<li>Exponential growth of the number of classes; complex designs.</li>
+</ul>
+</li>
+<li><strong>Inheritance does not support dynamic variations</strong> – configuring the behavior and structure of an object at runtime.</li>
+<li><strong>Fragility of designs</strong> due to lack of encapsulation between parents and heirs in an inheritance hierarchy.</li>
+<li><strong>Variations that affect a set of related classes are not well supported.</strong><br /></li>
+</ul>
+</li>
+</ul>
+</div></section>
+<h2>Outlook</h2>
+<section class="slide" data-title="Outlook"><div class="section-body"><h1>Virtual Classes in Scala</h1>
+<h2>(Work in Progress)</h2>
+<pre><code class="scala">@virtualContext class Building {
+  @virtual abstract class Location { }
+  
+  @virtual abstract class CompositeLocation extends Location {
+    type T &lt;: Location
+    var locations: List[T] = List()
+  }
+  
+  @virtual class Room extends Location { }
+  
+  @virtual class Floor extends CompositeLocation {
+    type T = Room
+  }
+  
+  @virtual class Building extends CompositeLocation {
+    type T = Floor
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Virtual Classes in Scala</h1>
+<h2>(Work in Progress)</h2>
+<pre><code class="scala">class Light { def turnOn() {  ...  }; def turnOff() { ... }; }
+
+@virtualContext class Lights extends Building {
+  @virtual abstract class Location {
+    var _lights: List[Light] = List()
+    
+    def lights: List[Light] = _lights
+
+    def turnLightsOn = lights.foreach(_.turnOn())
+
+    def turnLightsOff = lights.foreach(_.turnOff())
+  }
+  
+  @virtual abstract class CompositeLocation {
+    override def lights: List[Light] = 
+    	_lights ++ locations.flatMap(location =&gt; location.lights)
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Virtual Classes in Scala</h1>
+<h2>(Work in Progress)</h2>
+<pre><code class="scala">class Shutter { def raise() { ... }; def lower() { ... }; }
+
+@virtualContext class Shutters extends Building {
+  @virtual abstract class Location {
+    var _shutters: List[Shutter] = List()
+    def shutters: List[Shutter] = _shutters
+
+    def lower = shutters.foreach(_.lower)
+
+    def raise = shutters.foreach(_.raise)
+  }
+  
+  @virtual abstract class CompositeLocation {
+    override def shutters: List[Shutter] = _shutters ++ locations.flatMap(location =&gt; location.shutters)
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Virtual Classes in Scala</h1>
+<h2>(Work in Progress)</h2>
+<pre><code class="scala">@virtualContext class LightsAndShutters extends Lights with Shutters { }
+
+@virtualContext class Estate extends Building with Lights with Shutters {
+  @virtual class Garage extends Location {
+    def Car = &quot;Audi R8&quot;
+  }
+}
+</code></pre>
+<footer><div class="footer-body"><p>Not relevant for the exam.</p>
+</div></footer>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

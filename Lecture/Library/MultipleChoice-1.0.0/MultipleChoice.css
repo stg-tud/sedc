@@ -1,0 +1,67 @@
+/*
+   Copyright 2013 Michael Eichberg et al - www.michael-eichberg.de
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+
+.mc-question {
+    text-align: center;
+    padding: .4em 1em .4em 1em;
+}
+
+.mc-answers {
+    display: table;
+}
+
+.mc-answer {
+    display: table-row;
+    padding: .1em 0 .1em 0;
+    margin: 0.5em;
+    transition: background 1s;
+    -webkit-transition: background 1s;
+}
+
+.mc-answer > * {
+    display: table-cell;
+    padding-right: 3em;
+}
+
+.mc-correct {
+    background-color: rgb(175, 255, 175);
+}
+
+.mc-correct .mc-explanation:before {
+    content: "✔";
+    padding-right: 1em;
+}
+
+.mc-incorrect {
+    background-color: rgb(255, 175, 175);
+}
+
+.mc-incorrect .mc-explanation:before {
+    content: "✗";
+    padding-right: 1em;
+}
+
+.mc-explanation {
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    font-style: italic;
+    width: 100%;
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+}

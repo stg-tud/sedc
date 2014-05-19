@@ -1,0 +1,409 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1383053448000">
+<div id='body-content'>
+<h1>Programming Languages and Design Principles</h1>
+<p>In the following, we will discuss the development of programming languages as a means to improve their ability to capture the software design at ever increasing abstraction levels. Or, from another point of view, we discuss why advances in programming language technology are driven by the need to make programming languages capable of capturing higher-level designs.</p>
+<section class="slide" data-title="Programming Languages and Design Principles"><div class="section-body"><h1>Programming Languages and Design Principles</h1>
+<div class="statement">Making Code Look Like Design</div>
+</div></section>
+<h2>“Designing” with Pseudo-Assembler</h2>
+<section class="slide" data-title="“Designing” with Pseudo-Assembler"><div class="section-body"><h1>“Designing” with Pseudo-Assembler</h1>
+<p>What does the following program do?</p>
+<pre><code class="C">i = 1
+TEST:	if i &lt; 4
+	then goto BODY
+	else goto END
+BODY:	print i
+	i = i + 1
+	goto TEST
+END:
+</code></pre>
+</div></section>
+<section class="slide"><div class="section-body"><h1>“Designing” with Pseudo-Assembler</h1>
+<p>What does the following program do?</p>
+<pre><code class="C">i = 1
+LOOP:	print i
+	i = i + 1
+	if i &lt; 4 goto LOOP
+END:	
+</code></pre>
+</div></section>
+<p>Though both programs just print out &quot;123&quot; the second one is easier to read and comprehend. It has a better style:</p>
+<ul>
+<li>Clear structure</li>
+<li>No crossing gotos</li>
+<li>Better names</li>
+<li>Code structure closer to what we want to express.<br />
+&quot;Print out i, i smaller than 4“</li>
+</ul>
+<p>Hence, the second variant, though functionally identical, is easier to understand, debug, change.</p>
+<section class="slide" data-title="Style can only be recommended"><div class="section-body"><p><em>But:</em> </p>
+<div class="statement"><strong>Style can only be recommended, not enforced!</strong></div>
+</div></section>
+<h2>Designing with Structured Programming Languages</h2>
+<section class="slide" data-title="Designing with Structured Programming Languages"><div class="section-body"><h1>Designing with Structured Programming Languages</h1>
+<pre><code class="C">i = 1
+while ( i &lt; 4 ) {
+	print(i)
+	i = i + 1
+}
+</code></pre>
+<p><strong>Style gets enforced!</strong><br /></p>
+</div></section>
+<p>In the 1960th programming language support for better structuring of code emerged. <code>Goto</code>s were replaced by loops (<code>while</code>) and conditionals (<code>if</code>/<code>else</code>). Furthermore, procedures were introduced to support user-defined abstractions.</p>
+<p>New words, new grammars, new abstractions enable developers to directly express looping/conditional computations, instead of emulating them by jumps. Using a – by then – modern structured programming language, it was no longer possible  to write crossing <code>goto</code>s!</p>
+<section class="slide"><div class="section-body"><h1>Better languages, More challenging tasks…</h1>
+<p>A simple image browser with structured programming:
+<img src="Images/ImageBrowser.png" alt="Image Browser" /></p>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>Code for Image Browser Structured into Procedures</strong></p>
+<div style="font-size:0.7em">
+  <div style="position:absolute;top:100px;left:16px;width:320px;">
+  <pre><code class="C">main () {
+draw_label(“Art Browser”)
+   m = radio_menu(
+      {“Whale”, “Eagle”, 
+       “Dogfish”})
+   q = button_menu({“Quit”})
+   while ( !check_buttons(q) ) {
+      n = check_buttons(m)
+      draw_image(n)
+   }
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:280px;left:16px;width:320px">
+  <pre><code class="C">set_x (x) {
+   current_x = x
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:350px;left:16px;width:320px;">
+  <pre><code class="C">draw_circle (x, y, r) {
+   %%primitive_oval(x, y, 1, r)
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:420px;left:16px;width:320px;">
+  <pre><code class="C">set_y (y) {
+   current_y = y
+}
+  </code></pre></div>
+
+
+  <div style="position:absolute;top:100px;left:352px;width:320px;">
+  <pre><code class="C">radio_menu(labels) {
+   i = 0
+   while (i < labels.size) {
+      radio_button(i)
+      draw_label(labels[i])
+      set_y(get_y()
+         + RADIO_BUTTON_H)
+      i++
+   }
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:280px;left:352px;width:320px;">
+  <pre><code class="C">radio_button (n) {
+   draw_circle(get_x(),
+      get_y(), 3)
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:370px;left:352px;width:320px;">
+  <pre><code class="C">get_x () {
+   return current_x
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:440px;left:352px;width:320px;">
+  <pre><code class="C">get_y () {
+   return current_y
+}
+  </code></pre></div>
+
+
+  <div style="position:absolute;top:100px;left:686px;width:320px;">
+  <pre><code class="C">draw_image (img) {
+   w = img.width
+   h = img.height
+   do (r = 0; r < h; r++)
+      do (c = 0; c < w; c++)
+         WINDOW[r][c] = img[r][c]
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:230px;left:686px;width:320px;">
+  <pre><code class="C">button_menu(labels) {
+   i = 0
+   while (i < labels.size) {
+      draw_label(labels[i])
+      set_y(get_y()
+         + BUTTON_H)
+      i++
+   }
+}
+  </code></pre></div>
+
+  <div style="position:absolute;top:400px;left:686px;width:320px;">
+  <pre><code class="C">draw_label (string) {
+   w = calculate_width(string)
+   print(string, WINDOW_PORT)
+   set_x(get_x() + w)
+}
+  </code></pre></div>
+
+</div>
+<footer><div class="footer-body"><p><strong>Try to identify which method calls which method!</strong></p>
+</div></footer>
+</div></section>
+<p>In this case, the code is structured, but the procedures are not! It is hard, if not nearly impossible, to  maintain or even extend this code.</p>
+<section class="slide"><div class="section-body"><p><strong>Structured Programming with Style</strong></p>
+<div style="font-size:0.65em">
+
+	<div style="position:absolute;top:100px;left:352px;width:320px;">
+		<pre><code class="C">main()
+	</code></pre></div>
+	
+	<div style="position:absolute;top:150px;left:16px;width:320px;">
+	<pre><code class="C">gui_radio_button(n)
+	</code></pre></div>
+
+	<div style="position:absolute;top:190px;left:16px;width:320px;">
+	<pre><code class="C">gui_button_menu(labels)
+	</code></pre></div>
+
+	<div style="position:absolute;top:230px;left:16px;width:320px;">
+	<pre><code class="C">gui_radio_menu(labels)
+	</code></pre></div>
+
+
+	<div style="position:absolute;top:150px;left:352px;width:320px;">
+	<pre><code class="C">graphic_draw_image (img)
+	</code></pre></div>
+
+	<div style="position:absolute;top:190px;left:352px;width:320px;">
+	<pre><code class="C">graphic_draw_circle (x, y, r)
+	</code></pre></div>
+
+	<div style="position:absolute;top:230px;left:352px;width:320px;">
+	<pre><code class="C">graphic_draw_label (string)
+	</code></pre></div>
+
+	<div style="position:absolute;top:150px;left:686px;width:320px;">
+	<pre><code class="C">state_set_y (y)
+	</code></pre></div>
+
+	<div style="position:absolute;top:190px;left:686px;width:320px;">
+	<pre><code class="C">state_get_y ()
+	</code></pre></div>
+
+	<div style="position:absolute;top:230px;left:686px;width:320px;">
+	<pre><code class="C">state_set_x (x)
+	</code></pre></div>
+
+	<div style="position:absolute;top:270px;left:686px;width:320px;">
+	<pre><code class="C">state_get_x ()
+	</code></pre></div>
+
+</div>
+</div></section>
+<p>Group procedures by the functionality they implement and the state they access, e.g. by naming conventions …</p>
+<p>Advantages:</p>
+<ul>
+<li>The code is closer to what we want to express.<br />
+&quot;main calls gui, gui calls graphic to draw, …“</li>
+<li>The code is easier to understand, debug and change.</li>
+</ul>
+<h2>Designing with Modular Programming Languages</h2>
+<section class="slide" data-title="Designing with Modular Programming Languages"><div class="section-body"><h1>Designing with Modular Programming Languages</h1>
+<pre><code class="C">module gui {
+    exports:
+        radio_menu(labels)
+        button_menu(labels)
+        check_buttons(menu)
+}	
+</code></pre>
+</div></section>
+<p>Modular programming introduced modules, higher-level units/modules introduce higher-level abstractions! One can handle a whole module as if it was its interface.
+Programming language mechanisms for supporting information hiding: interface hides module internals.</p>
+<section class="slide" data-title="Module-based Abstraction"><div class="section-body"><h1>Module-based Abstraction</h1>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" style="font-size: 36px; font-family: Courier New;">
+	<defs>
+	   <marker id='head' orient='auto' markerWidth='10' markerHeight='10' refX='0.1' refY='2'>
+	     <path d='M0,0 V4 L2,2 Z' fill='black' />
+	   </marker>
+	</defs> 
+	
+	<rect x="360" y="15" width="305" height="55" fill="rgb(255,255,180)" />
+	<text x="370" y="50" fill="#000066">image_browser</text>
+ 	 
+ 	<rect x="40" y="135" width="475" height="160" fill="rgb(255,255,180)" />
+	<text x="50" y="170" fill="#000066">gui:
+		<tspan x="70" y="205">radio_menu(labels)</tspan>
+		<tspan x="70" y="240">button_menu(labels)</tspan>
+		<tspan x="70" y="275">check_buttons(menu)</tspan>
+	</text>
+ 	
+    	<rect x="640" y="135" width="195" height="55" fill="rgb(255,255,180)" />
+	<text x="650" y="170" fill="#000066">graphics</text>	
+
+ 	<line x2="300" y2="130" x1="475" y1="70" style="stroke:rgb(0,0,100);stroke-width:8"  marker-end="url(#head)" />
+	<line x1="510" y1="70" x2="630" y2="140" style="stroke:rgb(0,0,100);stroke-width:8"  marker-end="url(#head)" />
+	<line x1="515" y1="260" x2="630" y2="185" style="stroke:rgb(0,0,100);stroke-width:8"  marker-end="url(#head)"/>
+</svg>
+</div></section>
+<p>Abstraction enables us to:</p>
+<ul>
+<li>look at the overall structure of the system (architectural thinking).</li>
+<li>zoom in on individual units as needed</li>
+<li>with more or less details</li>
+</ul>
+<p>Hence, abstraction is the key to managing complexity.</p>
+<section class="slide" data-title="Abstraction"><div class="section-body"><div class="statement">Abstraction mechanisms enable us to code and design simultaneously!</div>
+<p><strong>&quot;Write what you mean.&quot;</strong></p>
+<blockquote><p>&quot;The significant problems we face cannot be solved at the same level of thinking we were at when we created them.&quot;</p>
+<p>Einstein</p>
+</blockquote>
+</div></section>
+<ul>
+<li>Makes the code easier to understand, debug and change.</li>
+<li>Allows structured organization of code.</li>
+<li>Ability to ignore details.
+Makes the code closer to what we want to express. </li>
+</ul>
+<section class="slide"><div class="section-body"><p>Let’s “develop” application families with sophisticated GUIs with uniform look and feel with modular programming…</p>
+<p>  <img src="Images/Screenshot-Numbers.png" width="80%" style="position:absolute;top:100px;left:16px"/>
+  <img src="Images/Screenshot-Keynote.png" width="80%" style="position:absolute;top:150px;left:66px"/>
+  <img src="Images/Screenshot-Pages.png" width="80%" style="position:absolute;top:200px;left:116px"/></p>
+<div style="position:absolute;top:300px;width:524px;left:225px;background-color:rgba(255,255,255,.8);padding:25px;font-size:1.25em">Great variability:<br>   
+checkbox button, toolbar button, toggle button, radio button … 
+</div>
+</div></section>
+<p>Modeling variability with modular programming languages appeared complex…</p>
+<h2>Designing with Object-Oriented Programming Languages</h2>
+<section class="slide" data-title="Designing with Object-Oriented Programming Languages"><div class="section-body"><h1>Designing with Object-Oriented Programming Languages</h1>
+<p>Object-oriented programming languages introduce new abstraction mechanisms:</p>
+<ul>
+<li>classes, </li>
+<li>inheritance, </li>
+<li>subtype polymorphism.</li>
+</ul>
+<div class="statement">(Still) Dominating Programming Paradigm</div>
+</div></section>
+<section class="slide"><div class="section-body"><p><strong>The roots of object-oriented programming languages are in the sixties.</strong></p>
+<p>Dahl and Nygaard, Simula 64, 68<br />
+<img src="Images/DahlAndNygaard.jpg" alt="Dahl and Nygaard" /><br /></p>
+<p>Allan Kay, Smalltalk 70 - 80<br />
+<img src="Images/AlanKay.jpg" alt="Alan Kay" /><br /></p>
+</div></section>
+<p>Object-oriented languages are popular because they make it easier to design software and program at the same time.</p>
+<p>They allow us to more directly express high level information about design components abstracting over differences of their variants.</p>
+<p>Make it easier to produce the design, and easier to refine it later.</p>
+<p>With stronger type checking, they also help the process of detecting design errors. </p>
+<p>Result in a more robust design, in essence a better engineered design.</p>
+<section class="slide"><div class="section-body"><blockquote><p>[…] improvements in programming techniques and programming languages in particular are overwhelmingly more important than anything else in the software business […] 
+[…] programmers are interested in design […] when more expressive programming languages become available, software developers will adopt them. </p>
+<p>Jack Reeves,  To Code is to Design, C++ Report 1992</p>
+</blockquote>
+</div></section>
+<h2>Designing with Functional, Object-Oriented Programming Languages</h2>
+<section class="slide" data-title="Designing with Functional, Object-Oriented Programming Languages"><div class="section-body"><h1>Designing with Functional, Object-Oriented Programming Languages</h1>
+<p>By fusing object-oriented and functional programming we are provided with further means to raise our abstraction level. This enables us to better express our intention.</p>
+<p><strong>Example</strong><br />
+Creating an abstraction to express that we want to repeat something n times.</p>
+<pre><code class="scala">def repeat[T: scala.reflect.ClassTag](times: Int)(f: ⇒ T): Array[T] = {
+  val array = new Array[T](times)
+  var i = 0
+  while (i &lt; times) { array(i) = f; i += 1 }
+  array
+}
+</code></pre>
+<p><strong>Usage</strong>
+Now, we can express that we want to read in two values from the command line.</p>
+<pre><code class="scala">val values = repeat(2) { System.in.read() }
+</code></pre>
+</div></section>
+<aside><div class="aside-body"><p>The complete code: <a href="Code/src/pl/scala/Repeat.scala">Repeat.scala</a></p>
+</div></aside>
+<h2>Programming Languages are not a Panacea</h2>
+<section class="slide" data-title="Programming Languages are not a Panacea"><div class="section-body"><h1>Programming Languages are not a Panacea</h1>
+<p>  <img src="Images/java.awt.components.jpg" width="420"></p>
+</div></section>
+<ul>
+<li>Accessibility of object-oriented programming drives more complex designs!</li>
+<li>Programming languages are powerful tools, but cannot and will never guarantee good designs.</li>
+<li>Programming always needs to be done properly to result in good code.</li>
+<li>Human <em>creativity</em> remains the main factor.</li>
+</ul>
+<section class="slide" data-title="The Imperative of Good Style"><div class="section-body"><p><strong>We need good style to cope with complexity!</strong></p>
+<p><img src="Images/Cover-AgileDevelopment.jpg" alt="Cover AgileDevelopment" />
+<img src="Images/Cover-DesignHeuristics.jpg" alt="Cover DesignHeuristics" />
+<img src="Images/Cover-DesignPatterns.jpg" alt="Cover DesignPatterns" />
+<img src="Images/Cover-OOADwithApplications.jpg" alt="Cover OOADwithApplications" />
+<img src="Images/Cover-HeadsFirstDesignPatterns.jpg" alt="Cover HeadsFirstDesignPatterns" />
+<img src="Images/Cover-PatternsOfEAA.jpg" alt="Cover PatternsOfEAA" />
+<img src="Images/Cover-SystemOfPatterns.jpg" alt="Cover SystemOfPatterns" />
+...</p>
+</div></section>
+<p>Help is provided through established practices and techniques, design patterns and principles.</p>
+<p><strong>Good style can only be recommended, not enforced!</strong></p>
+<p>Eventually style rules will have to be turned into language features to be really effective. </p>
+<section class="slide" data-title="General Design Principles"><div class="section-body"><h1>General Design Principles</h1>
+<p>The following principles apply at various abstraction levels:</p>
+<ul>
+<li>Keep it short and simple</li>
+<li>Don&apos;t repeat yourself (also just called &quot;DRY-Principle&quot;)</li>
+<li>High Cohesion</li>
+<li>Low Coupling</li>
+<li>No cyclic dependencies</li>
+<li>Make it testable</li>
+<li>Open-closed Design Principle</li>
+<li>Make it explicit/use Code</li>
+<li>Keep related things together</li>
+<li>Keep simple things simple</li>
+<li>Common-reuse/Common-closure/Reuse-release principles</li>
+</ul>
+</div></section>
+<section class="slide" data-title="Object-Oriented Design Principles"><div class="section-body"><h1>Object-Oriented Design Principles</h1>
+<ul>
+<li>Liskov Substitution Principle</li>
+<li>Responsibility Driven Design</li>
+<li>...</li>
+</ul>
+<h1>Design Constraints</h1>
+<ul>
+<li><strong>Conway&apos;s Law:</strong><br /></li>
+</ul>
+<blockquote><p>A system&apos;s design is constrained by the organization&apos;s communication structure.</p>
+</blockquote>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

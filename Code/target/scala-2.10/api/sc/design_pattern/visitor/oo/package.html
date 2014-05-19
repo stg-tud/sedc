@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>oo - sc.design_pattern.visitor.oo</title>
+          <meta name="description" content="oo - sc.design pattern.visitor.oo" />
+          <meta name="keywords" content="oo sc.design pattern.visitor.oo" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'sc.design_pattern.visitor.oo.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="sc">sc</a>.<a href="../../package.html" class="extype" name="sc.design_pattern">design_pattern</a>.<a href="../package.html" class="extype" name="sc.design_pattern.visitor">visitor</a></p>
+        <h1>oo</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">oo</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="sc.design_pattern.visitor.oo.AddExpressions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AddExpressionsextendsExpressions"></a>
+      <a id="AddExpressions:AddExpressions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="AddExpressions.html"><span class="name">AddExpressions</span></a><span class="result"> extends <a href="Expressions.html" class="extype" name="sc.design_pattern.visitor.oo.Expressions">Expressions</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.visitor.oo.Expressions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ExpressionsextendsAnyRef"></a>
+      <a id="Expressions:Expressions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Expressions.html"><span class="name">Expressions</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.visitor.oo.MultExpressions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="MultExpressionsextendsExpressions"></a>
+      <a id="MultExpressions:MultExpressions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="MultExpressions.html"><span class="name">MultExpressions</span></a><span class="result"> extends <a href="Expressions.html" class="extype" name="sc.design_pattern.visitor.oo.Expressions">Expressions</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.visitor.oo.PostfixNotationForExpressions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PostfixNotationForExpressionsextendsAddExpressionswithMultExpressions"></a>
+      <a id="PostfixNotationForExpressions:PostfixNotationForExpressions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PostfixNotationForExpressions.html"><span class="name">PostfixNotationForExpressions</span></a><span class="result"> extends <a href="AddExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.AddExpressions">AddExpressions</a> with <a href="MultExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.MultExpressions">MultExpressions</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.visitor.oo.PrefixNotationForExpressions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PrefixNotationForExpressionsextendsAddExpressionswithMultExpressions"></a>
+      <a id="PrefixNotationForExpressions:PrefixNotationForExpressions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PrefixNotationForExpressions.html"><span class="name">PrefixNotationForExpressions</span></a><span class="result"> extends <a href="AddExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.AddExpressions">AddExpressions</a> with <a href="MultExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.MultExpressions">MultExpressions</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="sc.design_pattern.visitor.oo.ExpressionsDemoOO" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExpressionsDemoOO"></a>
+      <a id="ExpressionsDemoOO:ExpressionsDemoOO"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExpressionsDemoOO$.html"><span class="name">ExpressionsDemoOO</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.visitor.oo.ExtendedExpressionsFramework" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExtendedExpressionsFramework"></a>
+      <a id="ExtendedExpressionsFramework:ExtendedExpressionsFramework"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExtendedExpressionsFramework$.html"><span class="name">ExtendedExpressionsFramework</span></a><span class="result"> extends <a href="PrefixNotationForExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.PrefixNotationForExpressions">PrefixNotationForExpressions</a> with <a href="PostfixNotationForExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.PostfixNotationForExpressions">PostfixNotationForExpressions</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_pattern.visitor.oo.StandardExpressionsFramework" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StandardExpressionsFramework"></a>
+      <a id="StandardExpressionsFramework:StandardExpressionsFramework"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="StandardExpressionsFramework$.html"><span class="name">StandardExpressionsFramework</span></a><span class="result"> extends <a href="Expressions.html" class="extype" name="sc.design_pattern.visitor.oo.Expressions">Expressions</a> with <a href="AddExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.AddExpressions">AddExpressions</a> with <a href="MultExpressions.html" class="extype" name="sc.design_pattern.visitor.oo.MultExpressions">MultExpressions</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+    </body>
+      </html>

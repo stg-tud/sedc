@@ -1,0 +1,2 @@
+body.ldjs-continuous-layout{background-color:#ffffff;}body.ldjs-continuous-layout section.slide{margin-bottom:1em;}
+@media print{body.ldjs-continuous-layout{margin:0 auto;width:1144px;}body.ldjs-continuous-layout section.slide{border:0;margin:0 60px;width:1004px;page-break-inside:avoid;page-break-before:avoid;page-break-after:always;} body.ldjs-continuous-layout section.slide:last-child{page-break-after:avoid;}}

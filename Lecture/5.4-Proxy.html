@@ -1,0 +1,158 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1389771995000">
+<div id='body-content'>
+<h2>Proxy Design Pattern</h2>
+<h3>Intent</h3>
+<section class="slide" data-title="Intent"><div class="section-body"><h1>Intent</h1>
+<div class="statement">Provide a surrogate or placeholder for another object to control access to it.</div>
+</div></section>
+<p>From the client’s point of view, the proxy behaves just like the actual object.</p>
+<h3>Typical Variations</h3>
+<h4>Virtual Proxies: Placeholders (as in image example).</h4>
+<p><strong>Idea</strong> </p>
+<p>Create expensive objects only on demand.
+Objects associated with a large amount of data in a file or database may only be loaded into memory if the operation on the proxy demands that they are loaded.</p>
+<p><strong>Implementation</strong></p>
+<p>Some subset of operations may be performed without bothering to load the entire object, e.g., return the extent of an image.</p>
+<h4>Smart References: Additional functionality.</h4>
+<p><strong>Idea</strong></p>
+<p>Replace bare pointer and provide additional actions when accessed.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li>Locking / unlocking references to objects used from multiple threads</li>
+<li>Reference counting, e.g., for resource management (garbage collection, observer activities)</li>
+</ul>
+<h4>Remote Proxies: Make distribution transparent.</h4>
+<p><strong>Idea</strong></p>
+<p>Provide a local interface for communicating with objects in a different address space.
+Operations on the proxies are delegated to a remote object and return values are passed through the proxy back to the client.</p>
+<p><strong>Issues</strong></p>
+<p>From the client’s view, the proxy responds just like if the object were local, even though it is actually sending requests over a network.<br />
+(Network failures may be impossible to hide… LSP?)</p>
+<h4>Protection Proxies: Rights management.</h4>
+<p><strong>Idea</strong> </p>
+<p>Verify that the caller has permission to perform the operation.</p>
+<p><strong>Issues</strong> </p>
+<ul>
+<li>Different clients may have different access levels for operating on an object</li>
+<li>Read-only objects may be protected from unauthorized modifications this way </li>
+<li>Exceptions are thrown in such violation cases (LSP?)</li>
+</ul>
+<h3>Structure</h3>
+<section class="slide" data-title="Structure"><div class="section-body"><h1>Structure</h1>
+<p><img src="Images/DP-Proxy-Structure.png" alt="DP Proxy Structure" /></p>
+</div></section>
+<h3>Example</h3>
+<section class="slide" data-title="Example"><div class="section-body"><h1>Example</h1>
+<p>  <img src="Images/DP-Proxy-Document+Structure.png" style="float:right"></p>
+<p>Imagine, you are developing a browser rendering engine. 
+In this case you do not want to handle all elements in a straightforward manner.</p>
+<p>E.g., you immediately want to start laying out the page even if not all images are already completely loaded. However, this should be completely transparent to the layout engine.</p>
+<footer><div class="footer-body"><p>How can I hide the fact that loading the image takes time? <br />
+I don&apos;t want to complicate the editor&apos;s implementation. The optimization shouldn&apos;t impact the rendering and formatting code.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="Lazy Loading of Images"><div class="section-body"><h1>Lazy Loading of Images</h1>
+<p><img src="Images/DP-Proxy-LazyImage-Solution.png" alt="DP Proxy LazyImage Solution" /></p>
+<p>We use another object, an image proxy, that acts as a stand-in for the real image.</p>
+</div></section>
+<p>The Image Proxy</p>
+<ul>
+<li>implements the same interface as the real object.<br />
+Client code is unaware that it doesn&apos;t use the real object.</li>
+<li>instantiates the real object when required, e.g., when the editor asks the proxy to display itself by invoking its <code>draw()</code> operation.<br />
+Keeps a reference to the image after creating it to forward subsequent requests to the image.</li>
+</ul>
+<section class="slide" data-title="Lazy Loading of Images - Solution"><div class="section-body"><h1>Lazy Loading of Images - Solution</h1>
+<p><img src="Images/DP-Proxy-LazyImage-Code-ClassDiagram.png" alt="DP Proxy LazyImage Code ClassDiagram" /></p>
+</div></section>
+<h3>Summary</h3>
+<section class="slide" data-title="Summary"><div class="section-body"><h1>Summary</h1>
+<p>The Proxy Pattern describes how to replace an object with a surrogate object, </p>
+<ul>
+<li>without making clients aware of that fact, </li>
+<li><p>while achieving a benefit of some kind:</p>
+<ul>
+<li>lazy creation,</li>
+<li>resource and/or rights management, or</li>
+<li>distribution transparency.</li>
+</ul>
+</li>
+</ul>
+</div></section>
+<h3>Java&apos;s Dynamic Proxy Class</h3>
+<section class="slide" data-title="Java&apos;s Dynamic Proxy Class"><div class="section-body"><h1>Java&apos;s Dynamic Proxy Class</h1>
+<blockquote><p>A <strong>dynamic proxy class</strong> is a class that implements a list of interfaces specified at runtime such that a method invocation through one of the interfaces on an instance of the class will be encoded and dispatched to another object through a uniform interface. </p>
+<p>A <strong>proxy interface</strong> is such an interface that is implemented by a proxy class.</p>
+<p>A <strong>proxy instance</strong> is an instance of a proxy class.</p>
+</blockquote>
+<p>Proxy classes, as well as instances of them, are created using the static methods of the class <code>java.lang.reflect.Proxy</code>.</p>
+</div></section>
+<section class="slide" data-title="Java&apos;s Dynamic Proxy Class - Example"><div class="section-body"><h1>Java&apos;s Dynamic Proxy Class - Example</h1>
+<pre><code class="Java">public interface Foo { Object bar(Object obj); }
+public class FooImpl implements Foo { Object bar(Object obj) { … } }
+</code></pre>
+<pre><code class="Java">public class DebugProxy implements java.lang.reflect.InvocationHandler {
+  private Object obj;
+
+  public static Object newInstance(Object obj) {
+    return Proxy.newProxyInstance(
+      obj.getClass().getClassLoader(),obj.getClass().getInterfaces(),
+      new DebugProxy(obj));
+   }
+
+  private DebugProxy(Object obj) { this.obj = obj; }
+
+  public Object invoke(Object proxy, Method m, Object[] args) 
+      throws Throwable {
+    System.out.println(&quot;before method &quot; + m.getName());
+    return m.invoke(obj, args);
+  }
+}
+</code></pre>
+<p><strong>Usage</strong>:</p>
+<pre><code class="Java">Foo foo = (Foo) DebugProxy.newInstance(new FooImpl());
+foo.bar(null);
+</code></pre>
+</div></section>
+<h3>Questions</h3>
+<section class="slide" data-title="Questions"><div class="section-body"><h1>Questions</h1>
+<ul>
+<li><p>What is the &quot;major&quot; difference between the Proxy and the Decorator Pattern?<br />
+(Think about the structure <strong>and</strong> the behavior.)</p>
+</li>
+<li><p>Is the Proxy Design Pattern subject to the &quot;fragile base class&quot; problem? </p>
+</li>
+<li><p>In Java, we only have forwarding semantics, but could it be desirable to have delegation semantics, when implementing the proxy pattern?</p>
+</li>
+</ul>
+</div></section>
+<p>Delegation semantics would be desirable for a protection proxy, where the different methods have different protection levels. Without delegation semantics, we need to know the self-call structure of the RealSubject to make sure that we check for sufficient access rights.</p>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

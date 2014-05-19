@@ -1,0 +1,8 @@
+[0m[[0minfo[0m] [0mRunning sc.scala_introduction.calculator.RPNCalculator10 2 3 + 3 4 * - x +[0m
+[0m[[0mdebug[0m] [0mStarting sandboxed run...[0m
+[0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
+[0m[[0mdebug[0m] [0m  Classpath:[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/Documents/Lehre/Vorlesungen WS13-14/SED&C/Bitbucket (GIT)/Code/target/scala-2.10/classes[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.3.jar[0m
+[0m[[0mdebug[0m] [0m	/Users/Michael/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.3.jar[0m
+[0m[[0mdebug[0m] [0mWaiting for thread run-main to exit[0m

@@ -1,0 +1,11 @@
+The following demonstrates how we can modularize optional features into independent traits (modules).
+These features can be freely combined and extended. I.e., it is "easily" possible to add new 
+methods/functions (e.g., id()) or data types (e.g., Garage). Furthermore, we still have strong static
+type safety.
+
+The following code is still not open w.r.t. all types of possible extensions.
+
+It is up to the student to complete the code w.r.t. House and to support extensibility of the 
+CompositeLocation trait.
+
+Author: Michael Eichberg (eichberg@informatik.tu-darmstadt.de)

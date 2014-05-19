@@ -1,0 +1,639 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name=generator content='LectureDoc'>
+	
+	<!-- START [HEADER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/Mousetrap-1.4.4/mousetrap.min.js" type="text/javascript"></script>
+	<script src="Library/Mousetrap-1.4.4/mousetrap-pause.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator.min.js" type="text/javascript"></script>
+	<script src="Library/Gator-0.8/gator-pause.js" type="text/javascript"></script>
+
+	<script src="Library/Timeline-1.0.0/Timeline.js" type="text/javascript"></script>
+	<link href="Library/Timeline-1.0.0/Timeline.css" type="text/css" rel="stylesheet">
+
+    <script src="Library/MultipleChoice-1.0.0/MultipleChoice.js" type="text/javascript"></script>
+    <link href="Library/MultipleChoice-1.0.0/MultipleChoice.css" type="text/css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="Library/highlight.js-7.3.0/styles/default.css">
+	<script src="Library/highlight.js-7.3.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>	
+		
+	<link href="Library/LectureDoc/css/LectureDoc.css" type="text/css" rel="stylesheet">
+	<script src="Library/LectureDoc/LectureDoc.js" type="text/javascript"></script>
+	<!-- END -->
+
+</head><body data-ldjs-last-modified="1384783695000">
+<div id='body-content'>
+<h2>Liskov Substitution Principle (LSP)</h2>
+<p>External resource: <a href="http://www.objectmentor.com/resources/articles/lsp.pdf">The Liskov Substitution Principle: www.objectmentor.com/resources/articles/lsp.pdf</a></p>
+<h3>The Essence of the Liskov Substitution Principle</h3>
+<section class="slide" data-title="Liskov Substitution Principle"><div class="section-body"><h1>Liskov Substitution Principle</h1>
+<div class="statement">Subtypes must be behaviorally substitutable for their base types.</div>
+<p>Barbara Liskov, 1988<br />
+(received the ACM Turing Award)</p>
+</div></section>
+<section class="slide" data-title="The Essence of the Liskov Substitution Principle"><div class="section-body"><blockquote><p>We identified class inheritance and subtype polymorphism as primary mechanisms for supporting the open-closed principle in object-oriented designs. </p>
+</blockquote>
+<hr />
+<p>The Liskov Substitution Principle:</p>
+<ul>
+<li>gives us a way to <strong>characterize good inheritance hierarchies</strong>,<br /></li>
+<li>increases our awareness about traps that will cause us to create hierarchies that do not conform to the open-closed principle.</li>
+</ul>
+</div></section>
+<h3>Substitutability in object-oriented programming languages</h3>
+<section class="slide" data-title="Substitutability in object-oriented programming languages"><div class="section-body"><h1>Substitutability in object-oriented programms</h1>
+<p><img src="Images/LSP-SomeClass.png" alt="LSP SomeClass" /></p>
+<pre><code class="java">void clientMethod(SomeClass sc) {
+  …
+  sc.someMethod();
+  …
+}
+</code></pre>
+</div></section>
+<p>In object-oriented programs, subclasses are substitutable for superclasses in client code: In <code>clientMethod</code>, <code>sc</code> may be an instance of <code>SomeClass</code> or any of its subclasses. <br />
+Hence, if <code>clientMethod</code> works with instances of <code>SomeClass</code>, it does so with instances of any subclass of <code>SomeClass</code>. They provide all methods of <code>SomeClass</code> and eventually more. </p>
+<section class="slide" data-title="LSP by Example"><div class="section-body"><h1>Liskov Substitution Principle by Example</h1>
+<p>Assume, we have implemented a class <code>Rectangle</code> in our system. </p>
+<pre><code class="java">class Rectangle {
+  public void setWidth(int width) {
+    this.width = width;
+  }
+  public void setHeight(int height) {
+    this.height = height;
+  }
+  public void area() {return height * width;}
+  …
+}
+</code></pre>
+<p>Let&apos;s now assume that we want to implement a class <code>Square</code> and want to maximize reuse.</p>
+</div></section>
+<p>Since a square is a rectangle (mathematically speaking), we decided to implement <code>Square</code> as a subclass of <code>Rectangle</code>. </p>
+<p>We override <code>setWidth</code> and <code>setHeight</code> and can reuse the implementation of <code>area</code>.</p>
+<section class="slide"><div class="section-body"><p><strong>Implementing <code>Square</code> as a subclass of <code>Rectangle</code>:</strong></p>
+<pre><code class="java">class Square extends Rectangle {
+  public void setWidth(int width) {
+  	super.setWidth(width);
+  	super.setHeight(width);
+  }
+  public void setHeight(int height) {
+  	super.setWidth(height);
+  	super.setHeight(height);
+  }
+  …
+}
+</code></pre>
+<p>  <img src="Images/LSP-SquareAndRectangle.png" style="position:absolute;top:72px;left:550px"></p>
+<p>With this overriding of <code>setHeight</code> and <code>setWidth</code> – to set both dimensions to the same value – instances of <code>Square</code> remain mathematically valid squares.</p>
+<p>This model is self-consistent!</p>
+<p>We can pass <code>Square</code> wherever <code>Rectangle</code> is expected.</p>
+<footer><div class="footer-body"><p>What do you think of this design?</p>
+</div></footer>
+</div></section>
+<p>A square does comply to the mathematical properties of a rectangle: A square has four edges and only right angles and is therefore a rectangle.</p>
+<p>We can indeed pass <code>Square</code> wherever <code>Rectangle</code> is expected, as far as the Java type system is concerned. </p>
+<p>But, by doing so we may break assumptions that clients of <code>Rectangle</code> make about the “behavior” of a <code>Rectangle</code>.</p>
+<section class="slide"><div class="section-body"><p><strong>A client that works with instances of <code>Rectangle</code>, but breaks when instances of <code>Square</code> are passed to it:</strong></p>
+<pre><code class="java">void clientMethod(Rectangle rec) {
+  rec.setWidth(5);
+  rec.setHeight(4);
+  assert(rec.area() == 20);
+}
+</code></pre>
+<p>  <img src="Images/LSP-SquareAndRectangle.png" style="position:absolute;top:100px;left:550px"></p>
+<p><img src="Images/InTheRain.png" alt="InTheRain" /></p>
+</div></section>
+<p>The <code>clientMethod</code> method makes an assumption that is true for <code>Rectangle</code>: setting the <em>width</em> respectively <em>height</em> has no effect on the other attribute. This assumption does not hold for <code>Square</code>.</p>
+<p>The <code>Rectangle</code>/<code>Square</code> hierarchy violates the Liskov Substitution Principle (LSP)!
+<code>Square</code> is behaviorally not a correct substitution for <code>Rectangle</code>.</p>
+<p>A <code>Square</code> <strong>does not comply with the behavior</strong> of a rectangle: Changing the height/width of a square behaves differently from changing the height/width of a rectangle. Actually, it doesn&apos;t make sense to distinguish between the width and the height of a square.</p>
+<section class="slide" data-title="Software Is All About Behavior"><div class="section-body"><h1>Software Is All About Behavior</h1>
+<div class="statement">Programmers do not define entities that are something, but entities that behave somehow.</div>
+</div></section>
+<section class="slide" data-title="Validity is not Intrinsic"><div class="section-body"><h1>Validity is not Intrinsic</h1>
+<blockquote><p>Inspecting the Square/Rectangle hierarchy in isolation did not show any problems. In fact it even seemed like a self-consistent design.<br />
+We had to inspect the clients to identify problems.</p>
+</blockquote>
+<hr />
+<ul>
+<li><p>A model viewed in isolation can not be meaningfully validated!<br />
+The validity of a model depends on the clients that use it.</p>
+</li>
+<li><p>Hence, the validity of a model must be judged against the possible uses of the model.<br />
+We need to anticipate the assumptions that clients will make about our classes.</p>
+</li>
+</ul>
+</div></section>
+<p>To get a LSP compliant solution, we make <code>Rectangle</code> and <code>Square</code> siblings.
+We introduce the interface <code>Shape</code> to bundle common methods.</p>
+<section class="slide" data-title="Rectangles and Square - LSP Compliant Solution"><div class="section-body"><p><strong>Rectangles and Square - LSP Compliant Solution</strong></p>
+<p><img src="Images/LSP-SquareAndRectangle-LSPCompliant.png" alt="LSP SquareAndRectangle LSPCompliant" /></p>
+</div></section>
+<ul>
+<li>Clients of <code>Shape</code> cannot make any assumptions about the behavior of setter methods.</li>
+<li>When clients want to change properties of the shapes, they have to work with the concrete classes.</li>
+<li>When clients work with the concrete classes, they can make true assumptions about the computation of the area.</li>
+</ul>
+<section class="slide" data-title="LSP and Subtyping Rules"><div class="section-body"><div class="statement">So what does the Liskov Substitution Principle add to the common object-oriented  subtyping rules?</div>
+</div></section>
+<section class="slide"><div class="section-body"><p><img src="Images/LSP-SomeClass.png" alt="LSP SomeClass" /></p>
+<p>It’s not enough that instances of <code>SomeSubclass1</code> and <code>SomeSubclass2</code> provide all methods declared in <code>SomeClass</code>. 
+<strong>These methods should also behave like their heirs.</strong></p>
+<p>A client method should not be able to distinguish the behavior of objects of <code>SomeSubclass1</code> and <code>SomeSubclass2</code> from that of objects of <code>SomeClass</code>.</p>
+<div class="statement">The Liskov Substitution Principle additionally requires behavioral  substitutability. </div>
+</div></section>
+<section class="slide" data-title="Behavioral Subtyping"><div class="section-body"><h1>Behavioral Subtyping</h1>
+<div class="statement"><code>S</code> is a behavioral subtype of <code>T</code>, if objects of type <code>T</code> in a program <code>P</code> may be replaced by objects of type <code>S</code> without altering any of the properties of <code>P</code>.</div>
+</div></section>
+<h3>Liskov Substitution Principle and Open-closed Principle</h3>
+<section class="slide" data-title="The Relation between LSP and OCP"><div class="section-body"><h1>The Relation between LSP and OCP</h1>
+<p>Consider a function <code>f</code> parameterized over type <code>T</code> </p>
+<ul>
+<li><code>S</code> is a derivate of <code>T</code>. </li>
+<li>when passed to <code>f</code> in the guise of objects of type <code>T</code>, objects of type <code>S</code> cause <code>f</code> to misbehave.</li>
+<li><code>S</code> violates the Liskov Substitution Principle. </li>
+</ul>
+<div class="statement"><code>f</code> is fragile in the presence of <code>S</code>; i.e.,	<code>f</code> is not closed against derivations of <code>T</code> anymore.</div>
+</div></section>
+<p>When a developer encounters such code in a real project, the developer of <code>f</code> will most probably put a test to ensure that instances of <code>S</code> are treated properly.</p>
+<section class="slide"><div class="section-body"><div class="statement">Can you think of straightforward examples of violations of the Liskov Substitution Principle?</div>
+</div></section>
+<p>Straightforward examples of violations of the Liskov Substitution Principle.</p>
+<ul>
+<li>Derivates that override a method of the superclass by an empty method.</li>
+<li>Derivates that document that certain methods inherited from the superclass should not be called by clients.</li>
+<li>Derivates that throw additional (unchecked) exceptions.</li>
+<li>…</li>
+</ul>
+<h3>More (Sophisticated) Examples of LSP Violations</h3>
+<p>In the following, we will mention some “obvious means” of introducing LSP violations (also in Java‘s platform classes) and will consider a more sophisticated example.</p>
+<section class="slide" data-title="LSP Violations in the JDK"><div class="section-body"><p><strong>The class Properties inherits from Hashtable</strong></p>
+<p>From the JavaDoc:</p>
+<blockquote><p>Because <code>Properties</code> inherits from <code>Hashtable</code>, the <code>put</code> and <code>putAll</code> methods can be applied to a <code>Properties</code> object. Their use is strongly discouraged as they allow the caller to insert entries whose keys or values are not <code>Strings</code>. The <code>setProperty</code>  method should be used instead. If the store or save method is called on a &quot;compromised&quot; <code>Properties</code> object that contains a non-String key or value, the call will fail.</p>
+</blockquote>
+</div></section>
+<section class="slide" data-title="LSP and Persistent Set"><div class="section-body"><h1>Implementing a Persistent Set</h1>
+<p><strong>Situation:</strong> 
+We have implemented a library of container classes, including the interface <code>Set</code> (e.g. using Java 1.4). We want to extend the library with support for persistent sets.</p>
+<p>A third-party container class capable of persistence, <code>PersistentSet</code>, is available. It accepts objects of type <code>PersistentObject</code>. </p>
+<p><img src="Images/LSP-PersistentSet.png" alt="LSP PersistentSet" /></p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Implementing a Persistent Set</h1>
+<p><img src="Images/LSP-PersistentSetNoSolution.png" alt="LSP PersistentSetNoSolution" /></p>
+<footer><div class="footer-body"><p>Do you see a problem?</p>
+</div></footer>
+</div></section>
+<p>We implement <code>PersistentSetAdapter</code>. It implements <code>Set</code>, refers to an object of the class <code>PersistentSet</code>, <code>ps</code>, and implements <code>Set</code> operations by forwarding to <code>ps</code>.</p>
+<p>Only <code>PersistentObjects</code> can be added to <code>PersistentSet</code>. Yet, nothing in <code>Set</code> states this explicitly.</p>
+<section class="slide"><div class="section-body"><h1>Implementing a Persistent Set</h1>
+<h2>A client that breaks our design</h2>
+<p>A client method:</p>
+<pre><code class="java">public void fill(Set s) {
+  fill-the-set-with-arbitrary-objects
+}
+</code></pre>
+<p>Somewhere else:</p>
+<pre><code class="java">Set s = new PersistentSetAdapter(); // Problem!
+
+fill(s);
+</code></pre>
+</div></section>
+<p>Assessment:<br /></p>
+<ul>
+<li><code>fill</code> has no idea whether the set passed to it is persistent and cannot know that the elements to fill must be of type <code>PersistentObject</code>.</li>
+<li>Adding an arbitrary object causes the cast in <code>PersistentSetAdapter</code> to fail.</li>
+<li>A method that worked fine before <code>PersistentAdpaterSet</code> was introduced (<code>fill</code>) breaks, when we introduce <code>PersistentAdpaterSet</code>.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Implementing a Persistent Set</h1>
+<h2>A Liskov Substitution Principle compliant solution</h2>
+<p><img src="Images/LSP-PersistentSetSolution.png" alt="LSP PersistentSetSolution" /></p>
+</div></section>
+<p>Conclusion:
+<code>PersistentSetAdapter</code> does not have a behavioral IS-A relationship to <code>Set</code>. Hence, we must separate their hierarchies and make them siblings.</p>
+<h3>Mechanisms for Supporting the Liskov Substitution Principle</h3>
+<section class="slide" data-title="Mechanisms that support LSP"><div class="section-body"><div class="statement">What mechanisms can we use to support LSP?</div>
+<p>Recall:</p>
+<blockquote><p>A model viewed in isolation cannot be meaningfully validated with respect to LSP!
+Validity must be judged from the perspective of possible usages of the model. </p>
+</blockquote>
+</div></section>
+<p>Hence, we need to anticipate assumptions that clients make about our models – which is de facto impossible. Most of the times we will only be able to view our model in isolation; we do not know how it will be used and how it will be extended by means of inheritance.</p>
+<p>Trying to anticipate them all might yield needles complexity.</p>
+<h4>Introduction to Design-by-Contract</h4>
+<section class="slide" data-title="Design by Contract"><div class="section-body"><div class="statement">Design by Contract</div>
+<p>Solution to the validation problem: A technique for <strong>explicitly stating what may be assumed</strong>. </p>
+<p>Two main aspects of design-by-contract:</p>
+<ul>
+<li>We can specify <strong>contracts</strong> using Pre-, Post-Conditions and Invariants.<br />
+They must be respected by subclasses and clients can rely on them.</li>
+<li><strong>Contract enforcement</strong> (behavioral subtyping).<br />
+Tools to check the implementation of subclasses against contracts of superclasses. </li>
+</ul>
+</div></section>
+<p>The programmer of a class defines a contract that abstractly specifies the behavior on which clients can rely.</p>
+<p><strong>Pre- and Post-conditions</strong></p>
+<ul>
+<li>Declared for every method of the class.</li>
+<li>Preconditions must be true for the method to execute.</li>
+<li>Post-conditions must be true after the execution of the method.</li>
+</ul>
+<p><strong>Invariants</strong></p>
+<ul>
+<li>Properties that are always true for instances of the class.</li>
+<li>May be broken temporarily during a method execution, but otherwise hold.</li>
+</ul>
+<section class="slide"><div class="section-body"><h1>Contract for <code>Rectangle.setWidth(int)</code></h1>
+<h2>(one possible)</h2>
+<pre><code class="java">public class Rectangle implements Shape {
+  private int width;
+  private int height;
+
+  public void setWidth(int w) {
+    this.width = w;
+  }
+}
+</code></pre>
+<aside data-title="Example Contracts"><div class="aside-body"><ul>
+<li><p><strong>Precondition</strong> for setWidth(int w):	</p>
+<ul>
+<li>w &gt; 0</li>
+</ul>
+</li>
+<li><p><strong>Post-condition</strong> for setWidth(int w):</p>
+<ul>
+<li>width = w </li>
+<li>height unchanged</li>
+</ul>
+</li>
+</ul>
+</div></aside>
+</div></section>
+<section class="slide" data-title="Contract Enforcement"><div class="section-body"><h1>Contract Enforcement</h1>
+<p><strong>Subclasses must conform to the contract of their base class!</strong></p>
+<p>This is called behavioral subtyping.</p>
+<p>It ensures that clients won’t break when instances of subclasses are used in the guise of instances of their heirs!</p>
+<footer><div class="footer-body"><p>What would the subtyping rules look like?</p>
+<p>What does it mean for a subclass to conform to the contract of the base class? </p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="Behavioral Subtyping: Rule for Preconditions"><div class="section-body"><h1>Behavioral Subtyping</h1>
+<h2>Rule for Preconditions</h2>
+<ul>
+<li>Preconditions may be replaced by (<em>equal or) weaker ones</em>. </li>
+<li>Preconditions of a class imply preconditions of its subclasses.</li>
+</ul>
+</div></section>
+<p>Rationale:</p>
+<ul>
+<li>A derived class must not impose more obligations on clients. </li>
+<li>Conditions that clients obey to before executing a method on an object of the base class should suffice to call the same method on instances of subclasses.</li>
+</ul>
+<section class="slide" data-title="Behavioral Subtyping: Rule for Postconditions"><div class="section-body"><h1>Behavioral Subtyping</h1>
+<h2>Rule for Postconditions</h2>
+<ul>
+<li>Postconditions may be replaced by (<em>equal or) stronger ones</em>.</li>
+<li>Postconditions of a class are implied by those of its subclasses.</li>
+</ul>
+</div></section>
+<p>Rationale:</p>
+<ul>
+<li>Properties assumed by clients after executing a method on an object of the base class still hold when the same method is executed on instances of subclasses.</li>
+<li>The guarantees that a method gives to clients can only become stronger.</li>
+</ul>
+<section class="slide" data-title="&quot;Standard&quot; Subtyping"><div class="section-body"><h1>&quot;Standard&quot; Subtyping</h1>
+<p>“Standard” subtyping relies on <em>contra-variance</em> of the argument types and <em>covariance</em> of the return type for enforcing “pre- and post-conditions on signatures”. </p>
+<pre><code>f:		T1  → T2
+f’:		T1’ → T2’ 
+	
+f’ &lt;: f	&lt;=&gt;	T1 &lt;: T1’ and T2’ &lt;: T2  (f&apos; is a subtype of f)
+</code></pre>
+<footer><div class="footer-body"><p>In Java, a method <code>f</code> that has the same name, the same return type and the same number of arguments as a method <code>f</code> defined in a superclass doesn&apos;t override the superclass&apos;s method if one or more argument types are contra-variant.</p>
+</div></footer>
+</div></section>
+<section class="slide" data-title="&quot;Standard&quot; Subtyping in Scala"><div class="section-body"><h1>Scala&apos;s Type Hierarchy</h1>
+<p><img src="Images/LSP-Scala-TypeHierarchy-TopLevelTypes.png" alt="Scala TypeHierarchy TopLevelTypes" /></p>
+</div></section>
+<p>Value classes are supported since Scala 2.10.</p>
+<section class="slide" data-title="&quot;Standard&quot; Subtyping in Scala"><div class="section-body"><h1>Scala&apos;s Type Hierarchy</h1>
+<p><img src="Images/LSP-Scala-TypeHierarchy.png" alt="Scala TypeHierarchy" /></p>
+</div></section>
+<p>When compared to languages such as Java, Scala also has a well-defined least Type, i.e., a type that is the subtype of all other types.</p>
+<section class="slide"><div class="section-body"><h1>&quot;Standard&quot; Subtyping in Scala</h1>
+<pre><code class="scala">val f: (Seq[_]) ⇒ Boolean 
+    = (s) ⇒ { s eq null }
+
+val af1: (Object) ⇒ Boolean 
+    = null // = f ?
+
+val af2: (List[_]) ⇒ Boolean 
+    = null // = f ?
+
+val af3: (Seq[_]) ⇒ Any 
+    = null // = f ?
+
+val af4: (Seq[_]) ⇒ Nothing 
+    = null // = f ?
+</code></pre>
+<footer><div class="footer-body"><p>Is it possible to assign a value of type <code>f</code> to the variable: <code>af1</code>,<code>af2</code>,<code>af3</code> or <code>af4</code>?</p>
+</div></footer>
+<aside data-title="Answers"><div class="aside-body"><p>The answers are: </p>
+<ul>
+<li>1: no</li>
+<li>2: yes</li>
+<li>3: yes</li>
+<li>4: no (A client that can cope with &quot;Nothing&quot; will certainly not be able to cope with Booleans.)</li>
+</ul>
+</div></aside>
+</div></section>
+<pre><code class="scala">(Seq[__]) =&gt; Boolean
+</code></pre>
+<p>describes a type that is a function that takes a sequence of some type and returns a Boolean value. It is the same as the <code>Function1[Seq[__],Boolean]</code>.</p>
+<p>The complete source code: <a href="Code/src/lsp/scala/Demo.scala">Demo.scala</a></p>
+<section class="slide" data-title="Behavioral and Standard Subtyping in OO"><div class="section-body"><h1>Behavioral and Standard Subtyping in OO</h1>
+<p><strong>Behavioral subtyping is a <em>stronger notion</em> than subtyping of functions defined in type theory.</strong></p>
+<p>LSP imposes some standard requirements on signatures that have been adopted in OO languages:</p>
+<ul>
+<li>contra-variance/covariance of method argument/return types.</li>
+<li>no new (checked) exceptions should be thrown by methods of the subtype, except for those exceptions that are subtypes of exceptions thrown by the methods of the super-type.</li>
+</ul>
+<p>In addition, there are a number of conditions that behavioral subtypes must meet concerning values (rather than types) of input and output.</p>
+<p>Behavioral subtyping is undecidable in general.</p>
+</div></section>
+<p>If <code>q</code> is the property &quot;method foo always terminates“ and holds for objects of type <code>T</code>, it&apos;s generally impossible for a program (compiler) to verify that it holds true for some subtype <code>S</code>. </p>
+<p>LSP is useful, however, in reasoning about the design of class hierarchies.</p>
+<aside data-title="A Simple Store"><div class="aside-body"><p>A small example that demonstrates the use of the type <code>Nothing</code>, <em>(Co)Variance Annotations</em> and methods with type parameters.</p>
+<pre><code class="scala">trait Store[+A] {
+
+    def v: A
+    def +[B &gt;: A](b: B): Store[B]
+    def remove: (A, Store[A])
+
+    def contains(a: Any): Boolean
+
+    def isEmpty: Boolean
+}
+
+object EmptyStore extends Store[Nothing] {
+
+    override def v(): Nothing = sys.error(&quot;the store is empty&quot;)
+
+    override def +[B](b: B): Store[B] = new LinkedListStore(b)
+
+    def remove = sys.error(&quot;the store is empty&quot;)
+
+    def contains(b: Any) = false
+
+    val isEmpty = true
+}
+class LinkedListStore[+A](val v: A, val rest: Store[A]) extends Store[A] {
+    def this(v: A) { this(v, EmptyStore) }
+
+    def +[B &gt;: A](b: B): LinkedListStore[B] = new LinkedListStore(b, this)
+    def remove: (A, Store[A]) = (v, rest)
+
+    def isEmpty = false // don&apos;t use a &quot;val&quot; here... this would lead to a new field!
+
+    def contains(a: Any): Boolean = this.v == a || (rest contains a)
+
+}
+
+object Main extends App {
+    val a : Store[Int] = EmptyStore + 1 + 2
+    val b : Store[Any] = a
+    println(b.v)
+}
+</code></pre>
+</div></aside>
+<h4>Languages and Tools for Design-by-Contract (DbC)</h4>
+<section class="slide" data-title="Languages and Tools for Design-by-Contract"><div class="section-body"><h1>Languages and Tools for Design-by-Contract</h1>
+<ul>
+<li>Contracts as comments in code or in documentation.</li>
+<li>Unit-tests as contracts.</li>
+<li>Formalisms and tools for specifying contracts in a declarative way and enforcing them.</li>
+</ul>
+</div></section>
+<p>Contracts as comments are easy and always possible, but not machine checkable. Unit test are machine checkable, but not declarative, possibly cumbersome and need to maintained/updated whenever a new subclass is added. The <a href="http://eiffel.com">Eifel</a> language has built-in support for design-by-contracts (the term was coined by B. Meyer). <a href="http://www.eecs.ucf.edu/~leavens/JML/index.shtml">Java Modeling Language (JML)</a> uses annotations to specify pre-/post-conditions for Java. Recent languages, e.g., IBMs X10, integrate DbC into the type system by means of dependent types (values in type expressions).</p>
+<h5>Java Modeling Language (JML)</h5>
+<section class="slide" data-title="Java Modeling Language"><div class="section-body"><h1>Java Modeling Language</h1>
+<p>A behavioral interface specification language that can be used to specify the behavior of Java modules.</p>
+<pre><code class="java">public class Rectangle implements Shape { 
+	private int width;
+	private int height;
+	
+	/*@
+</code></pre>
+<pre><code class="JML">	  @ requires w &gt; 0;
+	  @ ensures height = \old(height) &amp;&amp; width = w; 
+</code></pre>
+<pre><code class="java">	  @*/
+	public void setWidth(double w)  {
+		this.width = w;
+	} 	
+} 
+</code></pre>
+</div></section>
+<p>In JML, specifications are written as Java annotation comments to the Java program, which hence can be compiled with any Java compiler.</p>
+<p>To process JML specifications several tools exist:</p>
+<ul>
+<li>an assertion-checking compiler (jmlc) which performs runtime verification of assertions, </li>
+<li>a unit testing tool (jmlunit), </li>
+<li>an enhanced version of javadoc (jmldoc) that understands JML specifications and </li>
+<li>an extended static checker (<a href="http://en.wikipedia.org/wiki/ESC/Java">ESC/Java</a>)  a static verification tool that uses JML as its front-end.</li>
+</ul>
+<h4>Contracts in Documentation</h4>
+<section class="slide" data-title="Contracts in Documentation"><div class="section-body"><h1>Contracts in Documentation</h1>
+<div class="statement">One should document any restrictions on how a method may be overridden in subclasses.</div>
+</div></section>
+<section class="slide" data-title="The Method java.lang.Object.equals(Object o)"><div class="section-body"><h1>The Contract of <code>Object.equals(...)</code></h1>
+<p>The documentation consists almost entirely of restrictions on how it may be overridden. </p>
+<article><div class="article-body"><blockquote><p><code>public boolean equals(Object obj)</code></p>
+<p>Indicates whether some other object is &quot;equal to&quot; this one.</p>
+<p>The equals method <strong>implements an equivalence relation</strong> on non-null object references:</p>
+<ul>
+<li>It is reflexive: for any non-null reference value x, x.equals(x) should return true.</li>
+<li>It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.</li>
+<li>It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.</li>
+<li>It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.</li>
+<li>For any non-null reference value x, x.equals(null) should return false.</li>
+</ul>
+<p>The equals method for class Object implements the most discriminating possible equivalence relation on objects...</p>
+</blockquote>
+</div></article>
+</div></section>
+<p>The method <code>equals</code> in Object implements identity-based equality to mean: Each instance of a class is equal only to itself. Java classes may override it to implement logical equality. This method is a real “hot spot” and it is overridden frequently. Violations of the restrictions may have dire consequences and it can be very difficult to pin down the source of the failure. Many classes, <em>including all collection classes</em>, depend on the objects passed to them obeying the equals contract.</p>
+<section class="slide" data-title="The Contract of Object.equals(Object o)"><div class="section-body"><h1>The Contract of <code>Object.equals(...)</code></h1>
+<p>  <img src="Images/EffectiveJava.png" style="float:right;margin-left:1.5em;margin-right:1.5em"></p>
+<p>In the following, we will discuss two restrictions on overriding equals from chapter 3 of the <a href="http://java.sun.com/developer/Books/effectivejava/Chapter3.pdf">book</a>.</p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>Example Implementation of <code>Object.equals(Object o)</code></h1>
+<pre><code class="java">/** 
+* Case-insensitive string. Case of the original string is 
+* preserved by toString, but ignored in comparisons. 
+*/ 
+public final class CaseInsensitiveString { 
+   private String s; 
+   public CaseInsensitiveString(String s) { 
+        if (s == null) throw new NullPointerException(); 
+        this.s = s; 
+   } 
+  
+   public boolean equals(Object o) { 
+      if (o instanceof CaseInsensitiveString) 
+         return s.equalsIgnoreCase(((CaseInsensitiveString)o).s); 
+      if (o instanceof String)  
+         return s.equalsIgnoreCase((String)o); 
+      return false; 
+   } 
+...// Remainder omitted 
+}  
+</code></pre>
+<footer><div class="footer-body"><p>What do you think?</p>
+</div></footer>
+</div></section>
+<p>This implementation violates the defined contract. The requirement that the implementation has to be symmetric is violated:</p>
+<pre><code class="java">s1 = new CaseInsensitiveString(&quot;Hello&quot;);
+s2 = &quot;hello&quot;; 
+s1.equals(s2) == true;
+s2.equals(s1) == false; 
+</code></pre>
+<section class="slide"><div class="section-body"><h1>Example Usage of CaseInsensitiveString</h1>
+<pre><code class="java">CaseInsensitiveString cis = new CaseInsensitiveString(&quot;Polish&quot;); 
+List list = new ArrayList(); 
+list.add(cis);
+
+return list.contains(&quot;polish&quot;); // true or false ?
+</code></pre>
+</div></section>
+<p>Nobody knows what `list.contains(s) would return. The result may vary from one Java implementation to another. The result changes when we check the equality of the parameter against the element or vice versa!</p>
+<section class="slide"><div class="section-body"><div class="statement">Once you have violated <code>equals</code>&apos;s contract, you simply don’t know how other objects will behave when confronted with your object.</div>
+</div></section>
+<section class="slide"><div class="section-body"><h1>The Implementation of <code>java.net.URL.equals</code></h1>
+<article><div class="article-body"><blockquote><p><code>public boolean equals(Object obj)</code></p>
+<p>Compares this URL for equality with another object.</p>
+<p>If the given object is not a URL then this method immediately returns false.</p>
+<p>Two URL objects are equal if they have the same protocol, reference equivalent hosts, have the same port number on the host, and the same file and fragment of the file.</p>
+<p>Two hosts are considered equivalent if both host names can be resolved into the same IP addresses; else if either host name can&apos;t be resolved, the host names must be equal without regard to case; or both host names equal to null.</p>
+<p>Since hosts comparison requires name resolution, this operation is a blocking operation.</p>
+<p>…</p>
+</blockquote>
+</div></article>
+<footer><div class="footer-body"><p>What do you think?</p>
+</div></footer>
+</div></section>
+<p>Assessment:</p>
+<ul>
+<li><code>java.net.URL</code>’s <code>equals</code> method violates the consistent part of equals contract.</li>
+<li>The implementation of that method relies on the IP addresses of the hosts in URLs being compared. </li>
+<li>Translating a host name to an IP address can require network access, and it isn’t guaranteed to yield the same results over time. </li>
+<li>This can cause the URL equals method to violate the equals contract, and it has caused problems in practice.<br />
+(Unfortunately, this behavior cannot be changed due to compatibility requirements.)</li>
+</ul>
+<aside><div class="aside-body"><p>Later on the problems with the implementation were documented:</p>
+<blockquote><p>Note: The defined behavior for equals is known to be inconsistent with virtual hosting in HTTP.</p>
+</blockquote>
+</div></aside>
+<section class="slide" data-title="Enforcing Documented Contracts"><div class="section-body"><h1>Enforcing Documented Contracts</h1>
+<ul>
+<li>Maybe hard when done manually …</li>
+<li>May require very powerful tooling (theorem proving) …<br /></li>
+<li>Is un-decidable in general.</li>
+</ul>
+</div></section>
+<section class="slide" data-title="The Imperative of Documenting Contracts"><div class="section-body"><h1>The Imperative of Documenting Contracts</h1>
+<div class="statement">It is necessary to carefully and precisely document methods that may be overridden because one cannot deduce the intended specification from the code. </div>
+<p><strong>Example:</strong></p>
+<pre><code class="java">package java.lang;
+class Object {
+  public boolean equals(Object ob ) { return this == ob; }
+}
+</code></pre>
+<p>(Recall <code>equals</code>&apos;s contract!)</p>
+</div></section>
+<section class="slide"><div class="section-body"><h1>The Imperative of Documenting Contracts</h1>
+<div class="statement">RFC (Request for Comments) 2119 defines keywords - may, should, must, etc. – which can be used to express so-called „subclassing directives“. </div>
+<p><strong>Example:</strong></p>
+<pre><code class="java">/** 
+ * Subclasses should override... 
+ * Subclasses may call super...
+ * New implementation should call addPage...
+ */ 
+ public void addPages() {...}
+</code></pre>
+</div></section>
+<section class="story"><div class="section-body"><p>Contracts can also be regarded as a way of recording details of method responsibilities.</p>
+<p>Writing contracts...</p>
+<p><strong>… helps to avoid constantly checking arguments.</strong><br /></p>
+<p>(E.g. consider the complexity of checking that a given array is sorted (precondition) vs. finding a value in a sorted array (functionality of a method)).</p>
+<p><strong>… helps to determine who is responsible:</strong></p>
+<pre><code class="java">/*@ requires x &gt;= 0.0; 
+  @ ensures JMLDouble.approximatelyEqualTo(x, 
+  @               \result * \result, eps); 
+  @*/ 
+public static double sqrt(doublex) {…} 
+</code></pre>
+<p>Here, the client has the obligation to pass a non-negative number and can expect to get an approximation of the square root. The implementor has the obligation to compute and return square roots. It can assume that the argument is non-negative.</p>
+</div></section>
+<section class="slide" data-title="On the Quality of the Documentation"><div class="section-body"><h1>On the Quality of the Documentation</h1>
+<div class="statement">When documenting methods that may be overridden, one must be careful to document the method in a way that will <strong>make sense for all potential overrides</strong> of the function.</div>
+</div></section>
+<p>Investigations we have done with documentations of stable, intensively used frameworks in the context of the <a href="http://www.eclipse.org/recommenders/">CodeRecommenders</a> project show that often there is a discrepancy between documentation and the actual overriding. Two possible reasons: </p>
+<ul>
+<li>outdated documentation, </li>
+<li>framework designer cannot foresee all possible extension/usage scenarios.</li>
+</ul>
+<section class="slide excursion" data-title="Generating API Documentation with JAutoDoc"><div class="section-body"><h1>Generating API Documentation with JAutoDoc</h1>
+<p>The complete documentation was auto-generated.</p>
+<pre><code class="java">/**
+ * The number of questions.
+ */
+private int numberOfQuestions;
+
+
+/**
+ * Sets the number of questions.
+ * 
+ * @param numberOfQuestions the number of questions
+ * @throws IllegalArgumentException the illegal argument exception
+ */
+public void setNumberOfQuestions(int numberOfQuestions) 
+      throws IllegalArgumentException {
+    if (numberOfQuestions &lt; 0) {
+        throw new IllegalArgumentException(&quot;numberOfQuestions &lt; 0&quot;);
+    }
+    this.numberOfQuestions = numberOfQuestions;
+}
+</code></pre>
+<aside data-title="What People Say About JAutoDoc"><div class="aside-body"><h1>What People Say About JAutoDoc</h1>
+<ul>
+<li>User: Anonymous (2009-08-02 11:32:37)<br />
+Rating: 9	
+Wow exactly what I needed!</li>
+<li>User: Anonymous (2009-02-13 19:58:32)<br />
+Rating: 9	
+Thank you... this plugin rocks!</li>
+<li>User: Anonymous (2009-02-13 19:58:32)<br />
+Rating: 9<br />
+<strong>Works perfectly. Smarter than I expected!</strong></li>
+</ul>
+</div></aside>
+</div></section>
+<h3>Takeaway</h3>
+<section class="slide" data-title="Takeaway"><div class="section-body"><h1>Takeaway</h1>
+<div class="statement">Subtypes must be behaviorally substitutable for their base types.</div>
+<ul>
+<li><p><strong>Behavioral subtyping extends “standard” OO subtyping.</strong><br />
+Additionally ensures that assumptions of clients about the behavior of a base class are not broken by subclasses.</p>
+</li>
+<li><p><strong>Behavioral subtyping helps with supporting OCP.</strong><br />
+Only behavioral subclassing (subtyping) truly supports open-closed designs.<br /></p>
+</li>
+<li><p><strong>Design-by-Contract is a technique for supporting LSP.</strong>  <br />
+Makes the contract of a class to be assumed by the clients and respected by subclasses explicit (and checkable).</p>
+</li>
+</ul>
+</div></section>
+</div>
+	<!-- START [FOOTER] - Automatically inserted by LectureDoc in generated HTML files.  -->	
+	<script src="Library/LectureDoc/LectureDoc-Help.js" type="text/javascript"></script>
+
+	<!-- END -->
+
+</body></html>

@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>alt - sc.design_principle.single_responsibility.alt</title>
+          <meta name="description" content="alt - sc.design principle.single responsibility.alt" />
+          <meta name="keywords" content="alt sc.design principle.single responsibility.alt" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'sc.design_principle.single_responsibility.alt.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="sc">sc</a>.<a href="../../package.html" class="extype" name="sc.design_principle">design_principle</a>.<a href="../package.html" class="extype" name="sc.design_principle.single_responsibility">single_responsibility</a></p>
+        <h1>alt</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">alt</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="sc.design_principle.single_responsibility.alt.CompositeLightLocation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CompositeLightLocation[L&lt;:sc.design_principle.single_responsibility.alt.LightLocation]extendsCompositeLocation[L]"></a>
+      <a id="CompositeLightLocation[L&lt;:LightLocation]:CompositeLightLocation[L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CompositeLightLocation.html"><span class="name">CompositeLightLocation</span></a><span class="tparams">[<span name="L">L &lt;: <a href="LightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.LightLocation">LightLocation</a></span>]</span><span class="result"> extends <a href="CompositeLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLocation">CompositeLocation</a>[<span class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLightLocation.L">L</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.CompositeLocation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CompositeLocation[L&lt;:sc.design_principle.single_responsibility.alt.Location]extendsLocation"></a>
+      <a id="CompositeLocation[L&lt;:Location]:CompositeLocation[L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CompositeLocation.html"><span class="name">CompositeLocation</span></a><span class="tparams">[<span name="L">L &lt;: <a href="Location.html" class="extype" name="sc.design_principle.single_responsibility.alt.Location">Location</a></span>]</span><span class="result"> extends <a href="Location.html" class="extype" name="sc.design_principle.single_responsibility.alt.Location">Location</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.CompositeShutterLightLocation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CompositeShutterLightLocation[L&lt;:sc.design_principle.single_responsibility.alt.ShutterLocationwithsc.design_principle.single_responsibility.alt.LightLocation]extendsCompositeLightLocation[L]withCompositeShutterLocation[L]"></a>
+      <a id="CompositeShutterLightLocation[L&lt;:ShutterLocationwithLightLocation]:CompositeShutterLightLocation[L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CompositeShutterLightLocation.html"><span class="name">CompositeShutterLightLocation</span></a><span class="tparams">[<span name="L">L &lt;: <a href="ShutterLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterLocation">ShutterLocation</a> with <a href="LightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.LightLocation">LightLocation</a></span>]</span><span class="result"> extends <a href="CompositeLightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLightLocation">CompositeLightLocation</a>[<span class="extype" name="sc.design_principle.single_responsibility.alt.CompositeShutterLightLocation.L">L</span>] with <a href="CompositeShutterLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeShutterLocation">CompositeShutterLocation</a>[<span class="extype" name="sc.design_principle.single_responsibility.alt.CompositeShutterLightLocation.L">L</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.CompositeShutterLocation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CompositeShutterLocation[L&lt;:sc.design_principle.single_responsibility.alt.ShutterLocation]extendsCompositeLocation[L]"></a>
+      <a id="CompositeShutterLocation[L&lt;:ShutterLocation]:CompositeShutterLocation[L]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CompositeShutterLocation.html"><span class="name">CompositeShutterLocation</span></a><span class="tparams">[<span name="L">L &lt;: <a href="ShutterLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterLocation">ShutterLocation</a></span>]</span><span class="result"> extends <a href="CompositeLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLocation">CompositeLocation</a>[<span class="extype" name="sc.design_principle.single_responsibility.alt.CompositeShutterLocation.L">L</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.Floor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FloorextendsCompositeLocation[sc.design_principle.single_responsibility.alt.Room]withFloorT[sc.design_principle.single_responsibility.alt.Room]"></a>
+      <a id="Floor:Floor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Floor.html"><span class="name">Floor</span></a><span class="result"> extends <a href="CompositeLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLocation">CompositeLocation</a>[<a href="Room.html" class="extype" name="sc.design_principle.single_responsibility.alt.Room">Room</a>] with <a href="FloorT.html" class="extype" name="sc.design_principle.single_responsibility.alt.FloorT">FloorT</a>[<a href="Room.html" class="extype" name="sc.design_principle.single_responsibility.alt.Room">Room</a>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.FloorT" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FloorT[T&lt;:sc.design_principle.single_responsibility.alt.Room]extendsCompositeLocation[T]"></a>
+      <a id="FloorT[T&lt;:Room]:FloorT[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FloorT.html"><span class="name">FloorT</span></a><span class="tparams">[<span name="T">T &lt;: <a href="Room.html" class="extype" name="sc.design_principle.single_responsibility.alt.Room">Room</a></span>]</span><span class="result"> extends <a href="CompositeLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLocation">CompositeLocation</a>[<span class="extype" name="sc.design_principle.single_responsibility.alt.FloorT.T">T</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.House" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HouseextendsCompositeLocation[sc.design_principle.single_responsibility.alt.Floor]"></a>
+      <a id="House:House"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="House.html"><span class="name">House</span></a><span class="result"> extends <a href="CompositeLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLocation">CompositeLocation</a>[<a href="Floor.html" class="extype" name="sc.design_principle.single_responsibility.alt.Floor">Floor</a>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.LightFloor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LightFloorextendsFloorT[sc.design_principle.single_responsibility.alt.LightRoom]withCompositeLightLocation[sc.design_principle.single_responsibility.alt.LightRoom]"></a>
+      <a id="LightFloor:LightFloor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LightFloor.html"><span class="name">LightFloor</span></a><span class="result"> extends <a href="FloorT.html" class="extype" name="sc.design_principle.single_responsibility.alt.FloorT">FloorT</a>[<a href="LightRoom.html" class="extype" name="sc.design_principle.single_responsibility.alt.LightRoom">LightRoom</a>] with <a href="CompositeLightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeLightLocation">CompositeLightLocation</a>[<a href="LightRoom.html" class="extype" name="sc.design_principle.single_responsibility.alt.LightRoom">LightRoom</a>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.LightLocation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightLocationextendsLocation"></a>
+      <a id="LightLocation:LightLocation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LightLocation.html"><span class="name">LightLocation</span></a><span class="result"> extends <a href="Location.html" class="extype" name="sc.design_principle.single_responsibility.alt.Location">Location</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.LightRoom" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LightRoomextendsRoomwithLightLocation"></a>
+      <a id="LightRoom:LightRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LightRoom.html"><span class="name">LightRoom</span></a><span class="result"> extends <a href="Room.html" class="extype" name="sc.design_principle.single_responsibility.alt.Room">Room</a> with <a href="LightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.LightLocation">LightLocation</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.Location" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LocationextendsAnyRef"></a>
+      <a id="Location:Location"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Location.html"><span class="name">Location</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.Room" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RoomextendsLocation"></a>
+      <a id="Room:Room"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Room.html"><span class="name">Room</span></a><span class="result"> extends <a href="Location.html" class="extype" name="sc.design_principle.single_responsibility.alt.Location">Location</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.ShutterFloor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ShutterFloorextendsFloorT[sc.design_principle.single_responsibility.alt.ShutterRoom]withCompositeShutterLocation[sc.design_principle.single_responsibility.alt.ShutterRoom]"></a>
+      <a id="ShutterFloor:ShutterFloor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ShutterFloor.html"><span class="name">ShutterFloor</span></a><span class="result"> extends <a href="FloorT.html" class="extype" name="sc.design_principle.single_responsibility.alt.FloorT">FloorT</a>[<a href="ShutterRoom.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterRoom">ShutterRoom</a>] with <a href="CompositeShutterLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeShutterLocation">CompositeShutterLocation</a>[<a href="ShutterRoom.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterRoom">ShutterRoom</a>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.ShutterLightFloor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ShutterLightFloorextendsFloorT[sc.design_principle.single_responsibility.alt.ShutterLightRoom]withCompositeShutterLightLocation[sc.design_principle.single_responsibility.alt.ShutterLightRoom]"></a>
+      <a id="ShutterLightFloor:ShutterLightFloor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ShutterLightFloor.html"><span class="name">ShutterLightFloor</span></a><span class="result"> extends <a href="FloorT.html" class="extype" name="sc.design_principle.single_responsibility.alt.FloorT">FloorT</a>[<a href="ShutterLightRoom.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterLightRoom">ShutterLightRoom</a>] with <a href="CompositeShutterLightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.CompositeShutterLightLocation">CompositeShutterLightLocation</a>[<a href="ShutterLightRoom.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterLightRoom">ShutterLightRoom</a>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.ShutterLightRoom" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ShutterLightRoomextendsRoomwithShutterLocationwithLightLocation"></a>
+      <a id="ShutterLightRoom:ShutterLightRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ShutterLightRoom.html"><span class="name">ShutterLightRoom</span></a><span class="result"> extends <a href="Room.html" class="extype" name="sc.design_principle.single_responsibility.alt.Room">Room</a> with <a href="ShutterLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterLocation">ShutterLocation</a> with <a href="LightLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.LightLocation">LightLocation</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.ShutterLocation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ShutterLocationextendsLocation"></a>
+      <a id="ShutterLocation:ShutterLocation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ShutterLocation.html"><span class="name">ShutterLocation</span></a><span class="result"> extends <a href="Location.html" class="extype" name="sc.design_principle.single_responsibility.alt.Location">Location</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="sc.design_principle.single_responsibility.alt.ShutterRoom" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ShutterRoomextendsRoomwithShutterLocation"></a>
+      <a id="ShutterRoom:ShutterRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ShutterRoom.html"><span class="name">ShutterRoom</span></a><span class="result"> extends <a href="Room.html" class="extype" name="sc.design_principle.single_responsibility.alt.Room">Room</a> with <a href="ShutterLocation.html" class="extype" name="sc.design_principle.single_responsibility.alt.ShutterLocation">ShutterLocation</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="sc.design_principle.single_responsibility.alt.Main" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Main"></a>
+      <a id="Main:Main"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Main$.html"><span class="name">Main</span></a><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+    </body>
+      </html>
