@@ -1,5 +1,5 @@
 +~header
-Software Engineering <img src="Images/STG-logo.jpg" title="Software Technology Group" style="float:right">
+Software Engineering <img src="Images/STG-Logo.jpg" title="Software Technology Group" style="float:right">
 ===
 Design & Construction
 ---
