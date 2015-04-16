@@ -14,5 +14,6 @@ Technische Universtität Darmstadt
 **Material**
 
 [0-Organization.pdf](0-Organization.pdf)  
+[0-TestYourJava.pdf](0-TestYourJava.pdf)  
 [1-Introduction-General.pdf](1-Introduction-General.pdf)
 
