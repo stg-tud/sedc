@@ -1,9 +1,9 @@
 Software Engineering Design & Construction
-===
+==
 Dr. Michael Eichberg  
 Software Technology Group  
 Technische Universtität Darmstadt  
-====
+===
 **Summer Semester 2015**
 
 **Forum**
@@ -17,3 +17,9 @@ Technische Universtität Darmstadt
 [0-TestYourJava.pdf](0-TestYourJava.pdf)  
 [1-Introduction-General.pdf](1-Introduction-General.pdf)
 
+
+**Excercises**
+
+***ex00***
+[Organization](Exercises/ex00/orga.pdf)
+[Scala Introduction](Exercises/ex00/scala.pdf)
