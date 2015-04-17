@@ -2,7 +2,7 @@ Software Engineering Design & Construction
 ==
 Dr. Michael Eichberg  
 Software Technology Group  
-Technische Universtität Darmstadt  
+Technische Universität Darmstadt  
 ===
 
 **Summer Semester 2015**
