@@ -16,7 +16,7 @@ Technische Universität Darmstadt
 
 April 16th, 2015 - [0-Organization.pdf](0-Organization.pdf)  
 April 16th, 2015 - [0-TestYourJava.pdf](0-TestYourJava.pdf)  
-April 16th, 2015 - [1-Introduction-General.pdf](1-Introduction-General.pdf)  
+April 16th, 2015 - [1-Introduction-General.pdf](1-Introduction-General.pdf) (**Updated: Fixed a typo on April 23rd, 2015**)   
 April 23rd, 2015 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf)  
 April 23rd, 2015 - [3-CDP.pdf](3-CDP.pdf)  
 April 23rd, 2015 - [3.1-SRP.pdf](3.1-SRP.pdf)  
