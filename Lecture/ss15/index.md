@@ -1,5 +1,5 @@
 Software Engineering Design & Construction
-==
+===
 Dr. Michael Eichberg  
 Software Technology Group  
 Technische Universität Darmstadt  
@@ -25,10 +25,18 @@ Technische Universität Darmstadt
  * April 23rd, 2015  
   [3-CDP.pdf](3-CDP.pdf)  
   [3-CDP-2on1.pdf](3-CDP-2on1.pdf)  
- * April 23rd, 2015  
+ * April 30th, 2015  
   [3.1-SRP.pdf](3.1-SRP.pdf)  
   [3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)  
-
+ * April 30th, 2015  
+  [3.2-ISP.pdf](3.2-ISP.pdf)  
+  [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)  
+ * April 30th, 2015  
+  [3.3-OCP.pdf](3.3-OCP.pdf)  
+  [3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)  
+ * April 30th, 2015  
+  [3.4-DIP.pdf](3.4-DIP.pdf)  
+  [3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)  
 
 ##Excercises
 
