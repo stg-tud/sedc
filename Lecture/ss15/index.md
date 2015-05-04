@@ -19,10 +19,10 @@ Technische Universität Darmstadt
  * April 16th, 2015  
   [1-Introduction-General.pdf](1-Introduction-General.pdf) (**Updated: Fixed a typo on April 23rd, 2015**)   
   [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf) (**Updated: Fixed a typo on April 23rd, 2015**)   
- * April 23rd, 2015  
+ * April 30th, 2015  
   [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf)  
   [2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf)
- * April 23rd, 2015  
+ * April 30th, 2015  
   [3-CDP.pdf](3-CDP.pdf)  
   [3-CDP-2on1.pdf](3-CDP-2on1.pdf)  
  * April 30th, 2015  
@@ -31,12 +31,18 @@ Technische Universität Darmstadt
  * April 30th, 2015  
   [3.2-ISP.pdf](3.2-ISP.pdf)  
   [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)  
- * April 30th, 2015  
+ * May 7th, 2015  
   [3.3-OCP.pdf](3.3-OCP.pdf)  
   [3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)  
- * April 30th, 2015  
+ * May 7th, 2015  
   [3.4-DIP.pdf](3.4-DIP.pdf)  
   [3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)  
+ * May 7th, 2015  
+  [3.5-LSP.pdf](3.5-LSP.pdf)  
+  [3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf) 
+ * May 7th, 2015   
+  [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf)  
+  [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf) 
 
 ##Excercises
 
