@@ -1,6 +1,3 @@
 package one
 
-case class CaseClasses(private[one] var n: String) {
-
-}
-
+case class CaseClasses(private[one] var n: String)
