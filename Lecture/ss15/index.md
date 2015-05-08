@@ -55,4 +55,4 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
 
 April 17th, 2015 - [Organization](Exercises/ex00/orga.pdf)  
 April 17th, 2015 - [Scala Introduction](Exercises/ex00/scala.pdf)  
-April 24th, 2015 - [Exercise 01](Exercises/ex01/ex01.pdf) - [Slides](Exercises/ex01/ex01slides.pdf) - [Project](Exercises/ex01/ex01.zip)
+April 24th, 2015 - [Exercise 01](Exercises/ex01/ex01.pdf) - [Slides](Exercises/ex01/ex01slides.pdf) - [Project](Exercises/ex01/ex01.zip) - [Reference Implementation](Exercises/ex01/ex01_solution.zip)
