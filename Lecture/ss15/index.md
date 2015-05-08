@@ -11,6 +11,14 @@ Technische Universität Darmstadt
 
 [Software Engineering Design & Construction](https://www.fachschaft.informatik.tu-darmstadt.de/forum//viewforum.php?f=234)
 
+###Office Hours
+* **Monday 11:00** (Semen Vishniakov)
+* **Tuesday 10:30** (Semen Vishniakov)
+* **Thursday 11:00** (Jan Giese)
+* **Thursday 12:10** (Jan Giese)
+
+All office hours will be in the **C-Pool (C005)** and be 1 hour in duration.
+Please make sure to arrive at the beginning of the time slot, as tutors might leave towards the end.
 
 ##Material##
 
