@@ -1,5 +1,6 @@
 package one;
 
+
 public class TestYourJava1 {
 
   public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class TestYourJava1 {
     System.out.println(o == null);
     System.out.println(o instanceof String);
     System.out.println(o instanceof Double);
+
   }
 
   @SuppressWarnings("unchecked")
