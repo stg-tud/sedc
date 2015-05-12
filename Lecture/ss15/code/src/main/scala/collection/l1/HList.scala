@@ -12,6 +12,8 @@ sealed trait HList[+E] {
     def isEmpty: Boolean
 
     def foreach(f: E ⇒ Unit)
+
+    def sum(implicit evidence: E <:< Int): Int
 }
 
 case class HCons[E, H <: E, T <: HList[E]](head: H, tail: T) extends HList[E] {
@@ -22,6 +24,8 @@ case class HCons[E, H <: E, T <: HList[E]](head: H, tail: T) extends HList[E] {
         HCons[X, B, HCons[E, H, T]](e, this)
 
     def foreach(f: E ⇒ Unit): Unit = { f(head); tail.foreach { f } }
+
+    def sum(implicit evidence: E <:< Int) = head + tail.sum
 }
 
 final case object Empty extends HList[Nothing] {
@@ -35,6 +39,8 @@ final case object Empty extends HList[Nothing] {
     def ::[B](e: B): HCons[B, B, this.type] = HCons(e, this)
 
     def foreach(f: Nothing ⇒ Unit): Unit = { /*Nothing to do.*/ }
+
+    def sum(implicit evidence: Nothing <:< Int) = 0
 }
 
 object Demo extends App {
@@ -42,6 +48,8 @@ object Demo extends App {
     type ::[E, H <: E, T <: HList[E]] = HCons[E, H, T]
     val :: = HCons
     type Empty = Empty.type
+
+    println((12 :: 182 :: Empty).sum)
 
     val ln = 12l :: 42 :: Empty
     ln.foreach { v ⇒ v.toString() }
