@@ -2,10 +2,6 @@ package collection.l0
 
 sealed trait HList {
 
-    def head: Any
-
-    def tail: HList
-
     def isEmpty: Boolean
 
 }
@@ -19,10 +15,6 @@ case class HCons[H, T <: HList](head: H, tail: T) extends HList {
 }
 
 final case object Empty extends HList {
-
-    def head = throw new UnsupportedOperationException
-
-    def tail = throw new UnsupportedOperationException
 
     def isEmpty = true
 
