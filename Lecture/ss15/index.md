@@ -50,11 +50,14 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * May 7th, 2015   
   [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf)  
   [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf) 
+ * May 15th, 2015   
+  [4-Inheritance.pdf](4-Inheritance.pdf)  
+  [4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf) 
 
 ##Excercises
 
 April 17th, 2015 - [Organization](Exercises/ex00/orga.pdf)  
 April 17th, 2015 - [Scala Introduction](Exercises/ex00/scala.pdf)  
 April 24th, 2015 - [Exercise 01](Exercises/ex01/ex01.pdf) - [Slides](Exercises/ex01/ex01slides.pdf) - [Project](Exercises/ex01/ex01.zip) - [Reference Implementation](Exercises/ex01/ex01_solution.zip)  
-May 8th, 2015 - [Exercise 02](Exercises/ex02/ex02.pdf) - [Project](Exercises/ex02/ex02.zip) - [Reference Implementation](Exercises/ex02/ex02_solution.zip)
+May 8th, 2015 - [Exercise 02](Exercises/ex02/ex02.pdf) - [Project](Exercises/ex02/ex02.zip) - [Reference Implementation](Exercises/ex02/ex02_solution.zip)  
 May 15th, 2015 - [Exercise 03](Exercises/ex03/ex03.pdf) - [Project](Exercises/ex03/ex03.zip)  
