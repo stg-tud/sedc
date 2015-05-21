@@ -50,7 +50,7 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * May 7th, 2015   
   [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf)  
   [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf) 
- * May 15th, 2015   
+ * May 21th, 2015   
   [4-Inheritance.pdf](4-Inheritance.pdf)  
   [4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf) 
 
