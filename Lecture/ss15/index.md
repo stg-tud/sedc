@@ -37,7 +37,9 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * June 12th, 2015: [5-RP2.pdf](5-RP2.pdf)
  * June 18th, 2015: [6-DesignPatterns.pdf](6-DesignPatterns.pdf), [6-DesignPatterns-2on1.pdf](6-DesignPatterns-2on1.pdf)
  * June 18th, 2015: [6.1-TemplateMethodPattern.pdf](6.1-TemplateMethodPattern.pdf), [6.1-TemplateMethodPattern-2on1.pdf](6.1-TemplateMethodPattern-2on1.pdf)
-  * June 18th, 2015: [6.2-StrategyPattern.pdf](6.2-StrategyPattern.pdf), [6.2-StrategyPattern-2on1.pdf](6.2-StrategyPattern-2on1.pdf) 
+ * June 18th, 2015: [6.2-StrategyPattern.pdf](6.2-StrategyPattern.pdf), [6.2-StrategyPattern-2on1.pdf](6.2-StrategyPattern-2on1.pdf) 
+ * June 18th, 2015: [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf), [6.3-DecoratorPattern-2on1.pdf](6.3-DecoratorPattern-2on1.pdf) 
+
 
 ##Excercises
 
