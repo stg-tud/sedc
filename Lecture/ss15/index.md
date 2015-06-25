@@ -21,24 +21,28 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
 
 ##Material##
 
+**It is highly recommended to use the "2on1" slide sets. They contain the lecture notes. The standard slide set is provided only to make it easy for you to annotate the slides.**
+
  * April 16th, 2015 - [0-Organization.pdf](0-Organization.pdf)  
  * April 16th, 2015 - [0-TestYourJava.pdf](0-TestYourJava.pdf)  
- * April 16th, 2015: [1-Introduction-General.pdf](1-Introduction-General.pdf), [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf) (**Updated: Fixed a typo on April 23rd, 2015**)   
- * April 30th, 2015: [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf), [2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf)
- * April 30th, 2015: [3-CDP.pdf](3-CDP.pdf), [3-CDP-2on1.pdf](3-CDP-2on1.pdf)  
- * April 30th, 2015: [3.1-SRP.pdf](3.1-SRP.pdf), [3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)  
- * April 30th, 2015: [3.2-ISP.pdf](3.2-ISP.pdf), [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)  
- * May 7th, 2015: [3.3-OCP.pdf](3.3-OCP.pdf), [3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)  
- * May 7th, 2015: [3.4-DIP.pdf](3.4-DIP.pdf), [3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)  
- * May 7th, 2015: [3.5-LSP.pdf](3.5-LSP.pdf), [3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf) 
- * May 7th, 2015: [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf), [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf) 
- * May 21th, 2015: [4-Inheritance.pdf](4-Inheritance.pdf), [4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf) 
+ * April 16th, 2015: [1-Introduction-General.pdf](1-Introduction-General.pdf), **[1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf)** (**Updated: Fixed a typo on April 23rd, 2015**)   
+ * April 30th, 2015: [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf), **[2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf)**
+ * April 30th, 2015: [3-CDP.pdf](3-CDP.pdf), **[3-CDP-2on1.pdf](3-CDP-2on1.pdf)**  
+ * April 30th, 2015: [3.1-SRP.pdf](3.1-SRP.pdf), **[3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)**  
+ * April 30th, 2015: [3.2-ISP.pdf](3.2-ISP.pdf), **[3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)**  
+ * May 7th, 2015: [3.3-OCP.pdf](3.3-OCP.pdf), **[3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)**  
+ * May 7th, 2015: [3.4-DIP.pdf](3.4-DIP.pdf), **[3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)**  
+ * May 7th, 2015: [3.5-LSP.pdf](3.5-LSP.pdf), **[3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf)** 
+ * May 7th, 2015: [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf), **[3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf)**
+ * May 21th, 2015: [4-Inheritance.pdf](4-Inheritance.pdf), **[4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf)**
  * May 28th, 2015: [5-RP1.pdf](5-RP1.pdf)
  * June 12th, 2015: [5-RP2.pdf](5-RP2.pdf)
- * June 18th, 2015: [6-DesignPatterns.pdf](6-DesignPatterns.pdf), [6-DesignPatterns-2on1.pdf](6-DesignPatterns-2on1.pdf)
- * June 18th, 2015: [6.1-TemplateMethodPattern.pdf](6.1-TemplateMethodPattern.pdf), [6.1-TemplateMethodPattern-2on1.pdf](6.1-TemplateMethodPattern-2on1.pdf)
- * June 18th, 2015: [6.2-StrategyPattern.pdf](6.2-StrategyPattern.pdf), [6.2-StrategyPattern-2on1.pdf](6.2-StrategyPattern-2on1.pdf) 
- * June 18th, 2015: [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf), [6.3-DecoratorPattern-2on1.pdf](6.3-DecoratorPattern-2on1.pdf) 
+ * June 18th, 2015: [6-DesignPatterns.pdf](6-DesignPatterns.pdf), **[6-DesignPatterns-2on1.pdf](6-DesignPatterns-2on1.pdf)**
+ * June 18th, 2015: [6.1-TemplateMethodPattern.pdf](6.1-TemplateMethodPattern.pdf), **[6.1-TemplateMethodPattern-2on1.pdf](6.1-TemplateMethodPattern-2on1.pdf)**
+ * June 18th, 2015: [6.2-StrategyPattern.pdf](6.2-StrategyPattern.pdf), **[6.2-StrategyPattern-2on1.pdf](6.2-StrategyPattern-2on1.pdf)**
+ * June 18th, 2015: [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf), **[6.3-DecoratorPattern-2on1.pdf](6.3-DecoratorPattern-2on1.pdf)**
+ * June 25th, 2015: [6.4-ProxyPattern.pdf](6.4-ProxyPattern.pdf), **[6.4-ProxyPattern-2on1.pdf](6.4-ProxyPattern-2on1.pdf)**
+ * June 25th, 2015: [6.5-VisitorPattern.pdf](6.5-VisitorPattern.pdf), **[6.5-VisitorPattern-2on1.pdf](6.5-VisitorPattern-2on1.pdf)**
 
 
 ##Excercises
@@ -53,9 +57,11 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * May 29th, 2015 [Exercise 05](Exercises/ex05/ex05.pdf) - [Project](Exercises/ex05/ex05.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex05/ex05_solution.zip)
  * June 12th, 2015 [Exercise 06](Exercises/ex06/ex06.pdf) - [Project](Exercises/ex06/ex06.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex06/ex06_solution.zip) - [Solution Task 3 and 4](Exercises/ex06/Task3and4.pdf)
  * June 19th, 2015 [Exercise 07](Exercises/ex07/ex07.pdf) - [Project](Exercises/ex07/ex07.zip)
-
- 
- ##Midterm Exam
  
  
+##Midterm Exam
+  
  * May 22th, 2015: [Exam](midterm/exam.pdf)
+  
+ 
+
