@@ -57,6 +57,7 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * May 29th, 2015 [Exercise 05](Exercises/ex05/ex05.pdf) - [Project](Exercises/ex05/ex05.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex05/ex05_solution.zip)
  * June 12th, 2015 [Exercise 06](Exercises/ex06/ex06.pdf) - [Project](Exercises/ex06/ex06.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex06/ex06_solution.zip) - [Solution Task 3 and 4](Exercises/ex06/Task3andTask4.pdf)
  * June 19th, 2015 [Exercise 07](Exercises/ex07/ex07.pdf) - [Project](Exercises/ex07/ex07.zip)
+ * July 2nd, 2015 [Exercise 08](Exercises/ex08/ex08.pdf)
  
  
 ##Midterm Exam
