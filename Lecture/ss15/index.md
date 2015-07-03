@@ -43,6 +43,7 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * June 18th, 2015: [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf), **[6.3-DecoratorPattern-2on1.pdf](6.3-DecoratorPattern-2on1.pdf)**
  * June 25th, 2015: [6.4-ProxyPattern.pdf](6.4-ProxyPattern.pdf), **[6.4-ProxyPattern-2on1.pdf](6.4-ProxyPattern-2on1.pdf)**
  * June 25th, 2015: [6.5-VisitorPattern.pdf](6.5-VisitorPattern.pdf), **[6.5-VisitorPattern-2on1.pdf](6.5-VisitorPattern-2on1.pdf)**
+ * July 2nd, 2015: [SPL.pdf](SPL.pdf)
 
 
 ##Excercises
