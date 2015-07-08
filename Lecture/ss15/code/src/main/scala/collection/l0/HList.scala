@@ -40,4 +40,44 @@ object Demo extends App {
 
 }
 
+import scala.collection.mutable.{Buffer,ArrayBuffer}
+import scala.collection.mutable.{Set,HashSet}
+object ControlFlowStatements{
+    trait Mutable[-C[_]] {
+        def add[T](collection: C[T], elem: T): Unit
+    }
 
+    implicit object Set extends Mutable[Set] {
+        def add[T](collection: Set[T], elem: T) { collection += elem }
+    }
+
+    implicit object Buffer extends Mutable[Buffer] {
+        def add[T](collection: Buffer[T], elem: T) { collection += elem }
+    }
+
+    def repeatWithContextBound[T, C[T] <: AnyRef: Mutable](
+        times: Int)(f: ⇒ T)(collection: C[T]): collection.type = {
+        var i = 0
+        while (i < times) {
+            implicitly[Mutable[C]].add(collection, f); i += 1
+        }
+        collection
+    }
+}
+
+object CFSDemo extends App {
+  import ControlFlowStatements._
+
+  val nanos_1: Set[Long] =
+    repeatWithContextBound(5){ System.nanoTime() }(new HashSet[Long]())
+
+  val nanos_2: Buffer[Long] =
+    repeatWithContextBound(5){ System.nanoTime() }(new ArrayBuffer[Long]())
+
+  val nanos_3: nanos_1.type =
+    repeatWithContextBound(5) {System.nanoTime() }(nanos_1)
+
+  def stricterEquals[X <: AnyRef](a: X)(b: a.type) = a == b
+  stricterEquals(nanos_1)(nanos_3)
+    // /* correctly won't compile */ stricterEquals(nanos_2)(nanos_3)
+}
