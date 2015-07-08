@@ -43,6 +43,7 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * June 18th, 2015: [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf), **[6.3-DecoratorPattern-2on1.pdf](6.3-DecoratorPattern-2on1.pdf)**
  * June 25th, 2015: [6.4-ProxyPattern.pdf](6.4-ProxyPattern.pdf), **[6.4-ProxyPattern-2on1.pdf](6.4-ProxyPattern-2on1.pdf)**
  * June 25th, 2015: [6.5-VisitorPattern.pdf](6.5-VisitorPattern.pdf), **[6.5-VisitorPattern-2on1.pdf](6.5-VisitorPattern-2on1.pdf)**
+ * July 2nd, 2015: [SPL.pdf](SPL.pdf)
 
 
 ##Excercises
@@ -55,8 +56,9 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * May 15th, 2015: [Exercise 03](Exercises/ex03/ex03.pdf) - [Project](Exercises/ex03/ex03.zip) - [Reference Implementation](Exercises/ex03/ex03_solution.zip)  
  * May 22th, 2015: [Exercise 04](Exercises/ex04/ex04.pdf) - [Reference Solution](Exercises/ex04/ex04_solution.pdf) 
  * May 29th, 2015 [Exercise 05](Exercises/ex05/ex05.pdf) - [Project](Exercises/ex05/ex05.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex05/ex05_solution.zip)
- * June 12th, 2015 [Exercise 06](Exercises/ex06/ex06.pdf) - [Project](Exercises/ex06/ex06.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex06/ex06_solution.zip) - [Solution Task 3 and 4](Exercises/ex06/Task3and4.pdf)
- * June 19th, 2015 [Exercise 07](Exercises/ex07/ex07.pdf) - [Project](Exercises/ex07/ex07.zip)
+ * June 12th, 2015 [Exercise 06](Exercises/ex06/ex06.pdf) - [Project](Exercises/ex06/ex06.zip) - [REScala](http://www.rescala-lang.com) - [Reference Implementation](Exercises/ex06/ex06_solution.zip) - [Solution Task 3 and 4](Exercises/ex06/Task3andTask4.pdf)
+ * June 19th, 2015 [Exercise 07](Exercises/ex07/ex07.pdf) - [Project](Exercises/ex07/ex07.zip) - [Reference Implementation](Exercsises/ex07/ex07_solution.zip) - [Reference Solution](Exercises/ex07/ex07_solution.pdf)
+ * July 2nd, 2015 [Exercise 08](Exercises/ex08/ex08.pdf)
  
  
 ##Midterm Exam
