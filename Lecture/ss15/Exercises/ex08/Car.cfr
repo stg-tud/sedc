@@ -1,0 +1,27 @@
+Accord
+	xor Transmission
+		Manual
+		Automatic
+	xor ExteriorColor
+		Silver
+		Black
+	xor InteriorColor
+		Grey
+		Blue
+	or Accessories ?
+		AlloyWheels
+		AutoDayNightMirror
+	xor Lock
+		Mechanical
+		PowerLock
+	or Options ?
+		KeylessEntry
+		PowerWindows
+	xor Warranty?
+		FiveYear
+		SixYear
+
+	//additional cross-tree constraints
+	[ExteriorColor.Black => ! InteriorColor.Grey] //assumed color constraints
+	[ExteriorColor.Silver => ! InteriorColor.Blue] //assumed color constraints
+	[KeylessEntry => PowerLock] //KeylessEntry would not work with manual locks
