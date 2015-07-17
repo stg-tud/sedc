@@ -29,7 +29,7 @@ Please make sure to arrive at the beginning of the time slot, as tutors might le
  * April 30th, 2015: [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf), **[2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf)**
  * April 30th, 2015: [3-CDP.pdf](3-CDP.pdf), **[3-CDP-2on1.pdf](3-CDP-2on1.pdf)**  
  * April 30th, 2015: [3.1-SRP.pdf](3.1-SRP.pdf), **[3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)**  
- * April 30th, 2015: [3.2-ISP.pdf](3.2-ISP.pdf), **[3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)**  
+ * April 30th, 2015: [3.2-ISP.pdf](3.2-ISP.pdf), **[3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)** (**Updated: Fixed the first example on July 17th**) 
  * May 7th, 2015: [3.3-OCP.pdf](3.3-OCP.pdf), **[3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)**  
  * May 7th, 2015: [3.4-DIP.pdf](3.4-DIP.pdf), **[3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)**  
  * May 7th, 2015: [3.5-LSP.pdf](3.5-LSP.pdf), **[3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf)** 
