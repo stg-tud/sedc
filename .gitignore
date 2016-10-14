@@ -4,4 +4,7 @@ inheritance
 Lecture/ss15/code/src/main/scala/one/ProtectedTraits.scala
 Lecture/ss15/code/.cache-main
 Lecture/ss15/Reactive Exercise - Results.odt.xls
-
+_site
+.sass-cache
+.jekyll-metadata
+.DS_Store
