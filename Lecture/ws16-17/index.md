@@ -21,5 +21,5 @@ Technische Universität Darmstadt
  * October 20th, 2016 - [1-Introduction-General.pdf](1-Introduction-General.pdf)  
 
 ## Other
- * October 20th, 2016 - [0-TechnikerGesucht-FGBahnsysteme.pdf](TechnikerGesucht-FGBahnsysteme.pdf) 
- * October 20th, 2016 - [0-EclipseConference2016-Yatta.pdf](EclipseConference2016-Yatta.pdf)  
+ * October 20th, 2016 - [Techniker Gesucht-FGBahnsysteme.pdf](0-TechnikerGesucht-FGBahnsysteme.pdf) 
+ * October 20th, 2016 - [Eclipse Conference 2016-Yatta.pdf](0-EclipseConference2016-Yatta.pdf)  
