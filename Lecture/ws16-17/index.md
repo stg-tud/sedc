@@ -18,7 +18,7 @@ Technische Universität Darmstadt
  * October 20th, 2016 - [0-Organization.pdf](0-Organization.pdf)  
  * October 20th, 2016 - [0-TestYourJava.pdf](0-TestYourJava.pdf)  
  * October 20th, 2016 - [0-GuessThePattern.pdf](0-GuessThePattern.pdf)  
- * October 20th, 2016 - [1-Introduction-General.pdf](1-Introduction-General.pdf)  
+ * October 20th, 2016 - [1-Introduction-General.pdf](1-Introduction-General.pdf)  [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf)
  * October 20th, 2016 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf)  
 
 ## Other
