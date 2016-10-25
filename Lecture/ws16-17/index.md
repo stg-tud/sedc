@@ -21,6 +21,9 @@ Technische Universität Darmstadt
  * October 20th, 2016 - [1-Introduction-General.pdf](1-Introduction-General.pdf) /  [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf)
  * October 20th, 2016 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf)  
 
+## Exercises
+  * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip)
+
 ## Other
  * October 20th, 2016 - [Techniker Gesucht-FGBahnsysteme.pdf](0-TechnikerGesucht-FGBahnsysteme.pptx)
  * October 20th, 2016 - [Eclipse Conference 2016-Yatta.pdf](0-EclipseConference2016-Yatta.pdf)  
