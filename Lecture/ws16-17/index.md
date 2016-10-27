@@ -19,7 +19,7 @@ Technische Universität Darmstadt
  * October 20th, 2016 - [0-TestYourJava.pdf](0-TestYourJava.pdf)  
  * October 20th, 2016 - [0-GuessThePattern.pdf](0-GuessThePattern.pdf)  
  * October 20th, 2016 - [1-Introduction-General.pdf](1-Introduction-General.pdf) /  [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf)
- * October 27th, 2016 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf)(updated)  
+ * October 27th, 2016 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf) / [2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf) (updated)  
  * October 27th, 2016 - [3-CDP.pdf](3-CDP.pdf) / [3-CDP-2on1.pdf](3-CDP-2on1.pdf)  
  * October 27th, 2016 - [3.1-SRP.pdf](3.1-SRP.pdf) / [3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)
  * October 27th, 2016 - [3.2-ISP.pdf](3.2-ISP.pdf) / [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)  
