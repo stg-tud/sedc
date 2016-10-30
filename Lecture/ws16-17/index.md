@@ -28,11 +28,11 @@ Technische Universität Darmstadt
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip)
 
 ## Office Hours
-  * Mondays 11:30 - 12:30 - Benedict Jahn
-  * Thursdays 12:30 - 13:30 - Rabea Sehar
-  * Fridays 10:00 - 11:00 - Tahir Hussain
+  Mondays 11:30 - 12:30 | Benedict Jahn
+  Thursdays 12:30 - 13:30 | Rabea Sehar
+  Fridays 10:00 - 11:00 | Tahir Hussain
 
-All office hours will take place in **C-Pool (S02|02 C005)**.
+All office hours will take place in **C-Pool (S02/02 C005)**.
 
 ## Other
  * October 20th, 2016 - [Techniker Gesucht-FGBahnsysteme.pdf](0-TechnikerGesucht-FGBahnsysteme.pptx)
