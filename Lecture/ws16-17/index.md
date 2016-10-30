@@ -28,6 +28,8 @@ Technische Universität Darmstadt
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip)
 
 ## Office Hours
+| Time                    | Tutor         |
+| ----------------------- | ------------- |
 | Mondays   11:30 - 12:30 | Benedict Jahn |
 | Thursdays 12:30 - 13:30 | Rabea Sehar   |
 | Fridays   10:00 - 11:00 | Tahir Hussain |
