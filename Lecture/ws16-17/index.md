@@ -29,11 +29,9 @@ Technische Universität Darmstadt
 
 ## Office Hours
 
-| Time                    | Tutor         |
-| ----------------------- | ------------- |
-| Mondays 11:30 - 12:30   | Benedict Jahn |
-| Thursdays 12:30 - 13:30 | Rabea Sehar   |
-| Fridays 10:00 - 11:00   | Tahir Hussain |
+ * Mondays 11:30 - 12:30  *Benedict Jahn*
+ * Thursdays 12:30 - 13:30 *Rabea Sehar*
+ * Fridays 10:00 - 11:00  *Tahir Hussain*
 
 All office hours will take place in **C-Pool (S02/02 C005)**.
 
