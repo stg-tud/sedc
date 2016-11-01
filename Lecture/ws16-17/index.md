@@ -25,7 +25,7 @@ Technische Universität Darmstadt
  * October 27th, 2016 - [3.2-ISP.pdf](3.2-ISP.pdf) / [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)  
 
 ## Exercises
-  * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip)
+  * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
 
 ## Office Hours
 
