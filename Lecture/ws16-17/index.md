@@ -25,7 +25,7 @@ Technische Universität Darmstadt
  * November 3rd, 2016 - [3.2-ISP.pdf](3.2-ISP.pdf) / [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)  
  * November 3rd, 2016 - [3.3-OCP.pdf](3.3-OCP.pdf) / [3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)  
  * November 3rd, 2016 - [3.4-DIP.pdf](3.4-DIP.pdf) / [3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)  
- * November 3rd, 2016 - [3.4-LSP.pdf](3.4-LSP.pdf) / [3.4-LSP-2on1.pdf](3.4-LSP-2on1.pdf)   
+ * November 3rd, 2016 - [3.5-LSP.pdf](3.5-LSP.pdf) / [3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf)   
 
 ## Exercises
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
