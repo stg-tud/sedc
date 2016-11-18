@@ -30,8 +30,8 @@ Technische Universität Darmstadt
 
 ## Exercises
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
-  * November 1st, 2016 - [Exercise 02](exercises/ex02/ex02.pdf) / [Project](exercises/ex02/ex02.zip) (updated - template for Task 1 added)
-  * November 8th, 2016 - [Exercise 03](exercises/ex03/ex03.pdf) / [Project](exercises/ex03/ex03.zip)
+  * November 1st, 2016 - [Exercise 02](exercises/ex02/ex02.pdf) / [Project](exercises/ex02/ex02.zip) / [Reference Solution (Task 1)](exercises/ex02/ex02_solution_1.zip)
+  * November 8th, 2016 - [Exercise 03](exercises/ex03/ex03.pdf) / [Project](exercises/ex03/ex03.zip) / [Reference Solution](exercises/ex03/ex03_solution.zip)
   * November, 15th, 2016 - [Exercise 04](exercises/ex04/ex04.pdf)
 
 ## Office Hours
