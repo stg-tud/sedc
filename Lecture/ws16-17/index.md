@@ -27,6 +27,7 @@ Technische Universität Darmstadt
  * November 3rd, 2016 - [3.4-DIP.pdf](3.4-DIP.pdf) / [3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)  
  * November 3rd, 2016 - [3.5-LSP.pdf](3.5-LSP.pdf) / [3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf)
  * November 10th, 2016 - [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf) / [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf)   
+ * November 23rd, 2016 - [4-Inheritance.pdf](4-Inheritance.pdf) / [4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf)   
 
 ## Exercises
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
