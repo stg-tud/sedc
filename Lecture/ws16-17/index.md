@@ -26,7 +26,7 @@ Technische Universität Darmstadt
  * November 3rd, 2016 - [3.3-OCP.pdf](3.3-OCP.pdf) / [3.3-OCP-2on1.pdf](3.3-OCP-2on1.pdf)  
  * November 3rd, 2016 - [3.4-DIP.pdf](3.4-DIP.pdf) / [3.4-DIP-2on1.pdf](3.4-DIP-2on1.pdf)  
  * November 3rd, 2016 - [3.5-LSP.pdf](3.5-LSP.pdf) / [3.5-LSP-2on1.pdf](3.5-LSP-2on1.pdf)
- * November 10th, 2016 - [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf) / [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf)(Updated Nov. 25th)  
+ * November 10th, 2016 - [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf) / [3.6-SmartHomeExample-2on1.pdf](3.6-SmartHomeExample-2on1.pdf) (Updated Nov. 25th)  
  * November 23rd, 2016 - [4-Inheritance.pdf](4-Inheritance.pdf) / [4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf) (Updated Dec. 1st.)
  * December 1st, 2016 - [5-DesignPatterns.pdf](5-DesignPatterns.pdf) / [5-DesignPatterns-2on1.pdf](5-DesignPatterns-2on1.pdf)
  * December 1st, 2016 - [5.1-TemplateMethodPattern.pdf](5.1-TemplateMethodPattern.pdf) / [5.1-TemplateMethodPattern-2on1.pdf](5.1-TemplateMethodPattern-2on1.pdf)
