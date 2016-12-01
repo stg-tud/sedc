@@ -30,7 +30,7 @@ Technische Universität Darmstadt
  * November 23rd, 2016 - [4-Inheritance.pdf](4-Inheritance.pdf) / [4-Inheritance-2on1.pdf](4-Inheritance-2on1.pdf) (Updated Dec. 1st.)
  * December 1st, 2016 - [5-DesignPatterns.pdf](5-DesignPatterns.pdf) / [5-DesignPatterns-2on1.pdf](5-DesignPatterns-2on1.pdf)
  * December 1st, 2016 - [5.1-TemplateMethodPattern.pdf](5.1-TemplateMethodPattern.pdf) / [5.1-TemplateMethodPattern-2on1.pdf](5.1-TemplateMethodPattern-2on1.pdf)
- * December 1st, 2016 - [5.2-StrategyMethodPattern.pdf](5.1-StrategyMethodPattern.pdf) / [5.1-StrategyMethodPattern-2on1.pdf](5.1-StrategyMethodPattern-2on1.pdf)
+ * December 1st, 2016 - [5.2-StrategyMethodPattern.pdf](5.2-StrategyMethodPattern.pdf) / [5.2-StrategyMethodPattern-2on1.pdf](5.2-StrategyMethodPattern-2on1.pdf)
 
 ## Exercises
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
