@@ -35,6 +35,7 @@ Technische Universität Darmstadt
   * November 8th, 2016 - [Exercise 03](exercises/ex03/ex03.pdf) / [Project](exercises/ex03/ex03.zip) / [Reference Solution](exercises/ex03/ex03_solution.zip)
   * November, 15th, 2016 - [Exercise 04](exercises/ex04/ex04.pdf) / [Reference Solution](exercises/ex04/ex04_solution.pdf)
   * November, 29th, 2016 - [Exercise 05](exercises/ex05/ex05.pdf) / [Project](exercises/ex05/ex05.zip)
+  * December, 6th, 2016 - [Exercise 06](exercises/ex06/ex06.pdf)
 
 ## Office Hours
 
