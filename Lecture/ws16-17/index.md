@@ -31,6 +31,8 @@ Technische Universität Darmstadt
  * December 1st, 2016 - [5-DesignPatterns.pdf](5-DesignPatterns.pdf) / [5-DesignPatterns-2on1.pdf](5-DesignPatterns-2on1.pdf)
  * December 1st, 2016 - [5.1-TemplateMethodPattern.pdf](5.1-TemplateMethodPattern.pdf) / [5.1-TemplateMethodPattern-2on1.pdf](5.1-TemplateMethodPattern-2on1.pdf)
  * December 1st, 2016 - [5.2-StrategyPattern.pdf](5.2-StrategyPattern.pdf) / [5.2-StrategyPattern-2on1.pdf](5.2-StrategyPattern-2on1.pdf)
+ * December 8th, 2016 - [5.3-DecoratorPattern.pdf](5.3-DecoratorPattern.pdf) / [5.3-DecoratorPattern-2on1.pdf](5.3-DecoratorPattern-2on1.pdf)
+
 
 ## Exercises
   * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
