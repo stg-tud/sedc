@@ -40,8 +40,8 @@ Technische Universität Darmstadt
   * November 8th, 2016 - [Exercise 03](exercises/ex03/ex03.pdf) / [Project](exercises/ex03/ex03.zip) / [Reference Solution](exercises/ex03/ex03_solution.zip)
   * November, 15th, 2016 - [Exercise 04](exercises/ex04/ex04.pdf) / [Reference Solution](exercises/ex04/ex04_solution.pdf)
   * November, 29th, 2016 - [Exercise 05](exercises/ex05/ex05.pdf) / [Project](exercises/ex05/ex05.zip) / [Reference Solution](exercises/ex05/ex05_solution.zip)
-  * December, 6th, 2016 - [Exercise 06](exercises/ex06/ex06.pdf) / [Project](exercises/ex06/ex06.zip)
-  * December, 13th, 2016 - [Exercise 07](exercises/ex07/ex07.pdf)
+  * December, 6th, 2016 - [Exercise 06](exercises/ex06/ex06.pdf) / [Project](exercises/ex06/ex06.zip) / [Reference Solution](exercises/ex06/ex06_solution.zip)
+  * December, 13th, 2016 - [Exercise 07](exercises/ex07/ex07.pdf) / [Source Code Task 1](exercises/ex07/ex07_scala_library.zip) / [Project Task 3](exercises/ex07/ex07.zip)
 
 ## Office Hours
 
