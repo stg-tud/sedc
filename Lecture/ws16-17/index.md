@@ -32,6 +32,9 @@ Technische Universität Darmstadt
  * December 1st, 2016 - [5.1-TemplateMethodPattern.pdf](5.1-TemplateMethodPattern.pdf) / [5.1-TemplateMethodPattern-2on1.pdf](5.1-TemplateMethodPattern-2on1.pdf)
  * December 1st, 2016 - [5.2-StrategyPattern.pdf](5.2-StrategyPattern.pdf) / [5.2-StrategyPattern-2on1.pdf](5.2-StrategyPattern-2on1.pdf)
  * December 8th, 2016 - [5.3-DecoratorPattern.pdf](5.3-DecoratorPattern.pdf) / [5.3-DecoratorPattern-2on1.pdf](5.3-DecoratorPattern-2on1.pdf)
+ * December 15th, 2016 - [5.4-ProxyPattern.pdf](5.4-ProxyPattern.pdf) / [5.4-ProxyPattern-2on1.pdf](5.4-ProxyPattern-2on1.pdf)
+ * December 22nd, 2016 - [5.5-BuilderPattern.pdf](5.5-BuilderPattern.pdf) / [5.5-BuilderPattern-2on1.pdf](5.5-BuilderPattern-2on1.pdf) / [5.5-BuilderPattern-Final.scala](5.5-BuilderPattern-Final.scala)
+ * December 22nd, 2016 - [5.6-AdapterPattern.pdf](5.6-AdapterPattern.pdf) / [5.6-AdapterPattern-2on1.pdf](5.6-AdapterPattern-2on1.pdf)
 
 
 ## Exercises
