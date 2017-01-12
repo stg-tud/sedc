@@ -35,6 +35,9 @@ Technische Universität Darmstadt
  * December 15th, 2016 - [5.4-ProxyPattern.pdf](5.4-ProxyPattern.pdf) / [5.4-ProxyPattern-2on1.pdf](5.4-ProxyPattern-2on1.pdf)
  * December 22nd, 2016 - [5.5-BuilderPattern.pdf](5.5-BuilderPattern.pdf) / [5.5-BuilderPattern-2on1.pdf](5.5-BuilderPattern-2on1.pdf) / [5.5-BuilderPattern-Final.scala](5.5-BuilderPattern-Final.scala)
  * December 22nd, 2016 - [5.6-AdapterPattern.pdf](5.6-AdapterPattern.pdf) / [5.6-AdapterPattern-2on1.pdf](5.6-AdapterPattern-2on1.pdf)
+ * January 12th, 2017 - [5.7-BridgePattern.pdf](5.7-BridgePattern.pdf) / [5.7-BridgePattern-2on1.pdf](5.7-BridgePattern-2on1.pdf)
+ * January 12th, 2017 - [5.8-VisitorPattern.pdf](5.8-VisitorPattern.pdf) / [5.8-VisitorPattern-2on1.pdf](5.8-VisitorPattern-2on1.pdf)
+ * January 12th, 2017 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-2on1.pdf](5.9-CommandPattern-2on1.pdf)
 
 
 ## Exercises
