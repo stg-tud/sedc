@@ -51,6 +51,9 @@ Technische Universität Darmstadt
   * January, 10th, 2017 - [Exercise 08](exercises/ex08/ex08.pdf) / [Project](exercises/ex08/ex08.zip)
   * January, 17th, 2017 - [Exercise 09](exercises/ex09/ex09.pdf) / [Project](exercises/ex09/ex09.zip)
 
+## Midterm Exam
+  * December 20th, 2016: [Exam](midterm/exam.pdf)
+
 ## Office Hours
 
  * Mondays 11:30 - 12:30  *Benedict Jahn*
