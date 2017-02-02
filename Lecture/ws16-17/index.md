@@ -49,8 +49,9 @@ Technische Universität Darmstadt
   * November, 29th, 2016 - [Exercise 05](exercises/ex05/ex05.pdf) / [Project](exercises/ex05/ex05.zip) / [Reference Solution](exercises/ex05/ex05_solution.zip)
   * December, 6th, 2016 - [Exercise 06](exercises/ex06/ex06.pdf) / [Project](exercises/ex06/ex06.zip) / [Reference Solution](exercises/ex06/ex06_solution.zip)
   * December, 13th, 2016 - [Exercise 07](exercises/ex07/ex07.pdf) / [Source Code Task 1](exercises/ex07/ex07_scala_library.zip) / [Project Task 3](exercises/ex07/ex07.zip) / [Reference Solution Part 1](exercises/ex07/ex07_solution.pdf) / [Reference Solution Part 2](exercises/ex07/ex07_solution.zip)
-  * January, 10th, 2017 - [Exercise 08](exercises/ex08/ex08.pdf) / [Project](exercises/ex08/ex08.zip)
-  * January, 17th, 2017 - [Exercise 09](exercises/ex09/ex09.pdf) / [Project](exercises/ex09/ex09.zip)
+  * January, 10th, 2017 - [Exercise 08](exercises/ex08/ex08.pdf) / [Project](exercises/ex08/ex08.zip) / [Reference Solution](exercises/ex08/ex08_solution.zip)
+  * January, 17th, 2017 - [Exercise 09](exercises/ex09/ex09.pdf) / [Project](exercises/ex09/ex09.zip) / [Reference Solution](exercises/ex09/ex09_solution.zip)
+  * January, 24th, 2017 - [Exercise 10](exercises/ex10/ex10.pdf) / [Project](exercises/ex10/ex10.zip) **(Graded exercise)**
 
 ## Midterm Exam
   * December 20th, 2016: [Exam](midterm/exam.pdf)
