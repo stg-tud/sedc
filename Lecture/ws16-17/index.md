@@ -38,7 +38,8 @@ Technische Universität Darmstadt
  * January 12th, 2017 - [5.7-BridgePattern.pdf](5.7-BridgePattern.pdf) / [5.7-BridgePattern-2on1.pdf](5.7-BridgePattern-2on1.pdf)
  * January 12th, 2017 - [5.8-VisitorPattern.pdf](5.8-VisitorPattern.pdf) / [5.8-VisitorPattern-2on1.pdf](5.8-VisitorPattern-2on1.pdf)
  * January 12th, 2017 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-2on1.pdf](5.9-CommandPattern-2on1.pdf)
- * January 19th/26th, 2017 - [RP1.pdf](RP1.pdf) 
+ * January 19th, 2017 - [RP1.pdf](RP1.pdf) 
+ * January 26th, 2017 - [RP2.pdf](RP2.pdf) 
  * February 2nd, 2017 - [6-SPL.pdf](6-SPL.pdf) / [6-SPL-2on1.pdf](6-SPL-2on1.pdf)
 
 ## Exercises
