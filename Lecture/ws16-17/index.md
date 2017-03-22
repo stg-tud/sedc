@@ -55,7 +55,7 @@ Technische Universität Darmstadt
  * January, 24th, 2017 - [Exercise 10](exercises/ex10/ex10.pdf) / [Project](exercises/ex10/ex10.zip) **(Graded exercise)**
 
 ## Exam
- * Old (previous year): [Old Exam](exam/old.pdf)
+ * Old (previous year): [Old Exam](exam/old.pdf) **Task No. 4 was removed, because it is no longer relevant.**
  * Mid-term - December 20th, 2016: [Mid-term Exam](exam/mid-term.pdf)
 
 ## Old Exam
