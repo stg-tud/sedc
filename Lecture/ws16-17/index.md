@@ -58,11 +58,6 @@ Technische Universität Darmstadt
  * Old (previous year): [Old Exam](exam/old.pdf) **Task No. 4 was removed, because it is no longer relevant.**
  * Mid-term - December 20th, 2016: [Mid-term Exam](exam/mid-term.pdf)
 
-## Old Exam
-* December 20th, 2016:
-
-All office hours will take place in **C-Pool (S02/02 C005)**.
-
 ## Other
  * October 20th, 2016 - [Techniker Gesucht-FGBahnsysteme.pdf](0-TechnikerGesucht-FGBahnsysteme.pptx)
  * October 20th, 2016 - [Eclipse Conference 2016-Yatta.pdf](0-EclipseConference2016-Yatta.pdf)  
