@@ -38,30 +38,28 @@ Technische Universität Darmstadt
  * January 12th, 2017 - [5.7-BridgePattern.pdf](5.7-BridgePattern.pdf) / [5.7-BridgePattern-2on1.pdf](5.7-BridgePattern-2on1.pdf)
  * January 12th, 2017 - [5.8-VisitorPattern.pdf](5.8-VisitorPattern.pdf) / [5.8-VisitorPattern-2on1.pdf](5.8-VisitorPattern-2on1.pdf)
  * January 12th, 2017 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-2on1.pdf](5.9-CommandPattern-2on1.pdf)
- * January 19th, 2017 - [RP1.pdf](RP1.pdf) 
- * January 26th, 2017 - [RP2.pdf](RP2.pdf) 
+ * January 19th, 2017 - [RP1.pdf](RP1.pdf)
+ * January 26th, 2017 - [RP2.pdf](RP2.pdf)
  * February 2nd, 2017 - [6-SPL.pdf](6-SPL.pdf) / [6-SPL-2on1.pdf](6-SPL-2on1.pdf)
 
 ## Exercises
-  * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
-  * November 1st, 2016 - [Exercise 02](exercises/ex02/ex02.pdf) / [Project](exercises/ex02/ex02.zip) / [Reference Solution (Task 1)](exercises/ex02/ex02_solution_1.zip)
-  * November 8th, 2016 - [Exercise 03](exercises/ex03/ex03.pdf) / [Project](exercises/ex03/ex03.zip) / [Reference Solution](exercises/ex03/ex03_solution.zip)
-  * November, 15th, 2016 - [Exercise 04](exercises/ex04/ex04.pdf) / [Reference Solution](exercises/ex04/ex04_solution.pdf)
-  * November, 29th, 2016 - [Exercise 05](exercises/ex05/ex05.pdf) / [Project](exercises/ex05/ex05.zip) / [Reference Solution](exercises/ex05/ex05_solution.zip)
-  * December, 6th, 2016 - [Exercise 06](exercises/ex06/ex06.pdf) / [Project](exercises/ex06/ex06.zip) / [Reference Solution](exercises/ex06/ex06_solution.zip)
-  * December, 13th, 2016 - [Exercise 07](exercises/ex07/ex07.pdf) / [Source Code Task 1](exercises/ex07/ex07_scala_library.zip) / [Project Task 3](exercises/ex07/ex07.zip) / [Reference Solution Part 1](exercises/ex07/ex07_solution.pdf) / [Reference Solution Part 2](exercises/ex07/ex07_solution.zip)
-  * January, 10th, 2017 - [Exercise 08](exercises/ex08/ex08.pdf) / [Project](exercises/ex08/ex08.zip) / [Reference Solution](exercises/ex08/ex08_solution.zip)
-  * January, 17th, 2017 - [Exercise 09](exercises/ex09/ex09.pdf) / [Project](exercises/ex09/ex09.zip) / [Reference Solution](exercises/ex09/ex09_solution.zip)
-  * January, 24th, 2017 - [Exercise 10](exercises/ex10/ex10.pdf) / [Project](exercises/ex10/ex10.zip) **(Graded exercise)**
+ * October 25th, 2016 - [Exercise 01](exercises/ex01/ex01.pdf) / [Project](exercises/ex01/ex01.zip) / [Reference Solution](exercises/ex01/ex01_solution.zip)
+ * November 1st, 2016 - [Exercise 02](exercises/ex02/ex02.pdf) / [Project](exercises/ex02/ex02.zip) / [Reference Solution (Task 1)](exercises/ex02/ex02_solution_1.zip)
+ * November 8th, 2016 - [Exercise 03](exercises/ex03/ex03.pdf) / [Project](exercises/ex03/ex03.zip) / [Reference Solution](exercises/ex03/ex03_solution.zip)
+ * November, 15th, 2016 - [Exercise 04](exercises/ex04/ex04.pdf) / [Reference Solution](exercises/ex04/ex04_solution.pdf)
+ * November, 29th, 2016 - [Exercise 05](exercises/ex05/ex05.pdf) / [Project](exercises/ex05/ex05.zip) / [Reference Solution](exercises/ex05/ex05_solution.zip)
+ * December, 6th, 2016 - [Exercise 06](exercises/ex06/ex06.pdf) / [Project](exercises/ex06/ex06.zip) / [Reference Solution](exercises/ex06/ex06_solution.zip)
+ * December, 13th, 2016 - [Exercise 07](exercises/ex07/ex07.pdf) / [Source Code Task 1](exercises/ex07/ex07_scala_library.zip) / [Project Task 3](exercises/ex07/ex07.zip) / [Reference Solution Part 1](exercises/ex07/ex07_solution.pdf) / [Reference Solution Part 2](exercises/ex07/ex07_solution.zip)
+ * January, 10th, 2017 - [Exercise 08](exercises/ex08/ex08.pdf) / [Project](exercises/ex08/ex08.zip) / [Reference Solution](exercises/ex08/ex08_solution.zip)
+ * January, 17th, 2017 - [Exercise 09](exercises/ex09/ex09.pdf) / [Project](exercises/ex09/ex09.zip) / [Reference Solution](exercises/ex09/ex09_solution.zip)
+ * January, 24th, 2017 - [Exercise 10](exercises/ex10/ex10.pdf) / [Project](exercises/ex10/ex10.zip) **(Graded exercise)**
 
-## Midterm Exam
-  * December 20th, 2016: [Exam](midterm/exam.pdf)
+## Exam
+ * Old (previous year): [Old Exam](exam/old.pdf)
+ * Mid-term - December 20th, 2016: [Mid-term Exam](exam/mid-term.pdf)
 
-## Office Hours
-
- * Mondays 11:30 - 12:30  *Benedict Jahn*
- * Thursdays 13:00 - 14:00 *Rabea Sehar*
- * Fridays 10:00 - 11:00  *Tahir Hussain*
+## Old Exam
+* December 20th, 2016:
 
 All office hours will take place in **C-Pool (S02/02 C005)**.
 
