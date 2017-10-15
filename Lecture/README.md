@@ -1,4 +1,4 @@
 Software Engineering Design & Construction
 ====
 
-All lecture material related to the lecture.
+Material related to the lecture.
