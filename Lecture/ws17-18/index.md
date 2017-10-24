@@ -15,12 +15,13 @@ Technische Universität Darmstadt
 
 **It is highly recommended to use the "2on1" slide sets; they contain additional lecture notes. The standard slide set is provided only to make it easy for you to annotate the slides.**
 
- * October 19th, 2017 - [0-Organization.pdf](0-Organization.pdf) 
+ * October 19th, 2017 - [0-Organization.pdf](0-Organization.pdf)
  * October 19th, 2017 - [0-TestYourJava.pdf](0-TestYourJava.pdf)  
  * October 19th, 2017 - [0-GuessThePattern.pdf](0-GuessThePattern.pdf)  
  * October 19th, 2017 - [1-Introduction-General.pdf](1-Introduction-General.pdf) /  [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf)
 
 ## Exercises
+Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc17](https://submission.st.informatik.tu-darmstadt.de/course/sedc17) and enroll for the course "Software Engineering - Design & Construction".
 
 ## Old Exams
 See previous semesters.
