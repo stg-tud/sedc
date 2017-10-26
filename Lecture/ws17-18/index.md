@@ -19,6 +19,7 @@ Technische Universität Darmstadt
  * October 19th, 2017 - [0-TestYourJava.pdf](0-TestYourJava.pdf)  
  * October 19th, 2017 - [0-GuessThePattern.pdf](0-GuessThePattern.pdf)  
  * October 19th, 2017 - [1-Introduction-General.pdf](1-Introduction-General.pdf) /  [1-Introduction-General-2on1.pdf](1-Introduction-General-2on1.pdf)
+ * October 26th, 2017 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf) /  [2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf)
 
 ## Exercises
 Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc17](https://submission.st.informatik.tu-darmstadt.de/course/sedc17) and enroll for the course "Software Engineering - Design & Construction".
