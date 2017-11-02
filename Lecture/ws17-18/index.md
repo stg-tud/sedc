@@ -22,6 +22,8 @@ Technische Universität Darmstadt
 
 ## Exercises
 Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc17](https://submission.st.informatik.tu-darmstadt.de/course/sedc17) and enroll for the course "Software Engineering - Design & Construction".
+The submission platform is only available within the university network.
+If you want to access the the platform from outside the university, you have to use VPN.
 
 ## Old Exams
 See previous semesters.
