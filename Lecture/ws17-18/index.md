@@ -23,6 +23,9 @@ Technische Universität Darmstadt
  * November 2nd, 2017 - [3-CDP.pdf](3-CDP.pdf) /  [3-CDP-2on1.pdf](3-CDP-2on1.pdf)
  * November 2nd, 2017 - [3.1-SRP.pdf](3.1-SRP.pdf) /  [3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)
 
+## Additional Material
+ * [Code Snippets from the Lecture.pdf](Code.pdf) (Last updated Nov. 2nd 2017)
+
 ## Exercises
 Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc17](https://submission.st.informatik.tu-darmstadt.de/course/sedc17) and enroll for the course "Software Engineering - Design & Construction".
 
