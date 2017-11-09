@@ -22,6 +22,9 @@ Technische Universität Darmstadt
  * October 26th, 2017 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf) /  [2-PL-Design-Style-2on1.pdf](2-PL-Design-Style-2on1.pdf) (Updated Nov. 2nd 2017)
  * November 2nd, 2017 - [3-CDP.pdf](3-CDP.pdf) /  [3-CDP-2on1.pdf](3-CDP-2on1.pdf)
  * November 2nd, 2017 - [3.1-SRP.pdf](3.1-SRP.pdf) /  [3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)
+ * November 9th, 2017 - [3.2-ISP.pdf](3.1-ISP.pdf) /  [3.1-ISP-2on1.pdf](3.1-ISP-2on1.pdf)
+ * November 9th, 2017 - [3.3-DIP.pdf](3.1-DIP.pdf) /  [3.1-DIP-2on1.pdf](3.1-DIP-2on1.pdf)
+ * November 9th, 2017 - [3.4-OCP.pdf](3.1-OCP.pdf) /  [3.1-OCP-2on1.pdf](3.1-OCP-2on1.pdf)
 
 ## Additional Material
  * [Code Snippets from the Lecture.pdf](Code.pdf) (Last updated Nov. 2nd 2017)
