@@ -24,7 +24,7 @@ Technische Universität Darmstadt
  * November 2nd, 2017 - [3.1-SRP.pdf](3.1-SRP.pdf) /  [3.1-SRP-2on1.pdf](3.1-SRP-2on1.pdf)
  * November 9th, 2017 - [3.2-ISP.pdf](3.2-ISP.pdf) /  [3.2-ISP-2on1.pdf](3.2-ISP-2on1.pdf)
  * November 9th, 2017 - [3.3-DIP.pdf](3.3-DIP.pdf) /  [3.3-DIP-2on1.pdf](3.3-DIP-2on1.pdf)
- * November 9th, 2017 - [3.4-OCP.pdf](3.4-OCP.pdf) /  [3.4-OCP-2on1.pdf](3.4-OCP-2on1.pdf)
+ * November 9th, 2017 - [3.4-OCP.pdf](3.4-OCP.pdf) /  [3.-OCP-2on1.pdf](3.4-OCP-2on1.pdf)
 
 ## Additional Material
  * [Code Snippets from the Lecture.pdf](Code.pdf) (Last updated Nov. 2nd 2017)
