@@ -41,6 +41,7 @@ If you want to access the the platform from outside the university, you have to 
 See previous semesters.
 
 ## Other
+ * November 22nd, 2017 - [ASE Student Edition](https://www.andrena.de/event/ase-student-edition)
  * October 19th, 2017 - [MaibornWolff_Salesforce_Projekt.pdf](MaibornWolff_Salesforce_Projekt.pdf)
- * October 26th, 2017 - [DoubleDegreeTUD-TUW.pdf](Double Degree Programm TU Darmstadt - TU Wien.pdf)
- * November 9th, 2017 - [RealLifeArchitectur-DBSystel.pdf](RealLifeArchitectur-DBSystel.pdf)
+ * October 26th, 2017 - [Double Degree Programm TU Darmstadt - TU Wien.pdf](DoubleDegreeTUD-TUW.pdf)
+ * November 9th, 2017 - [RealLifeArchitecture-DBSystel.pdf](RealLifeArchitecture-DBSystel.pdf)
