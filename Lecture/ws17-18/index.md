@@ -29,6 +29,7 @@ Technische Universität Darmstadt
  * November 16th, 2017 - [3.6-SmartHomeExample.pdf](3.6-SmartHomeExample.pdf) / [3.6-SmartHomeExample-notes.pdf](3.6-SmartHomeExample-notes.pdf) (Updated Nov. 23rd)
  * November 23rd, 2017 - [4.1-Inheritance-Basics.pdf](4.1-Inheritance-Basics.pdf) / [4.1-Inheritance-Basics-notes.pdf](4.1-Inheritance-Basics-notes.pdf)
  * November 30th, 2017 - [Reactive Programming 1](RP1.pdf)
+ * December 7th, 2017 - [Reactive Programming 2](RP2.pdf)
 
 
 ## Additional Material
