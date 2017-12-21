@@ -30,6 +30,11 @@ Technische Universität Darmstadt
  * November 23rd, 2017 - [4.1-Inheritance-Basics.pdf](4.1-Inheritance-Basics.pdf) / [4.1-Inheritance-Basics-notes.pdf](4.1-Inheritance-Basics-notes.pdf)
  * November 30th, 2017 - [Reactive Programming 1](RP1.pdf)
  * December 7th, 2017 - [Reactive Programming 2](RP2.pdf)
+ * December 14th, 2017 - [4.2-Inheritance-w.r.t.FamilyOfObjects.pdf](4.2-Inheritance-w.r.t.FamilyOfObjects.pdf) / [4.2-Inheritance-w.r.t.FamilyOfObjects-notes.pdf](4.2-Inheritance-w.r.t.FamilyOfObjects-notes.pdf)
+ * December 21st, 2017 - [5-DesignPatterns.pdf](5-DesignPatterns.pdf) / [5-DesignPatterns-notes.pdf](5-DesignPatterns-notes.pdf)
+ * December 21st, 2017 - [5.1-TemplateMethodPattern.pdf](5.1-TemplateMethodPattern.pdf) / [5.1-TemplateMethodPattern-notes.pdf](5.1-TemplateMethodPattern-notes.pdf)
+ * December 21st, 2017 - [5.2-StrategyPattern.pdf](5.2-StrategyPattern.pdf) / [5.2-StrategyPattern-notes.pdf](5.2-StrategyPattern-notes.pdf)
+ * December 21st, 2017 - [5.3-DecoratorPattern.pdf](5.3-DecoratorPattern.pdf) / [5.3-DecoratorPattern-notes.pdf](5.3-DecoratorPattern-notes.pdf)
 
 
 ## Additional Material
