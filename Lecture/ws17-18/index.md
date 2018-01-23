@@ -35,8 +35,14 @@ Technische Universität Darmstadt
  * December 21st, 2017 - [5.1-TemplateMethodPattern.pdf](5.1-TemplateMethodPattern.pdf) / [5.1-TemplateMethodPattern-notes.pdf](5.1-TemplateMethodPattern-notes.pdf)
  * December 21st, 2017 - [5.2-StrategyPattern.pdf](5.2-StrategyPattern.pdf) / [5.2-StrategyPattern-notes.pdf](5.2-StrategyPattern-notes.pdf)
  * December 21st, 2017 - [5.3-DecoratorPattern.pdf](5.3-DecoratorPattern.pdf) / [5.3-DecoratorPattern-notes.pdf](5.3-DecoratorPattern-notes.pdf)
-
-
+ * January 23rd, 2018 - [5.4-ProxyPattern.pdf](5.4-ProxyPattern.pdf) / [5.4-ProxyPattern-notes.pdf](5.4-ProxyPattern-notes.pdf)
+ * January 23rd, 2018 - [5.5-BuilderPattern.pdf](5.5-BuilderPattern.pdf) / [5.5-BuilderPattern-notes.pdf](5.5-BuilderPattern-notes.pdf)
+ * January 23rd, 2018 - [5.6-AdapterPattern.pdf](5.6-AdapterPattern.pdf) / [5.6-AdapterPattern-notes.pdf](5.6-AdapterPattern-notes.pdf)
+ * January 23rd, 2018 - [5.7-BridgePattern.pdf](5.7-BridgePattern.pdf) / [5.7-BridgePattern-notes.pdf](5.7-BridgePattern-notes.pdf)
+ * January 23rd, 2018 - [5.8-VisitorPattern.pdf](5.8-VisitorPattern.pdf) / [5.8-VisitorPattern-notes.pdf](5.8-VisitorPattern-notes.pdf)
+ * January 23rd, 2018 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-notes.pdf](5.9-CommandPattern-notes.pdf)
+ <!-- January 23rd, 2018 - [.pdf](.pdf) / [-notes.pdf](-notes.pdf) -->
+  
 ## Additional Material
  * [Code Snippets from the Lecture.pdf](Code.pdf) (Last updated Nov. 2nd 2017)
 
