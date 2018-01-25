@@ -42,7 +42,7 @@ Technische Universität Darmstadt
  * January 23rd, 2018 - [5.8-VisitorPattern.pdf](5.8-VisitorPattern.pdf) / [5.8-VisitorPattern-notes.pdf](5.8-VisitorPattern-notes.pdf)
  * January 23rd, 2018 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-notes.pdf](5.9-CommandPattern-notes.pdf)
  <!-- January 23rd, 2018 - [.pdf](.pdf) / [-notes.pdf](-notes.pdf) -->
-  
+
 ## Additional Material
  * [Code Snippets from the Lecture.pdf](Code.pdf) (Last updated Nov. 2nd 2017)
 
@@ -54,6 +54,7 @@ The submission platform is only available within the university network. **You h
 See previous semesters.
 
 ## Other
+ * January 25th, 2018 - [Gamma Challenge](GammaChallenge_TU_Darmstadt_English.pdf)
  * November 22nd, 2017 - [ASE Student Edition](https://www.andrena.de/event/ase-student-edition-385)
  * October 19th, 2017 - [MaibornWolff_Salesforce_Projekt.pdf](MaibornWolff_Salesforce_Projekt.pdf)
  * October 26th, 2017 - [Double Degree Programm TU Darmstadt - TU Wien.pdf](DoubleDegreeTUD-TUW.pdf)
