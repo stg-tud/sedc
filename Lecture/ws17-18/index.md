@@ -41,7 +41,9 @@ Technische Universität Darmstadt
  * January 23rd, 2018 - [5.7-BridgePattern.pdf](5.7-BridgePattern.pdf) / [5.7-BridgePattern-notes.pdf](5.7-BridgePattern-notes.pdf)
  * January 23rd, 2018 - [5.8-VisitorPattern.pdf](5.8-VisitorPattern.pdf) / [5.8-VisitorPattern-notes.pdf](5.8-VisitorPattern-notes.pdf)
  * January 23rd, 2018 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-notes.pdf](5.9-CommandPattern-notes.pdf)
+ * January 23rd, 2018 - [Futures_Async_Actors.pdf](Futures_Async_Actors.pdf)
  <!-- January 23rd, 2018 - [.pdf](.pdf) / [-notes.pdf](-notes.pdf) -->
+
 
 ## Additional Material
  * [Code Snippets from the Lecture.pdf](Code.pdf) (Last updated Nov. 2nd 2017)
