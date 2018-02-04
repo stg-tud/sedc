@@ -43,6 +43,7 @@ Technische Universität Darmstadt
  * January 23rd, 2018 - [5.9-CommandPattern.pdf](5.9-CommandPattern.pdf) / [5.9-CommandPattern-notes.pdf](5.9-CommandPattern-notes.pdf)
  * January 23rd, 2018 - [Futures_Async_Actors.pdf](Futures_Async_Actors.pdf)
  <!-- January 23rd, 2018 - [.pdf](.pdf) / [-notes.pdf](-notes.pdf) -->
+ * February 1st, 2018 - [2018-02-MDD-TUDarmstadt.pdf](2018-02-MDD-TUDarmstadt.pdf)
 
 
 ## Additional Material
