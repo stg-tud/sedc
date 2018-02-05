@@ -57,6 +57,7 @@ The submission platform is only available within the university network. **You h
 See previous semesters.
 
 ## Other
+ * February 5th, 2018 - [SECUSO-Security-study.pptx](SECUSO-Security-study.pptx)
  * **CANCELLED** - January 25th, 2018 - [Gamma Challenge](GammaChallenge_TU_Darmstadt_English.pdf)
  * November 22nd, 2017 - [ASE Student Edition](https://www.andrena.de/event/ase-student-edition-385)
  * October 19th, 2017 - [MaibornWolff_Salesforce_Projekt.pdf](MaibornWolff_Salesforce_Projekt.pdf)
