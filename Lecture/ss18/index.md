@@ -20,16 +20,20 @@ Technische Universität Darmstadt
  * April 10th, 2018 - [0-GuessThePattern.pdf](0-GuessThePattern.pdf) / [0-GuessThePattern-notes.pdf](0-GuessThePattern-notes.pdf)
  * April 10th, 2018 - [1-Introduction-General.pdf](1-Introduction-General.pdf) / [1-Introduction-General-notes.pdf](1-Introduction-General-notes.pdf)
  * April 24th, 2018 - [2-PL-Design-Style.pdf](2-PL-Design-Style.pdf) / [2-PL-Design-Style-notes.pdf](2-PL-Design-Style-notes.pdf)
- * April 24th, 2017 - [3-CDP.pdf](3-CDP.pdf) / [3-CDP-notes.pdf](3-CDP-notes.pdf)
- * April 24th, 2017 - [3.1-SRP.pdf](3.1-SRP.pdf) / [3.1-SRP-notes.pdf](3.1-SRP-notes.pdf)
- * April 24th, 2017 - [3.2-ISP.pdf](3.2-ISP.pdf) / [3.2-ISP-notes.pdf](3.2-ISP-notes.pdf)
- * April 24th, 2017 - [3.3-DIP.pdf](3.3-DIP.pdf) / [3.3-DIP-notes.pdf](3.3-DIP-notes.pdf)
- * April 24th, 2017 - [3.4-OCP.pdf](3.4-OCP.pdf) / [3.4-OCP-notes.pdf](3.4-OCP-notes.pdf)
- * April 24th, 2017 - [3.5-LSP.pdf](3.5-LSP.pdf) / [3.5-LSP-notes.pdf](3.5-LSP-notes.pdf)
-
+ * April 24th, 2018 - [3-CDP.pdf](3-CDP.pdf) / [3-CDP-notes.pdf](3-CDP-notes.pdf)
+ * April 24th, 2018 - [3.1-SRP.pdf](3.1-SRP.pdf) / [3.1-SRP-notes.pdf](3.1-SRP-notes.pdf)
+ * April 24th, 2018 - [3.2-ISP.pdf](3.2-ISP.pdf) / [3.2-ISP-notes.pdf](3.2-ISP-notes.pdf)
+ * April 24th, 2018 - [3.3-DIP.pdf](3.3-DIP.pdf) / [3.3-DIP-notes.pdf](3.3-DIP-notes.pdf)
+ * April 24th, 2018 - [3.4-OCP.pdf](3.4-OCP.pdf) / [3.4-OCP-notes.pdf](3.4-OCP-notes.pdf)
+ * April 24th, 2018 - [3.5-LSP.pdf](3.5-LSP.pdf) / [3.5-LSP-notes.pdf](3.5-LSP-notes.pdf)
+ * May 22nd, 2018 - [4-Reactive Programming 1](4-RP1.pdf)
+ * May 29th, 2018 - [4-Reactive Programming 2](4-RP2.pdf)
+ * June 5th, 2018 - [5.1-Inheritance-Basics.pdf](5.1-Inheritance-Basics.pdf) / [5.1-Inheritance-Basics-notes.pdf](5.1-Inheritance-Basics-notes.pdf)
+ * June 5th, 2018 - [5.2-Inheritance-w.r.t.FamilyOfObjects.pdf](5.2-Inheritance-w.r.t.FamilyOfObjects.pdf) / [5.2-Inheritance-w.r.t.FamilyOfObjects-notes.pdf](5.2-Inheritance-w.r.t.FamilyOfObjects-notes.pdf)
+ * June 5th, 2018 - [5.3-SmartHomeExample.pdf](5.3-SmartHomeExample.pdf) / [5.3-SmartHomeExample-notes.pdf](5.3-SmartHomeExample-notes.pdf)
 
 ## Additional Material
-None
+* June 5th, 2018 - [Person.scala](Person.scala) 
 
 ## Exercises
 Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc18](https://submission.st.informatik.tu-darmstadt.de/course/sedc18) and enroll for the course "Software Engineering - Design & Construction".
