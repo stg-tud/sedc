@@ -33,7 +33,7 @@ Technische Universität Darmstadt
  * June 5th, 2018 - [5.3-SmartHomeExample.pdf](5.3-SmartHomeExample.pdf) / [5.3-SmartHomeExample-notes.pdf](5.3-SmartHomeExample-notes.pdf)
 
 ## Additional Material
-* June 5th, 2018 - [Person.scala](Person.scala) 
+* June 5th, 2018 - [Person.scala](Person.scala)
 
 ## Exercises
 Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc18](https://submission.st.informatik.tu-darmstadt.de/course/sedc18) and enroll for the course "Software Engineering - Design & Construction".
@@ -43,4 +43,4 @@ The submission platform is only available within the university network. **You h
 See previous lectures.
 
 ## Other
-None
+* June 8th, 2018 - [CaseStudyContestmitLexta.pdf](CaseStudyContestmitLexta.pdf) 
