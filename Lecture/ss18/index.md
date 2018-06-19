@@ -31,10 +31,13 @@ Technische Universität Darmstadt
  * June 5th, 2018 - [5.1-Inheritance-Basics.pdf](5.1-Inheritance-Basics.pdf) / [5.1-Inheritance-Basics-notes.pdf](5.1-Inheritance-Basics-notes.pdf)
  * June 5th, 2018 - [5.2-Inheritance-w.r.t.FamilyOfObjects.pdf](5.2-Inheritance-w.r.t.FamilyOfObjects.pdf) / [5.2-Inheritance-w.r.t.FamilyOfObjects-notes.pdf](5.2-Inheritance-w.r.t.FamilyOfObjects-notes.pdf)
  * June 5th, 2018 - [5.3-SmartHomeExample.pdf](5.3-SmartHomeExample.pdf) / [5.3-SmartHomeExample-notes.pdf](5.3-SmartHomeExample-notes.pdf)
- * June 12th, 2017 - [6-DesignPatterns.pdf](5-DesignPatterns.pdf) / [6-DesignPatterns-notes.pdf](6-DesignPatterns-notes.pdf)
- * June 12th, 2017 - [6.1-TemplateMethodPattern.pdf](6.1-TemplateMethodPattern.pdf) / [6.1-TemplateMethodPattern-notes.pdf](6.1-TemplateMethodPattern-notes.pdf)
- * June 12th, 2017 - [6.2-StrategyPattern.pdf](6.2-StrategyPattern.pdf) / [6.2-StrategyPattern-notes.pdf](6.2-StrategyPattern-notes.pdf)
-
+ * June 12th, 2018 - [6-DesignPatterns.pdf](5-DesignPatterns.pdf) / [6-DesignPatterns-notes.pdf](6-DesignPatterns-notes.pdf)
+ * June 12th, 2018 - [6.1-TemplateMethodPattern.pdf](6.1-TemplateMethodPattern.pdf) / [6.1-TemplateMethodPattern-notes.pdf](6.1-TemplateMethodPattern-notes.pdf)
+ * June 12th, 2018 - [6.2-StrategyPattern.pdf](6.2-StrategyPattern.pdf) / [6.2-StrategyPattern-notes.pdf](6.2-StrategyPattern-notes.pdf)
+ * June 19th, 2018 - [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf) / [6.3-DecoratorPattern-notes.pdf](6.3-DecoratorPattern-notes.pdf)
+ * June 19th, 2018 - [6.4-ProxyPattern.pdf](6.4-ProxyPattern.pdf) / [6.4-ProxyPattern-notes.pdf](6.4-ProxyPattern-notes.pdf)
+ * June 19th, 2018 - [6.5-BuilderPattern.pdf](6.5-BuilderPattern.pdf) / [6.5-BuilderPattern-notes.pdf](6.5-BuilderPattern-notes.pdf)
+ *
 ## Additional Material
 * June 5th, 2018 - [Person.scala](Person.scala)
 
