@@ -40,6 +40,7 @@ Technische Universität Darmstadt
  *
 ## Additional Material
 * June 5th, 2018 - [Person.scala](Person.scala)
+* June 20th, 2018 - [Software-Quality-from-the-Trenches.pdf](Software-Quality-from-the-Trenches.pdf)
 
 ## Exercises
 Please visit [https://submission.st.informatik.tu-darmstadt.de/course/sedc18](https://submission.st.informatik.tu-darmstadt.de/course/sedc18) and enroll for the course "Software Engineering - Design & Construction".
