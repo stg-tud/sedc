@@ -37,7 +37,13 @@ Technische Universität Darmstadt
  * June 19th, 2018 - [6.3-DecoratorPattern.pdf](6.3-DecoratorPattern.pdf) / [6.3-DecoratorPattern-notes.pdf](6.3-DecoratorPattern-notes.pdf)
  * June 19th, 2018 - [6.4-ProxyPattern.pdf](6.4-ProxyPattern.pdf) / [6.4-ProxyPattern-notes.pdf](6.4-ProxyPattern-notes.pdf)
  * June 19th, 2018 - [6.5-BuilderPattern.pdf](6.5-BuilderPattern.pdf) / [6.5-BuilderPattern-notes.pdf](6.5-BuilderPattern-notes.pdf)
- *
+ * July 3rd, 2018 - [6.6-AdapterPattern.pdf](6.6-AdapterPattern.pdf) / [6.6-AdapterPattern-notes.pdf](6.6-AdapterPattern-notes.pdf)
+ * July 3rd, 2018 - [6.7-BridgePattern.pdf](6.7-BridgePattern.pdf) / [6.7-BridgePattern-notes.pdf](6.7-BridgePattern-notes.pdf)
+ * July 3rd, 2018 - [6.8-VisitorPattern.pdf](6.8-VisitorPattern.pdf) / [6.8-VisitorPattern-notes.pdf](6.8-VisitorPattern-notes.pdf)
+
+
+
+
 ## Additional Material
 * June 5th, 2018 - [Person.scala](Person.scala)
 * June 20th, 2018 - [Software-Quality-from-the-Trenches.pdf](Software-Quality-from-the-Trenches.pdf)
