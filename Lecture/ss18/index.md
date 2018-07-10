@@ -51,6 +51,6 @@ The submission platform is only available within the university network. **You h
 
 ## Old Exams
 See previous lectures.
-*  Design Task from WS 17/18 [Software_Design_Exam_Task.pdf](Software Design Task)
+*  Design Task from WS 17/18 [Software-Design-Exam-Task.pdf](Software Design Task)
 ## Other
 * June 8th, 2018 - [CaseStudyContestmitLexta.pdf](CaseStudyContestmitLexta.pdf)
